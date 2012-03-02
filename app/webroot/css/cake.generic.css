@@ -152,7 +152,7 @@ table tr td {
 	vertical-align: top;
 	border-bottom:1px solid #ddd;
 }
-table tr:nth-child(even) {
+table tr:nth-child(odd) {
 	background: #f9f9f9;
 }
 td.actions {

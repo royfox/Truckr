@@ -12,15 +12,23 @@
 
 		echo $this->Html->css('cake.generic');
         echo $this->Html->css('main');
+        echo $this->Html->css('prettify');
+        echo $this->Html->script('prettify/prettify.js');
+        echo $this->Html->script('jquery.js');
 		echo $scripts_for_layout;
 	?>
 </head>
-<body>
+<body onload="prettyPrint();">
 	<div id="container">
         <div id="wrapper">
             <div id="header">
                 <h1><?php echo $this->Html->link("Truckr", '/'); ?></h1>
-                 <?php echo $this->Html->link("Logout", '/logout', array('class'=>'logout')); ?>
+                <?php if($this->Session->read('Auth.User')):?>
+                    <div class="permalinks actions">
+                        <?php echo $this->Html->link('Add Post', array('action' => 'add')); ?>
+                         <?php echo $this->Html->link("Logout", '/logout', array('class'=>'logout')); ?>
+                    </div>
+                <?php endif;?>
             </div>
             <div id="content">
 

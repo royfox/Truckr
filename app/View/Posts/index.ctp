@@ -1,32 +1,25 @@
-<!-- File: /app/View/Posts/index.ctp -->
 
-<p><?php echo $this->Html->link('Add Post', array('action' => 'add')); ?></p>
-<table>
-    <tr>
-        <th>Id</th>
+<table class="post_list">
+   <!-- <tr>
         <th>Title</th>
-                <th>Actions</th>
         <th>Created</th>
-    </tr>
-
-<!-- Here's where we loop through our $posts array, printing out post info -->
+    </tr>-->
 
     <?php foreach ($posts as $post): ?>
-    <tr>
-        <td><?php echo $post['Post']['id']; ?></td>
-        <td>
+    <tr class="headline">
+        <td class="title">
             <?php echo $this->Html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?>
         </td>
-        <td>
-            <?php echo $this->Form->postLink(
-                'Delete',
-                array('action' => 'delete', $post['Post']['id']),
-                array('confirm' => 'Are you sure?'));
-            ?>
-            <?php echo $this->Html->link('Edit', array('action' => 'edit', $post['Post']['id']));?>
+        <td class="date">
+            <?php echo $this->Time->niceShort($post['Post']['modified']); ?>
         </td>
-        <td>
-            <?php echo $post['Post']['created_at']; ?>
+    </tr>
+    <tr class="excerpt">
+        <td colspan="2">
+            <?php echo $this->Text->truncate(Sanitize::html(Markdown($post['Post']['content']), array('remove' => true)), 100, array(
+                    'ending' => '...',
+                    'exact' => false
+              ));?>
         </td>
     </tr>
     <?php endforeach; ?>

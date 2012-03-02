@@ -86,3 +86,17 @@
 #13 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(86): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
 #14 /Users/royfox/Documents/Code/Truck/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #15 {main}
+2012-03-02 17:06:39 Error: [MissingPluginException] Plugin Markdown could not be found.
+#0 /Users/royfox/Documents/Code/Truckr/lib/Cake/Core/App.php(332): CakePlugin::path('Markdown')
+#1 /Users/royfox/Documents/Code/Truckr/lib/Cake/Core/App.php(217): App::pluginPath('Markdown')
+#2 /Users/royfox/Documents/Code/Truckr/lib/Cake/Core/App.php(510): App::path('View/Helper', 'Markdown')
+#3 [internal function]: App::load('MarkdownHelper')
+#4 [internal function]: spl_autoload_call('MarkdownHelper')
+#5 /Users/royfox/Documents/Code/Truckr/lib/Cake/View/HelperCollection.php(81): class_exists('MarkdownHelper')
+#6 /Users/royfox/Documents/Code/Truckr/lib/Cake/View/View.php(574): HelperCollection->load('Markdown.Markdo...', Array)
+#7 /Users/royfox/Documents/Code/Truckr/lib/Cake/View/View.php(356): View->loadHelpers()
+#8 /Users/royfox/Documents/Code/Truckr/lib/Cake/Controller/Controller.php(900): View->render(NULL, NULL)
+#9 /Users/royfox/Documents/Code/Truckr/lib/Cake/Routing/Dispatcher.php(111): Controller->render()
+#10 /Users/royfox/Documents/Code/Truckr/lib/Cake/Routing/Dispatcher.php(86): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#11 /Users/royfox/Documents/Code/Truckr/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}

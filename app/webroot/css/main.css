@@ -1,13 +1,29 @@
-body { font-famil: "Lucida Grande", arial, helvetica, sans-serif; background:#eee; }
-
+body { font-family:Georgia, serif; line-height:1.4em; background:#eee; color:#000; }
+table { border-collapse:collapse;}
 #container { width:800px; margin:0 auto; background:#fff; border:1px solid #ccc;  }
 #wrapper { padding:40px 40px; }
 
 #header { padding:0; position:relative;}
     #header h1 {  padding:0; }
         #header h1 a{ font-weight:bold; letter-spacing:-0.05em; color:#000; font-size:28px;  }
-        #header .logout { position:absolute; right:10px; top:10px;}
+        #header .permalinks { position:absolute; right:-10px; top:-7px; width:150px;}
 
 #content { padding:20px 0;}
 
-a { color:#7DBBC9;}
+a { color:#2D4D31;}
+
+table.post_list { border-top:1px solid #DDD; }
+    table.post_list tr.excerpt td { color: #999; font-size:0.9em;}
+    table.post_list .date { color:#666; }
+
+h2 { margin:25px 0;font-size:34px; color:#350F23;}
+
+div.post_meta { border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; background:#F3F3F3; padding:5px 5px; color:#666; font-size:13px;}
+    div.post_meta .admin { float:right;}
+
+div.content { clear:both;margin-top:20px;}
+
+textarea { font-size:13px; height:250px; font-family: courier;}
+
+p { margin:1em 0;}
+
