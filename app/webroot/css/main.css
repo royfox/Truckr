@@ -1,0 +1,13 @@
+body { font-famil: "Lucida Grande", arial, helvetica, sans-serif; background:#eee; }
+
+#container { width:800px; margin:0 auto; background:#fff; border:1px solid #ccc;  }
+#wrapper { padding:40px 40px; }
+
+#header { padding:0; position:relative;}
+    #header h1 {  padding:0; }
+        #header h1 a{ font-weight:bold; letter-spacing:-0.05em; color:#000; font-size:28px;  }
+        #header .logout { position:absolute; right:10px; top:10px;}
+
+#content { padding:20px 0;}
+
+a { color:#7DBBC9;}

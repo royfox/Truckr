@@ -1,0 +1,88 @@
+2012-02-17 17:28:44 Error: [MissingControllerException] Controller class UsersController could not be found.
+#0 /Users/royfox/Documents/Code/Truck/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-17 17:30:18 Error: [MissingViewException] View file "/Users/royfox/Documents/Code/Truck/app/View/Users/login.ctp" is missing.
+#0 /Users/royfox/Documents/Code/Truck/lib/Cake/View/View.php(360): View->_getViewFileName(NULL)
+#1 /Users/royfox/Documents/Code/Truck/lib/Cake/Controller/Controller.php(900): View->render(NULL, NULL)
+#2 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(111): Controller->render()
+#3 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(86): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /Users/royfox/Documents/Code/Truck/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-17 17:33:25 Error: [MissingActionException] Action UsersController::login() could not be found.
+#0 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(104): Controller->invokeAction(Object(CakeRequest))
+#1 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(86): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /Users/royfox/Documents/Code/Truck/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-02-17 17:34:37 Error: [MissingActionException] Action UsersController::users() could not be found.
+#0 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(104): Controller->invokeAction(Object(CakeRequest))
+#1 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(86): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /Users/royfox/Documents/Code/Truck/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-02-17 17:34:46 Error: [MissingActionException] Action UsersController::users() could not be found.
+#0 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(104): Controller->invokeAction(Object(CakeRequest))
+#1 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(86): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /Users/royfox/Documents/Code/Truck/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-02-17 17:35:13 Error: [MissingActionException] Action UsersController::users() could not be found.
+#0 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(104): Controller->invokeAction(Object(CakeRequest))
+#1 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(86): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /Users/royfox/Documents/Code/Truck/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-02-17 17:35:34 Error: [MissingViewException] View file "/Users/royfox/Documents/Code/Truck/app/View/Users/login.ctp" is missing.
+#0 /Users/royfox/Documents/Code/Truck/lib/Cake/View/View.php(360): View->_getViewFileName(NULL)
+#1 /Users/royfox/Documents/Code/Truck/lib/Cake/Controller/Controller.php(900): View->render(NULL, NULL)
+#2 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(111): Controller->render()
+#3 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(86): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /Users/royfox/Documents/Code/Truck/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-17 17:39:37 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User.email' in 'where clause'
+#0 /Users/royfox/Documents/Code/Truck/lib/Cake/Model/Datasource/DboSource.php(436): PDOStatement->execute(Array)
+#1 /Users/royfox/Documents/Code/Truck/lib/Cake/Model/Datasource/DboSource.php(403): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /Users/royfox/Documents/Code/Truck/lib/Cake/Model/Datasource/DboSource.php(647): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /Users/royfox/Documents/Code/Truck/lib/Cake/Model/Datasource/DboSource.php(1040): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /Users/royfox/Documents/Code/Truck/lib/Cake/Model/Model.php(2483): DboSource->read(Object(User), Array)
+#5 /Users/royfox/Documents/Code/Truck/lib/Cake/Controller/Component/Auth/BaseAuthenticate.php(84): Model->find('first', Array)
+#6 /Users/royfox/Documents/Code/Truck/lib/Cake/Controller/Component/Auth/FormAuthenticate.php(65): BaseAuthenticate->_findUser('fgdfgdf', 'dfgdfg')
+#7 /Users/royfox/Documents/Code/Truck/lib/Cake/Controller/Component/AuthComponent.php(640): FormAuthenticate->authenticate(Object(CakeRequest), Object(CakeResponse))
+#8 /Users/royfox/Documents/Code/Truck/lib/Cake/Controller/Component/AuthComponent.php(514): AuthComponent->identify(Object(CakeRequest), Object(CakeResponse))
+#9 /Users/royfox/Documents/Code/Truck/app/Controller/UsersController.php(12): AuthComponent->login()
+#10 [internal function]: UsersController->login()
+#11 /Users/royfox/Documents/Code/Truck/lib/Cake/Controller/Controller.php(473): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#12 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(104): Controller->invokeAction(Object(CakeRequest))
+#13 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(86): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#14 /Users/royfox/Documents/Code/Truck/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2012-02-17 17:45:48 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User.username' in 'where clause'
+#0 /Users/royfox/Documents/Code/Truck/lib/Cake/Model/Datasource/DboSource.php(436): PDOStatement->execute(Array)
+#1 /Users/royfox/Documents/Code/Truck/lib/Cake/Model/Datasource/DboSource.php(403): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /Users/royfox/Documents/Code/Truck/lib/Cake/Model/Datasource/DboSource.php(647): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /Users/royfox/Documents/Code/Truck/lib/Cake/Model/Datasource/DboSource.php(1040): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /Users/royfox/Documents/Code/Truck/lib/Cake/Model/Model.php(2483): DboSource->read(Object(User), Array)
+#5 /Users/royfox/Documents/Code/Truck/lib/Cake/Controller/Component/Auth/BaseAuthenticate.php(84): Model->find('first', Array)
+#6 /Users/royfox/Documents/Code/Truck/lib/Cake/Controller/Component/Auth/FormAuthenticate.php(65): BaseAuthenticate->_findUser('roy', 'password')
+#7 /Users/royfox/Documents/Code/Truck/lib/Cake/Controller/Component/AuthComponent.php(640): FormAuthenticate->authenticate(Object(CakeRequest), Object(CakeResponse))
+#8 /Users/royfox/Documents/Code/Truck/lib/Cake/Controller/Component/AuthComponent.php(514): AuthComponent->identify(Object(CakeRequest), Object(CakeResponse))
+#9 /Users/royfox/Documents/Code/Truck/app/Controller/UsersController.php(12): AuthComponent->login()
+#10 [internal function]: UsersController->login()
+#11 /Users/royfox/Documents/Code/Truck/lib/Cake/Controller/Controller.php(473): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#12 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(104): Controller->invokeAction(Object(CakeRequest))
+#13 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(86): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#14 /Users/royfox/Documents/Code/Truck/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2012-02-17 17:46:09 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User.username' in 'where clause'
+#0 /Users/royfox/Documents/Code/Truck/lib/Cake/Model/Datasource/DboSource.php(436): PDOStatement->execute(Array)
+#1 /Users/royfox/Documents/Code/Truck/lib/Cake/Model/Datasource/DboSource.php(403): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /Users/royfox/Documents/Code/Truck/lib/Cake/Model/Datasource/DboSource.php(647): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /Users/royfox/Documents/Code/Truck/lib/Cake/Model/Datasource/DboSource.php(1040): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /Users/royfox/Documents/Code/Truck/lib/Cake/Model/Model.php(2483): DboSource->read(Object(User), Array)
+#5 /Users/royfox/Documents/Code/Truck/lib/Cake/Controller/Component/Auth/BaseAuthenticate.php(84): Model->find('first', Array)
+#6 /Users/royfox/Documents/Code/Truck/lib/Cake/Controller/Component/Auth/FormAuthenticate.php(65): BaseAuthenticate->_findUser('roy', 'password')
+#7 /Users/royfox/Documents/Code/Truck/lib/Cake/Controller/Component/AuthComponent.php(640): FormAuthenticate->authenticate(Object(CakeRequest), Object(CakeResponse))
+#8 /Users/royfox/Documents/Code/Truck/lib/Cake/Controller/Component/AuthComponent.php(514): AuthComponent->identify(Object(CakeRequest), Object(CakeResponse))
+#9 /Users/royfox/Documents/Code/Truck/app/Controller/UsersController.php(12): AuthComponent->login()
+#10 [internal function]: UsersController->login()
+#11 /Users/royfox/Documents/Code/Truck/lib/Cake/Controller/Controller.php(473): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#12 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(104): Controller->invokeAction(Object(CakeRequest))
+#13 /Users/royfox/Documents/Code/Truck/lib/Cake/Routing/Dispatcher.php(86): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#14 /Users/royfox/Documents/Code/Truck/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
