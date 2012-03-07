@@ -65,7 +65,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'root',
 		'password' => 'root',
-		'database' => 'truck',
+		'database' => 'truckr',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);

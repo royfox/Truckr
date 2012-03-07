@@ -16,13 +16,17 @@ class PostsController extends AppController {
 
     public function view($id) {
         $this->Post->id = $id;
+        $this->Post->recursive = 3;
         $this->set('post', $this->Post->read());
     }
 
     public function add() {
+        $this->set("hide_navigation", true);
         if ($this->request->is('post')) {
             $this->Post->user_id = $this->Auth->user('id');
             if ($this->Post->save($this->request->data)) {
+                $this->Post->set('user_id', $this->Auth->user('id'));
+                $this->Post->save();
                 $this->Session->setFlash('Your post has been saved.');
                 $this->redirect(array('action' => 'index'));
             } else {
@@ -34,11 +38,11 @@ class PostsController extends AppController {
     }
 
     function edit($id = null) {
+        $this->set("hide_navigation", true);
         $this->Post->id = $id;
         if ($this->request->is('get')) {
             $this->request->data = $this->Post->read();
         } else {
-            $this->Post->user_id = $this->Auth->user('id');
             if ($this->Post->save($this->request->data)) {
                 $this->Session->setFlash('Your post has been updated.');
                 $this->redirect(array('action' => 'view', $this->Post->id));
@@ -56,6 +60,24 @@ class PostsController extends AppController {
         if ($this->Post->delete($id)) {
             $this->Session->setFlash('The post has been deleted');
             $this->redirect(array('action' => 'index'));
+        }
+    }
+    function search(){
+        if(isset($this->params->query['query'])){
+            $query = $this->params->query['query'];
+            $this->set("query", $query);
+            $this->set('posts', $this->Post->find('all', array(
+                'order' => array('modified desc'),
+                'conditions' =>  array(
+                    'OR' => array(
+                        array('Post.title LIKE' => "%$query%"),
+                        array('Post.content LIKE' => "%$query%")
+                    )
+                )
+            )));
+        } else {
+            $this->Session->setFlash('No search query!');
+            $this->redirect("/");
         }
     }
 

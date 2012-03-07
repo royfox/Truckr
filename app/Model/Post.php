@@ -1,5 +1,6 @@
 <?php
 class Post extends AppModel {
+    
     public $name = 'Post';
 
     public $validate = array(
@@ -12,4 +13,5 @@ class Post extends AppModel {
     );
 
     public $belongsTo = array('Category', 'User', 'Subject');
+    public $hasMany = array("Comment");
 }

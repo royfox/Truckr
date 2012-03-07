@@ -24,6 +24,6 @@ class User extends AppModel {
         return true;
     }
 
-    public $hasMany = array('Post');
+    public $hasMany = array('Post','Comment');
 
 }
