@@ -1,0 +1,1 @@
+<?php echo $this->Html->link($user['username'], array('controller' => 'users', 'action' => 'view', $user['id']), array('class' => 'minor_link')); ?>

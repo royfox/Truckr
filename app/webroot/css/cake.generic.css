@@ -496,8 +496,7 @@ p.error em {
 
 /* Buttons and button links */
 input[type=submit],
-.actions ul li a,
-.actions a {
+.actions ul li a {
 	font-weight:normal;
 	padding: 4px 8px;
 	background: #dcdcdc;
@@ -521,15 +520,13 @@ input[type=submit],
 	-webkit-user-select: none;
 	user-select: none;
 }
-.actions ul li a:hover,
-.actions a:hover {
+.actions ul li a:hover {
 	background: #ededed;
 	border-color: #acacac;
 	text-decoration: none;
 }
 input[type=submit]:active,
-.actions ul li a:active,
-.actions a:active {
+.actions ul li a:active {
 	background: #eee;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#dfdfdf), to(#eee));
 	background-image: -webkit-linear-gradient(top, #dfdfdf, #eee);

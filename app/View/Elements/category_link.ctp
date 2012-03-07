@@ -1,0 +1,1 @@
+<?php echo $this->Html->link($category['name'], array('controller' => 'categories', 'action' => 'view', $category['slug']), array('class' => 'category '.$category['slug'])); ?>

@@ -2,6 +2,8 @@
 // app/Controller/UsersController.php
 class UsersController extends AppController {
 
+    public $helpers = array('Html', 'Form','Text',"Time", "Markdown.Markdown");
+
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add', 'logout');
@@ -32,6 +34,12 @@ class UsersController extends AppController {
             throw new NotFoundException(__('Invalid user'));
         }
         $this->set('user', $this->User->read(null, $id));
+        $this->set('posts', $this->User->Post->find('all',array(
+             'order' => array('modified desc'),
+             'conditions' => array(
+                'User.id' => $id
+             )
+        )));
     }
 
     public function add() {

@@ -9,34 +9,36 @@ class PostsController extends AppController {
     public $components = array('Session');
 
     public function index() {
-        $this->set('posts', $this->Post->find('all'));
+        $this->set('posts', $this->Post->find('all',
+            array('order' => array('modified desc'))
+        ));
     }
 
     public function view($id) {
         $this->Post->id = $id;
         $this->set('post', $this->Post->read());
-
     }
 
     public function add() {
-            if ($this->request->is('post')) {
-                $this->request->data['created_at'] = date("Y-m-d H:i:s");
-                $this->request->data['updated_at'] = date("Y-m-d H:i:s");
-                if ($this->Post->save($this->request->data)) {
-                    $this->Session->setFlash('Your post has been saved.');
-                    $this->redirect(array('action' => 'index'));
-                } else {
-                    $this->Session->setFlash('Unable to add your post.');
-                }
+        if ($this->request->is('post')) {
+            $this->Post->user_id = $this->Auth->user('id');
+            if ($this->Post->save($this->request->data)) {
+                $this->Session->setFlash('Your post has been saved.');
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash('Unable to add your post.');
             }
         }
+        $this->set('categories', $this->Post->Category->find('list', array('order'=>'name asc')));
+        $this->set('subjects', $this->Post->Subject->find('list', array('order'=>'name asc')));
+    }
 
     function edit($id = null) {
         $this->Post->id = $id;
         if ($this->request->is('get')) {
             $this->request->data = $this->Post->read();
         } else {
-            $this->Post->updated_at = date("Y-m-d H:i:s");
+            $this->Post->user_id = $this->Auth->user('id');
             if ($this->Post->save($this->request->data)) {
                 $this->Session->setFlash('Your post has been updated.');
                 $this->redirect(array('action' => 'view', $this->Post->id));
@@ -44,6 +46,8 @@ class PostsController extends AppController {
                 $this->Session->setFlash('Unable to update your post.');
             }
         }
+        $this->set('categories', $this->Post->Category->find('list', array('order'=>'name asc')));
+        $this->set('subjects', $this->Post->Subject->find('list', array('order'=>'name asc')));
     }
     function delete($id) {
         if ($this->request->is('get')) {

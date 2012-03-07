@@ -10,4 +10,6 @@ class Post extends AppModel {
             'rule' => 'notEmpty'
         )
     );
+
+    public $belongsTo = array('Category', 'User', 'Subject');
 }

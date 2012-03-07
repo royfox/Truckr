@@ -23,10 +23,13 @@
         <div id="wrapper">
             <div id="header">
                 <h1><?php echo $this->Html->link("Truckr", '/'); ?></h1>
-                <?php if($this->Session->read('Auth.User')):?>
+                <?php if($user = $this->Session->read('Auth.User')):?>
                     <div class="permalinks actions">
-                        <?php echo $this->Html->link('Add Post', array('action' => 'add')); ?>
-                         <?php echo $this->Html->link("Logout", '/logout', array('class'=>'logout')); ?>
+                        <?php echo $this->Html->link('Add Post', array('action' => 'add'), array('class' => 'button')); ?>
+                    </div>
+                    <div class="username">
+                        Logged in as <?php echo $user['username'];?>
+                        <?php echo $this->Html->link("(Logout)", '/logout', array('class'=>'logout')); ?>
                     </div>
                 <?php endif;?>
             </div>
