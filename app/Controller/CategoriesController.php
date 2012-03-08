@@ -9,9 +9,13 @@ class CategoriesController extends AppController {
     public $components = array('Session');
 
     public function view($slug) {
-        $this->set("category", $this->Category->find('first', array(
+        $category = $this->Category->find('first', array(
             'conditions' => array('Category.slug' => $slug)
-        )));
+        ));
+        if(!$category){
+            throw new NotFoundException();
+        }
+        $this->set("category", $category);
         $this->set('posts', $this->Category->Post->find('all',array(
              'order' => array('modified desc'),
              'conditions' => array(

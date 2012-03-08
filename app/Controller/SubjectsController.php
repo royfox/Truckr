@@ -9,9 +9,13 @@ class SubjectsController extends AppController {
     public $components = array('Session');
 
     public function view($slug) {
-        $this->set("subject", $this->Subject->find('first', array(
+        $subject = $this->Subject->find('first', array(
             'conditions' => array('Subject.slug' => $slug)
-        )));
+        ));
+        if(!$subject){
+            throw new NotFoundException();
+        }
+        $this->set("subject", $subject);
         $this->set('posts', $this->Subject->Post->find('all',array(
              'order' => array('modified desc'),
              'conditions' => array(
@@ -19,5 +23,4 @@ class SubjectsController extends AppController {
              )
         )));
     }
-
 }

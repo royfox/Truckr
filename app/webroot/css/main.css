@@ -2,11 +2,12 @@
 
 body { font-family:Georgia, serif; line-height:1.4em; background:#eee; color:#000; }
 table { border-collapse:collapse;}
-h2 { margin:25px 0;font-size:34px; color:#350F23; padding:6px;}
-h3, h4, h5, h6 { font-family:Georgia; margin-bottom:1em; padding:6px; color:#2C6877;}
+h2 { margin:20px 0 20px 0;font-size:34px; color:#350F23; }
+h3, h4, h5, h6 { font-family:Georgia; margin:1em 0; color:#2C6877; }
+h3 { font-size:22px;}
 a { color:#06C;}
 textarea { font-size:13px; height:250px; font-family: courier;}
-p { margin:1em 0; padding:0 6px;}
+p { margin:1em 0; }
 
 /* Page Layout */
 
@@ -30,6 +31,7 @@ a.category { padding: 3px 5px; border-radius: 3px;-moz-border-radius: 3px; -webk
     a.category.feature-request { color:#FFF; background-color: #1CA3F1;}
     a.category.support { color:#FFF; background-color: #F1E31C;}
     a.category.tips { color:#FFF; background-color: #F1A31C;}
+    a.category.code-explanation { color:#FFF; background-color: #50944D;}
 
 /* Individual sections */
 
@@ -48,8 +50,8 @@ a.category { padding: 3px 5px; border-radius: 3px;-moz-border-radius: 3px; -webk
 
 #navigation .menu { margin-top:-3px;position:relative;}
     #navigation .menu .title { border:1px solid #FFF; border-bottom:0; color:#444; display:block; padding: 3px 10px 3px 22px; background-repeat:no-repeat; background-image:url('/img/dropdown-icon.png'); background-position:8px 6px;}
-    #navigation .menu .title.hover { border:1px solid #CCC; border-bottom:0; background-color:#F4F4F4;}
-    #navigation .menu ul { display:none; margin:0; margin-left:-23px; margin-top:3px; border-top: 1px solid #CCC; background:#F4F4F4; width:140px; position:absolute; list-style:none;  padding:0;}
+    #navigation .menu .title.hover { border:1px solid #CCC; border-bottom:0; background-color:#F0F3F5;}
+    #navigation .menu ul { display:none; margin:0; margin-left:-23px; margin-top:3px; border-top: 1px solid #CCC; background:#F0F3F5; width:140px; position:absolute; list-style:none;  padding:0;}
         #navigation .menu .hover ul { -moz-box-shadow: 4px 4px 2px #bbb; -webkit-box-shadow: 4px 4px 2px #bbb; box-shadow: 4px 4px 2px #bbb;display:block;}
         #navigation .menu li { border:1px solid #CCC; border-top:0; list-style:none; margin:0; padding:2px 8px;}
             #navigation .menu li:hover { background-color:#DDD;}
@@ -61,11 +63,25 @@ table.post_list { border-top:1px solid #DDD; }
         table.post_list .date a { color:#666; font-size:11px; }
         table.post_list td.meta { text-align: right;}
 
-div.comments { margin-top:40px; }
-    div.comment { margin-bottom:20px;}
-    div.comment .title { background:#E9F5F5; border-top: 1px solid #D0DBDB; border-bottom: 1px solid #D0DBDB; padding:3px;}
+div.comments { margin-top:40px;}
+    div.comment { margin-bottom:30px;  position:relative;}
+        div.comment .picture { position:absolute; padding-bottom:10px; }
+            div.comment .picture img {  }
+        div.comment .content { padding-left:83px; }
+        div.comment .content .title {  color:#888; border-top: 1px solid #D0DBDB; border-bottom: 1px solid #D0DBDB; padding:3px;}
+        div.comment .content .body { padding:3px;}
+            div.comment .content .body p { margin-top:0;}
 
-div.post_meta { border-bottom: 1px solid #D0DBDB; border-top: 1px solid #D0DBDB; background:#E9F5F5; padding:5px 5px; color:#666; font-size:13px;}
+        div.comment div.textarea { margin-bottom:0;}
+            div.comment div.textarea label { display:none;}
+            div.comment div.textarea textarea { height:90px;}
+        div.comment.add_comment h4 { color: #888; font-size:15px; margin: 0; padding-left: 10px; }
+        div.comment.add_comment .submit { margin-top:2px; text-align: right;}
+            div.comment.add_comment .submit input { font-size:14px; padding:5px; }
+
+        div.comment .delete_link { font-size:12px;}
+
+div.post_meta { border-bottom: 1px solid #D0DBDB; border-top: 1px solid #D0DBDB;  padding:5px 5px; color:#666; font-size:12px;}
     div.post_meta .admin { float:right;}
 
 div.content { clear:both;margin-top:20px;}

@@ -5,7 +5,7 @@ App::uses('Sanitize', 'Utility');
 class PostsController extends AppController {
 
     public $name = 'Posts';
-    public $helpers = array('Html', 'Form','Text',"Time", "Markdown.Markdown");
+    public $helpers = array('Html', 'Form','Text',"Time", "Markdown.Markdown","Gravatar");
     public $components = array('Session');
 
     public function index() {
@@ -17,13 +17,16 @@ class PostsController extends AppController {
     public function view($id) {
         $this->Post->id = $id;
         $this->Post->recursive = 3;
-        $this->set('post', $this->Post->read());
+        $post = $this->Post->read();
+        if(!$post){
+            throw new NotFoundException();
+        }
+        $this->set('post', $post);
     }
 
     public function add() {
         $this->set("hide_navigation", true);
         if ($this->request->is('post')) {
-            $this->Post->user_id = $this->Auth->user('id');
             if ($this->Post->save($this->request->data)) {
                 $this->Post->set('user_id', $this->Auth->user('id'));
                 $this->Post->save();

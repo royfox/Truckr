@@ -16,6 +16,7 @@ class AppController extends Controller {
         $this->set("all_subjects_for_navigation", $subject->find("all", array('order'=>'name asc')));
         $category = new Category();
         $this->set("all_categories_for_navigation", $category->find("all", array('order'=>'name asc')));
+
     }
 
 }
