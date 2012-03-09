@@ -3,14 +3,12 @@
 body { font-family:Georgia, serif; line-height:1.4em; background:#eee; color:#000; }
 table { border-collapse:collapse;}
 h2 { margin:20px 0 20px 0;font-size:34px; color:#350F23; }
-h3, h4, h5, h6 { font-family:Georgia; margin:1em 0; color:#2C6877; }
-h3 { font-size:22px;}
 a { color:#06C;}
-textarea { font-size:13px; height:250px; font-family: courier;}
+textarea { font-size:13px; height:250px; }
 p { margin:1em 0; }
+form div { padding:0.5em 0;}
 
 /* Page Layout */
-
 #container { width:800px; margin:0 auto; background:#fff; border:1px solid #ccc;  }
 #wrapper { padding:40px 40px; }
 
@@ -34,6 +32,8 @@ a.category { padding: 3px 5px; border-radius: 3px;-moz-border-radius: 3px; -webk
     a.category.code-explanation { color:#FFF; background-color: #50944D;}
 
 /* Individual sections */
+
+div.post h1, div.post h2, div.post h3, div.post h4, div.post h5, div.post h6 { background:transparent; font-family:Georgia; margin:1em 0; color:#2C6877; font-size:22px; }
 
 #header { padding:0; position:relative;}
     #header h1 {  padding:0; }
@@ -75,7 +75,7 @@ div.comments { margin-top:40px;}
         div.comment div.textarea { margin-bottom:0;}
             div.comment div.textarea label { display:none;}
             div.comment div.textarea textarea { height:90px;}
-        div.comment.add_comment h4 { color: #888; font-size:15px; margin: 0; padding-left: 10px; }
+        div.comment.add_comment h4 { color: #888; font-size:15px; margin: 0; padding-left: 3px; }
         div.comment.add_comment .submit { margin-top:2px; text-align: right;}
             div.comment.add_comment .submit input { font-size:14px; padding:5px; }
 
@@ -86,6 +86,21 @@ div.post_meta { border-bottom: 1px solid #D0DBDB; border-top: 1px solid #D0DBDB;
 
 div.content { clear:both;margin-top:20px;}
 
+.wmd-button-bar { width: 100%; margin:0; padding:0; margin-bottom:4px; }
+.wmd-input {height: 230px;  border: 1px solid DarkGray; margin-top:3px; }
+.wmd-preview { padding:0 12px; background-color: #F3F3F3; border:1px dashed #DDD; margin-left:16px6px;}
+.wmd-button-row { position: relative; margin:0; padding: 0px; height: 20px;}
+.wmd-spacer { width: 1px; height: 20px; margin-left: 14px; position: absolute; background-color: Silver; display: inline-block; list-style: none; }
+.wmd-button { width: 20px; height: 20px; padding-left: 2px; padding-right: 3px; position: absolute; display: inline-block; list-style: none; cursor: pointer; margin:0;}
+.wmd-button > span {background-image: url('/img/wmd-buttons.png');background-repeat: no-repeat;background-position: 0px 0px;width: 20px;height: 20px;display: inline-block; }
+.wmd-spacer1 { left: 50px; }
+.wmd-spacer2 { left: 175px; }
+.wmd-spacer3 { left: 300px;}
+.wmd-prompt-background { background-color: Black;}
+.wmd-prompt-dialog { border: 1px solid #999999; background-color: #F5F5F5; padding:0 12px;}
+.wmd-prompt-dialog > div { font-size: 0.8em; font-family: arial, helvetica, sans-serif; }
+.wmd-prompt-dialog > form > input[type="text"] { border: 1px solid #999999; color: black;}
+.wmd-prompt-dialog > form > input[type="button"]{ border: 1px solid #888888; font-family: trebuchet MS, helvetica, sans-serif; font-size: 0.8em; font-weight: bold;}
 
 
 

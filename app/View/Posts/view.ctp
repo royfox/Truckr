@@ -1,4 +1,5 @@
 
+
 <div class="post_meta">
     <?php echo $this->element("category_link", array("category" => $post['Category']));?>
     <?php echo $this->element("subject_link", array("subject" => $post['Subject']));?>
@@ -14,8 +15,12 @@
 
 <h2><?php echo $post['Post']['title']?></h2>
 
-<div class="content">
-    <p><?php echo Markdown($post['Post']['content']); ?></p>
+<div class="post">
+
+    <div class="content">
+        <p><?php echo Markdown($post['Post']['content']); ?></p>
+    </div>
+
 </div>
 
 <div class="comments">
@@ -54,6 +59,8 @@
         </div>
     </div>
 </div>
+
+
 
 
 
