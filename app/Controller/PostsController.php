@@ -16,7 +16,8 @@ class PostsController extends AppController {
 
     public function view($id) {
         $this->Post->id = $id;
-        $this->Post->recursive = 3;
+        $this->Post->contain(array('Comment','Comment.User', 'Subscriber','Subscriber.User','Subject','Category','User'));
+        $this->Post->recursive = 1;
         $post = $this->Post->read();
         if(!$post){
             throw new NotFoundException();
@@ -30,12 +31,20 @@ class PostsController extends AppController {
             if ($this->Post->save($this->request->data)) {
                 $this->Post->set('user_id', $this->Auth->user('id'));
                 $this->Post->save();
+                $this->Post->setSubscribers($this->request->data['Post']['Subscriber'], $this->Auth->user('id'));
                 $this->Session->setFlash('Your post has been saved.');
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash('Unable to add your post.');
             }
         }
+        $this->set('users', $this->Post->User->find('list', array(
+            'fields' => array('User.display_name'),
+            'order'=>'display_name asc',
+            'conditions' => array(
+                'User.id !=' => $this->Auth->user('id')
+            )
+        )));
         $this->set('categories', $this->Post->Category->find('list', array('order'=>'name asc')));
         $this->set('subjects', $this->Post->Subject->find('list', array('order'=>'name asc')));
     }
@@ -47,12 +56,26 @@ class PostsController extends AppController {
             $this->request->data = $this->Post->read();
         } else {
             if ($this->Post->save($this->request->data)) {
+                $this->Post->setSubscribers($this->request->data['Post']['Subscriber'], $this->Auth->user('id'));
                 $this->Session->setFlash('Your post has been updated.');
                 $this->redirect(array('action' => 'view', $this->Post->id));
             } else {
                 $this->Session->setFlash('Unable to update your post.');
             }
         }
+        $this->set("subscribers", array_values($this->Post->Subscriber->find('list', array(
+            'conditions' => array(
+                'Subscriber.post_id' => $id,
+            ),
+            'fields' => array('Subscriber.user_id'),
+        ))));
+        $this->set('users', $this->Post->User->find('list', array(
+            'fields' => array('User.display_name'),
+            'order'=>'display_name asc',
+            'conditions' => array(
+                'User.id !=' => $this->Auth->user('id')
+            )
+        )));
         $this->set('categories', $this->Post->Category->find('list', array('order'=>'name asc')));
         $this->set('subjects', $this->Post->Subject->find('list', array('order'=>'name asc')));
     }

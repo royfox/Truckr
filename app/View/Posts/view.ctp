@@ -1,4 +1,30 @@
 
+<div class="subscribers">
+    <?php $subscriber_ids = array();?>
+    <?php if(count($post['Subscriber'])):?>
+        <?php $subscriber_names = array();?>
+        <?php foreach($post['Subscriber'] as $subscriber):?>
+            <?php $subscriber_names[] = $subscriber['User']['display_name'];?>
+            <?php $subscriber_ids[] = $subscriber['User']['id'];?>
+        <?php endforeach;?>
+        Subscribed to updates: <span class="list"><?php echo join(", ", $subscriber_names);?></span>
+    <?php else:?>
+        No subscribers
+    <?php endif;?>
+
+    <?php $current_user = $this->Session->read('Auth.User');?>
+
+    <?php if(in_array($current_user['id'], $subscriber_ids)):?>
+        <span class="manage_subscription unsubscribe">
+            <?php echo $this->Html->link('Unsubscribe', array('controller' => 'subscribers','action' => 'delete', $post['Post']['id']));?>
+        </span>
+    <?php else:?>
+    <span class="manage_subscription subscribe">
+        <?php echo $this->Html->link('Subscribe', array('controller' => 'subscribers','action' => 'add', $post['Post']['id']));?>
+    </span>
+    <?php endif;?>
+
+</div>
 
 <div class="post_meta">
     <?php echo $this->element("category_link", array("category" => $post['Category']));?>
@@ -12,6 +38,7 @@
         <?php echo $this->Html->link('Edit post', array('action' => 'edit', $post['Post']['id']));?>
     </span>
 </div>
+
 
 <h2><?php echo $post['Post']['title']?></h2>
 

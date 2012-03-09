@@ -19,6 +19,21 @@ class CommentsController extends AppController {
                 $this->Comment->set('user_id', $this->Auth->user('id'));
                 $this->Comment->set('post_id', $post_id);
                 $this->Comment->save();
+
+                //add the user to the list of subscribers, if they are not there already
+                $subscriber = $this->Comment->Post->Subscriber->find('first', array(
+                    'conditions' => array(
+                        'Subscriber.user_id' => $this->Auth->user('id'),
+                        'Subscriber.post_id' => $post_id
+                )));
+                if(!$subscriber){
+                    $this->Comment->Post->Subscriber->create();
+                    $this->Comment->Post->Subscriber->save(array(
+                        'post_id' => $post_id,
+                        'user_id' => $this->Auth->user('id')
+                    ));
+                }
+
                 $this->Session->setFlash('Your comment has been saved.');
                 $this->redirect(array('controller'=>'posts','action' => 'view', $post_id));
             } else {

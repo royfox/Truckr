@@ -24,6 +24,12 @@
         <?php
         echo $this->Form->input('category_id');
         echo $this->Form->input('subject_id');
+        echo $this->Form->input('Subscriber',array(
+            'label' => __('Subscriber',true),
+            'type' => 'select',
+            'multiple' => 'checkbox',
+            'options' => $users
+        ));
         echo $this->Form->end('Save Post');
     ?>
      </fieldset>

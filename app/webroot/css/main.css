@@ -81,10 +81,19 @@ div.comments { margin-top:40px;}
 
         div.comment .delete_link { font-size:12px;}
 
-div.post_meta { border-bottom: 1px solid #D0DBDB; border-top: 1px solid #D0DBDB;  padding:5px 5px; color:#666; font-size:12px;}
+div.post_meta { clear:both; border-bottom: 1px solid #D0DBDB;   padding:5px 5px; color:#666; font-size:12px;}
     div.post_meta .admin { float:right;}
 
+div.subscribers { border-bottom: 1px solid #D0DBDB; border-top: 1px solid #D0DBDB; padding:5px 5px; color:#666; font-size:12px; }
+    div.subscribers .list { font-weight:bold; color:#808080; }
+
+div.subscribers .manage_subscription { float: right; }
+    div.subscribers .manage_subscription.unsubscribe a { color: #BF2626; }
+    div.subscribers .manage_subscription.subscribe a { color: #26BF57; }
+
 div.content { clear:both;margin-top:20px;}
+
+div.checkbox { padding:0; margin:0;}
 
 .wmd-button-bar { width: 100%; margin:0; padding:0; margin-bottom:4px; }
 .wmd-input {height: 230px;  border: 1px solid DarkGray; margin-top:3px; }

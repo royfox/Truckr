@@ -24,7 +24,14 @@
             echo $this->Form->input('category_id');
             echo $this->Form->input('subject_id');
             echo $this->Form->input('id', array('type' => 'hidden'));
-            echo $this->Form->end('Save Post');?>
+            echo $this->Form->input('Subscriber',array(
+                'label' => __('Subscribers',true),
+                'type' => 'select',
+                'multiple' => 'checkbox',
+                'options' => $users,
+                'selected' => $subscribers
+            ));?>
+            <?php echo $this->Form->end('Save Post');?>
     </fieldset>
 </div>
 
