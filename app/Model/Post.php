@@ -40,6 +40,27 @@ class Post extends AppModel {
             ));
         }
 
+    }
 
+    public function notify($id){
+        $this->id = $id;
+        $this->contain(array('Subscriber','Subscriber.User','User'));
+        $post = $this->read();
+        foreach($post['Subscriber'] as $subscriber){
+            if($post['Post']['user_id'] != $subscriber['user_id']){
+                $email = new CakeEmail();
+                $email->from(array(Configure::read("Email.SenderAddress") => Configure::read("Email.SenderName")));
+                $email->to($subscriber['User']['email']);
+                $email->template('new_post');
+                $email->emailFormat('html');
+                $email->helpers(array('Markdown.Markdown', 'Html'));
+                $email->subject("[Truckr] ".$post['Post']['title']);
+                $email->viewVars(array(
+                    'post' => $post,
+                    'urlRoot' => Configure::read("Email.UrlRoot")
+                ));
+                $email->send();
+            }
+        }
     }
 }

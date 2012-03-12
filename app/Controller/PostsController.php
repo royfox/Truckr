@@ -1,6 +1,7 @@
 <?php
 
 App::uses('Sanitize', 'Utility');
+App::uses('CakeEmail', 'Network/Email');
 
 class PostsController extends AppController {
 
@@ -33,6 +34,7 @@ class PostsController extends AppController {
                 $this->Post->save();
                 $this->Post->setSubscribers($this->request->data['Post']['Subscriber'], $this->Auth->user('id'));
                 $this->Session->setFlash('Your post has been saved.');
+                $this->Post->notify($this->Post->id);
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash('Unable to add your post.');

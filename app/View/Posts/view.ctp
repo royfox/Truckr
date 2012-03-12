@@ -45,7 +45,7 @@
 <div class="post">
 
     <div class="content">
-        <p><?php echo Markdown($post['Post']['content']); ?></p>
+        <?php echo Markdown($post['Post']['content']); ?>
     </div>
 
 </div>

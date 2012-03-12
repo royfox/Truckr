@@ -1,6 +1,7 @@
 <?php
 
 App::uses('Sanitize', 'Utility');
+App::uses('CakeEmail', 'Network/Email');
 
 class CommentsController extends AppController {
 
@@ -33,7 +34,7 @@ class CommentsController extends AppController {
                         'user_id' => $this->Auth->user('id')
                     ));
                 }
-
+                $this->Comment->notify($this->Comment->id);
                 $this->Session->setFlash('Your comment has been saved.');
                 $this->redirect(array('controller'=>'posts','action' => 'view', $post_id));
             } else {
