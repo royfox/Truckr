@@ -12,13 +12,16 @@ class Post extends AppModel {
         )
     );
 
-    public $belongsTo = array('Category', 'User', 'Subject');
+    public $belongsTo = array('User');
     public $hasMany = array(
         "Comment" => array(
             'dependent' => true
         ),
         "Subscriber" => array(
             'dependent' => true
+         ),
+        'PostTag' => array(
+             'dependent' => true
          )
     );
 
@@ -39,7 +42,6 @@ class Post extends AppModel {
                 'user_id' => $subscriber_id
             ));
         }
-
     }
 
     public function notify($id){
@@ -63,4 +65,20 @@ class Post extends AppModel {
             }
         }
     }
+
+    public function setTags($tag_ids){
+
+        $this->PostTag->deleteAll(array(
+            'Post.id' => $this->id
+        ));
+
+        foreach($tag_ids as $tag_id){
+            $this->PostTag->create();
+            $this->PostTag->save(array(
+                'post_id' => $this->id,
+                'tag_id' => $tag_id
+            ));
+        }
+    }
+
 }

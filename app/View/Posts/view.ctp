@@ -26,13 +26,16 @@
 
 </div>
 
-<div class="post_meta">
-    <?php echo $this->element("category_link", array("category" => $post['Category']));?>
-    <?php echo $this->element("subject_link", array("subject" => $post['Subject']));?>
+<div class="page_meta">
+    <?php foreach($post['PostTag'] as $tag):?>
+        <?php echo $this->element("tag_link", array("tag" => $tag['Tag']));?>
+    <?php endforeach;?>
     <span class="date">
         Last modified <?php echo $this->Time->nice($post['Post']['modified']);?>  by <?php echo $this->element("user_link", array("user" => $post['User']));?>
     </span>
     <span class="admin">
+        <?php echo $this->Html->link('Edit tags', array('action' => 'tag', $post['Post']['id']));?>
+         |
         <?php echo $this->Form->postLink('Delete post', array('action' => 'delete', $post['Post']['id']), array('confirm' => 'Are you sure?', 'class'=>'delete_link'));?>
          |
         <?php echo $this->Html->link('Edit post', array('action' => 'edit', $post['Post']['id']));?>

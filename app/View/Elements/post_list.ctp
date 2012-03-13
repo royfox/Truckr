@@ -11,8 +11,9 @@
                 </span>
             </td>
             <td class="meta">
-                <?php echo $this->element("category_link", array("category" => $post['Category']));?>
-                <?php echo $this->element("subject_link", array("subject" => $post['Subject']));?>
+                <?php foreach($post['PostTag'] as $tag):?>
+                    <?php echo $this->element("tag_link", array("tag" => $tag['Tag']));?>
+                <?php endforeach;?>
             </td>
         </tr>
         <?php if(isset($query)):?>

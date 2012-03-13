@@ -10,14 +10,15 @@ class PostsController extends AppController {
     public $components = array('Session');
 
     public function index() {
-        $this->set('posts', $this->Post->find('all',
-            array('order' => array('modified desc'))
-        ));
+        $this->set('posts', $this->Post->find('all',array(
+            'order' => array('modified desc'),
+            'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag')
+        )));
     }
 
     public function view($id) {
         $this->Post->id = $id;
-        $this->Post->contain(array('Comment','Comment.User', 'Subscriber','Subscriber.User','Subject','Category','User'));
+        $this->Post->contain(array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag'));
         $this->Post->recursive = 1;
         $post = $this->Post->read();
         if(!$post){
@@ -47,8 +48,32 @@ class PostsController extends AppController {
                 'User.id !=' => $this->Auth->user('id')
             )
         )));
-        $this->set('categories', $this->Post->Category->find('list', array('order'=>'name asc')));
-        $this->set('subjects', $this->Post->Subject->find('list', array('order'=>'name asc')));
+    }
+
+    function tag($id){
+        if ($this->request->is('post')){
+            $this->Post->id = $id;
+            $this->Post->setTags($this->request->data['Post']['Tag'] ? $this->request->data['Post']['Tag'] : array());
+            $this->Session->setFlash('Tags updated.');
+            $this->redirect(array('action' => 'view', $id));
+        } else {
+            $this->Post->id = $id;
+            $this->Post->recursive = -1;
+            $post = $this->Post->read();
+            if(!$post){
+                throw new NotFoundException();
+            }
+            $tags = $this->Post->PostTag->Tag->find("list");
+            $postTags = $this->Post->PostTag->find('all', array(
+                'conditions' => array(
+                   'post_id' => $id
+                ),
+                'recursive' => -1
+            ));
+            $this->set("tags", Set::extract('/PostTag/tag_id', $postTags));
+            $this->set("all_tags", $tags);
+            $this->set('post', $post);
+        }
     }
 
     function edit($id = null) {
@@ -78,8 +103,6 @@ class PostsController extends AppController {
                 'User.id !=' => $this->Auth->user('id')
             )
         )));
-        $this->set('categories', $this->Post->Category->find('list', array('order'=>'name asc')));
-        $this->set('subjects', $this->Post->Subject->find('list', array('order'=>'name asc')));
     }
     function delete($id) {
         if ($this->request->is('get')) {

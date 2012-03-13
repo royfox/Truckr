@@ -22,8 +22,6 @@
         ?>
         <div id="wmd-preview" class="post wmd-panel wmd-preview"></div>
         <?php
-        echo $this->Form->input('category_id');
-        echo $this->Form->input('subject_id');
         echo $this->Form->input('Subscriber',array(
             'label' => __('Subscriber',true),
             'type' => 'select',

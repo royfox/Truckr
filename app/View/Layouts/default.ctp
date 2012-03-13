@@ -39,28 +39,9 @@
                             <input class="submit" type="submit" value="Search" />
                         </form>
                     </div>
-                    <div id="categories" class="menu">
-                        <span class="title">
-                            Categories
-                            <ul>
-                                 <?php foreach($all_categories_for_navigation as $category):?>
-                                    <li><?php echo $this->Html->link($category['Category']['name'], array('controller'=>'categories','action'=>'view', $category['Category']['slug'])); ?></li>
-                                 <?php endforeach;?>
-                            </ul>
-                        </span>
-                    </div>
-                    <div id="subjects" class="menu">
-                        <span class="title">
-                            Subjects
-                            <ul>
-                                 <?php foreach($all_subjects_for_navigation as $subject):?>
-                                    <li><?php echo $this->Html->link($subject['Subject']['name'], array('controller'=>'subjects','action'=>'view', $subject['Subject']['slug'])); ?></li>
-                                 <?php endforeach;?>
-                            </ul>
-                        </span>
-                    </div>
+                    <?php echo $this->Html->link('Tags', array('controller'=>'tags', 'action' => 'index')); ?>
                     <div id="actions">
-                        <?php echo $this->Html->link('Add Post', array('action' => 'add'), array('class' => 'button')); ?>
+                        <?php echo $this->Html->link('Add Post', array('controller'=>'posts', 'action' => 'add'), array('class' => 'button')); ?>
                     </div>
                 </div>
             <?php endif;?>

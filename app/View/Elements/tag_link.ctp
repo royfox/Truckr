@@ -1,0 +1,1 @@
+<?php echo $this->Html->link($tag['name'], array('controller' => 'tags', 'action' => 'view', $tag['slug']), array('class' => 'tag')); ?>
