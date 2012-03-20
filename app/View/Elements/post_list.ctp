@@ -5,6 +5,9 @@
         <?php foreach ($posts as $post): ?>
 
         <div class="single_post">
+            <span class="label time  label-success">
+                <?php echo $this->Time->timeAgoInWords($post['Post']['modified']); ?>
+            </span>
             <h4><?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id']));?></h4>
             <div class="tags">
                 <?php foreach($post['PostTag'] as $tag):?>
@@ -12,16 +15,13 @@
                 <?php endforeach;?>
             </div>
             <div class="meta">
-                <span class="date">
-                    <?php echo $this->Time->timeAgoInWords($post['Post']['modified']); ?>
-                </span>
-                <span class="author">
+                <span class="author label">
                     <?php echo $this->element("user_link", array("user" => $post['User']));?>
                 </span>
             </div>
             <?php if(isset($query)):?>
                 <div class="excerpt">
-                   <?php echo $this->Text->highlight($this->Text->excerpt($post['Post']['title']." : ".Sanitize::html(Markdown($post['Post']['content']), array('remove' => true)), $query, 200, '...'), $query, array('format' => '<span class="highlight">\1</span>'));?>
+                   <?php echo $this->Text->highlight($this->Text->excerpt($post['Post']['title']." : ".Sanitize::html(Markdown($post['Post']['content']), array('remove' => true)), $query, 200, '...'), $query, array('format' => '<span class="label label-warning">\1</span>'));?>
                 </div>
             <?php endif;?>
             <div style="clear:both;"></div>

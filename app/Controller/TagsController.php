@@ -48,7 +48,7 @@ class TagsController extends AppController {
         if ($this->request->is('post')) {
             $this->request->data['Tag']['slug'] = $this->Tag->makeSlug($this->request->data['Tag']['name']);
             if ($this->Tag->save($this->request->data)) {
-                $this->Session->setFlash('Your tag has been saved.');
+                $this->Session->setFlash('Your tag has been saved.', 'flash_success');
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash('Unable to add your tag.');
@@ -64,10 +64,10 @@ class TagsController extends AppController {
         } else {
             $this->request->data['Tag']['slug'] = $this->Tag->makeSlug($this->request->data['Tag']['name']);
             if ($this->Tag->save($this->request->data)) {
-                $this->Session->setFlash('Your tag has been updated.');
+                $this->Session->setFlash('Your tag has been updated.', 'flash_success');
                 $this->redirect(array('action' => 'view', $this->request->data['Tag']['slug']));
             } else {
-                $this->Session->setFlash('Unable to update your post.');
+                $this->Session->setFlash('Unable to update your post.', 'flash_error');
             }
         }
     }

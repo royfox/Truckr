@@ -54,7 +54,7 @@ class PostsController extends AppController {
         if ($this->request->is('post')){
             $this->Post->id = $id;
             $this->Post->setTags($this->request->data['Post']['Tag'] ? $this->request->data['Post']['Tag'] : array());
-            $this->Session->setFlash('Tags updated.');
+            $this->Session->setFlash('Tags updated.', 'flash_success');
             $this->redirect(array('action' => 'view', $id));
         } else {
             $this->Post->id = $id;

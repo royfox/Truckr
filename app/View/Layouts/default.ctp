@@ -10,12 +10,17 @@
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
-        echo $this->Html->css('main');
+		//echo $this->Html->css('cake.generic');
+
         echo $this->Html->css('prettify');
+        echo $this->Html->css('bootstrap');
+        echo $this->Html->css('bootstrap-responsive');
+    echo $this->Html->css('main');
         echo $this->Html->script('prettify/prettify.js');
         echo $this->Html->script('jquery.js');
         echo $this->Html->script('global.js');
+        echo $this->Html->script('cake-bootstrap.js');
+        echo $this->Html->script('less-1.3.0.min.js');
 		echo $scripts_for_layout;
 	?>
 </head>
@@ -34,15 +39,18 @@
             <?php if(!isset($hide_navigation)):?>
                 <div id="navigation">
                     <div id="search">
-                        <form action='/posts/search'>
+                        <form action="/posts/search">
                             <input class="search" type="text" name="query"/>
-                            <input class="submit" type="submit" value="Search" />
+                            <a class="btn" onclick="$('#search form').submit();">
+                                <i class="icon-search"></i>
+                                Search
+                            </a>
                         </form>
                     </div>
-                    <?php echo $this->Html->link('Tags', array('controller'=>'tags', 'action' => 'index')); ?>
-                    <div id="actions">
-                        <?php echo $this->Html->link('Add Post', array('controller'=>'posts', 'action' => 'add'), array('class' => 'button')); ?>
-                    </div>
+                    <?php echo $this->Html->link('Add Post', array('controller'=>'posts', 'action' => 'add'), array('class' => 'btn btn-success')); ?>
+                    &nbsp;
+                    <?php echo $this->Html->link('View tags', array('controller'=>'tags', 'action' => 'index'), array('class' => 'btn')); ?>
+
                 </div>
             <?php endif;?>
             <div id="content">

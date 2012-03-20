@@ -11,10 +11,12 @@
         <legend><?php echo __('Add Post'); ?></legend>
     <?php
         echo $this->Form->create('Post');
-        echo $this->Form->input('title');
+        echo $this->Form->input('title', array(
+            'class'=>'wide',
+        ));
         echo $this->Form->input('content', array(
             'rows' => '6',
-            'class'=>'wmd-input',
+            'class'=>'wmd-input wide',
             'id'=>'wmd-input',
             'between' => '<div class="wmd-panel"><div id="wmd-button-bar" class="wmd-button-bar"></div>',
             'after' => '</div>'
@@ -23,7 +25,7 @@
         <div id="wmd-preview" class="post wmd-panel wmd-preview"></div>
         <?php
         echo $this->Form->input('Subscriber',array(
-            'label' => __('Subscriber',true),
+            'label' => __('Subscribers',true),
             'type' => 'select',
             'multiple' => 'checkbox',
             'options' => $users

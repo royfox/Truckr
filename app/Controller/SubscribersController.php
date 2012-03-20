@@ -15,7 +15,7 @@ class SubscribersController extends AppController {
         )));
         if($subscriber){
             $this->Subscriber->delete($subscriber['Subscriber']['id']);
-            $this->Session->setFlash('Your have unsubscribed successfully');
+            $this->Session->setFlash('Your have unsubscribed successfully', 'flash_success');
             $this->redirect(array('controller'=>'posts','action'=>'view', $post_id));
         } else {
             throw new BadRequestException();
@@ -33,7 +33,7 @@ class SubscribersController extends AppController {
                 'post_id' => $post_id,
                 'user_id' => $this->Auth->user('id')
             ));
-            $this->Session->setFlash('Your have subscribed successfully');
+            $this->Session->setFlash('Your have subscribed successfully', 'flash_success');
             $this->redirect(array('controller'=>'posts','action'=>'view', $post_id));
         } else {
             throw new BadRequestException();
