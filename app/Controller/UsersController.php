@@ -39,7 +39,8 @@ class UsersController extends AppController {
              'order' => array('modified desc'),
              'conditions' => array(
                 'User.id' => $id
-             )
+             ),
+            'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag')
         )));
     }
 

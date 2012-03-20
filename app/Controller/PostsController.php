@@ -34,9 +34,9 @@ class PostsController extends AppController {
                 $this->Post->set('user_id', $this->Auth->user('id'));
                 $this->Post->save();
                 $this->Post->setSubscribers($this->request->data['Post']['Subscriber'], $this->Auth->user('id'));
-                $this->Session->setFlash('Your post has been saved.');
+                $this->Session->setFlash('Your post has been saved. Please now add some tags.');
                 $this->Post->notify($this->Post->id);
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(array('action' => 'tag', $this->Post->id));
             } else {
                 $this->Session->setFlash('Unable to add your post.');
             }
@@ -63,12 +63,16 @@ class PostsController extends AppController {
             if(!$post){
                 throw new NotFoundException();
             }
-            $tags = $this->Post->PostTag->Tag->find("list");
+            $tags = $this->Post->PostTag->Tag->find("list", array(
+                'order' => array(
+                    'name asc'
+                )
+            ));
             $postTags = $this->Post->PostTag->find('all', array(
                 'conditions' => array(
                    'post_id' => $id
                 ),
-                'recursive' => -1
+                'recursive' => -1,
             ));
             $this->set("tags", Set::extract('/PostTag/tag_id', $postTags));
             $this->set("all_tags", $tags);
@@ -124,7 +128,8 @@ class PostsController extends AppController {
                         array('Post.title LIKE' => "%$query%"),
                         array('Post.content LIKE' => "%$query%")
                     )
-                )
+                ),
+                'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag')
             )));
         } else {
             $this->Session->setFlash('No search query!');

@@ -64,7 +64,7 @@ class TagsController extends AppController {
         } else {
             $this->request->data['Tag']['slug'] = $this->Tag->makeSlug($this->request->data['Tag']['name']);
             if ($this->Tag->save($this->request->data)) {
-                $this->Session->setFlash('Your post has been updated.');
+                $this->Session->setFlash('Your tag has been updated.');
                 $this->redirect(array('action' => 'view', $this->request->data['Tag']['slug']));
             } else {
                 $this->Session->setFlash('Unable to update your post.');

@@ -1,28 +1,32 @@
 <?php if(count($posts) == 0):?>
       <p>No posts found.</p>
 <?php else:?>
-    <table class="post_list">
+    <div class="post_list">
         <?php foreach ($posts as $post): ?>
-        <tr class="headline">
-            <td class="title">
-                <?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id']));?>
-                <span class="date">
-                    <?php echo $this->Time->niceShort($post['Post']['modified']); ?>  by <?php echo $this->element("user_link", array("user" => $post['User']));?>
-                </span>
-            </td>
-            <td class="meta">
+
+        <div class="single_post">
+            <h4><?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id']));?></h4>
+            <div class="tags">
                 <?php foreach($post['PostTag'] as $tag):?>
                     <?php echo $this->element("tag_link", array("tag" => $tag['Tag']));?>
                 <?php endforeach;?>
-            </td>
-        </tr>
-        <?php if(isset($query)):?>
-            <tr>
-                <td colspan="2">
-                    <?php echo $this->Text->highlight($this->Text->excerpt($post['Post']['title']." : ".Sanitize::html(Markdown($post['Post']['content']), array('remove' => true)), $query, 200, '...'), $query, array('format' => '<span class="highlight">\1</span>'));?>
-                </td>
-            </tr>
-        <?php endif;?>
+            </div>
+            <div class="meta">
+                <span class="date">
+                    <?php echo $this->Time->timeAgoInWords($post['Post']['modified']); ?>
+                </span>
+                <span class="author">
+                    <?php echo $this->element("user_link", array("user" => $post['User']));?>
+                </span>
+            </div>
+            <?php if(isset($query)):?>
+                <div class="excerpt">
+                   <?php echo $this->Text->highlight($this->Text->excerpt($post['Post']['title']." : ".Sanitize::html(Markdown($post['Post']['content']), array('remove' => true)), $query, 200, '...'), $query, array('format' => '<span class="highlight">\1</span>'));?>
+                </div>
+            <?php endif;?>
+            <div style="clear:both;"></div>
+        </div>
         <?php endforeach; ?>
-    </table>
+    </div>
+
 <?php endif;?>
