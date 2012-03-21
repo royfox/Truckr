@@ -9,7 +9,9 @@ class TagsController extends AppController {
     public $helpers = array('Html', 'Form','Text',"Time", "Markdown.Markdown","Gravatar");
 
     public function index(){
-        $tags = $this->Tag->find('all');
+        $tags = $this->Tag->find('all', array(
+            'order' => array('name asc')
+        ));
         $this->set("tags", $tags);
     }
 

@@ -28,11 +28,11 @@
 	<div id="container">
         <div id="wrapper">
             <div id="header">
-                <h1><?php echo $this->Html->link("Truckr", '/'); ?></h1>
+                <h1><?php echo $this->Html->link("truckr", '/'); ?></h1>
                 <?php if($user = $this->Session->read('Auth.User')):?>
                     <div class="username">
                         Logged in as <?php echo $this->Html->link($user['username'], array('controller'=>'users','action'=>'edit', $user['id'])); ?>
-                        <?php echo $this->Html->link("(Logout)", '/logout', array('class'=>'logout')); ?>
+                        | <?php echo $this->Html->link("Log out", '/logout', array('class'=>'logout')); ?>
                     </div>
                 <?php endif;?>
             </div>
@@ -43,7 +43,6 @@
                             <input class="search" type="text" name="query"/>
                             <a class="btn" onclick="$('#search form').submit();">
                                 <i class="icon-search"></i>
-                                Search
                             </a>
                         </form>
                     </div>

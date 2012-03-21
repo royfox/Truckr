@@ -10,10 +10,12 @@
         <legend><?php echo __('Edit Post'); ?></legend>
         <?php
             echo $this->Form->create('Post', array('action' => 'edit'));
-            echo $this->Form->input('title');
+            echo $this->Form->input('title', array(
+                'class'=>'wide',
+            ));
             echo $this->Form->input('content', array(
                 'rows' => '6',
-                'class'=>'wmd-input',
+                'class'=>'wmd-input wide',
                 'id'=>'wmd-input',
                 'between' => '<div class="wmd-panel"><div id="wmd-button-bar" class="wmd-button-bar"></div>',
                 'after' => '</div>'

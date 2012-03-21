@@ -3,28 +3,27 @@ body { background:#EEE;}
 
 /* Page Layout */
 #container { width:710px; margin:0 auto; background:#fff; border:1px solid #ccc;  }
-#wrapper { padding:40px 40px; }
+#wrapper {  padding:20px 40px; position:relative; }
 
 
 h1 { font-size:34px; padding:15px 0;}
 
 #content { padding:3px 0; clear:both; }
 
-#header { padding:0; position:relative;}
+#header { padding:0; position:relative; height:64px;}
     #header h1 {  padding:0; }
-        #header h1 a { margin-top:-20px; text-indent:-5000px; display:block; background-repeat:no-repeat; background-image:url('/img/truckr.png'); height:76px; width:208px;}
+        #header h1 a { letter-spacing:-0.05em; color:#FCAD23; margin-top:-20px;  border-bottom:5px solid #FCAD23;}
+            #header h1 a:hover { text-decoration: none;}
         #header .permalinks { position:absolute; right: -53px; top:20px; }
-        #header .username { font-size:13px; position:absolute; right:0px; top:0px; color:#999; }
-            #header .username a { font-weight: normal; color:#666; }
+        #header .username { font-size:13px; position:absolute; right:0px; top:-13px; color:#BBB; }
+            #header .username a { font-weight: bold; color:#AAA; }
 
-#navigation { padding:4px;}
+#navigation { padding:4px; position:absolute; top:9px; left:153px; width:515px;}
     #navigation .btn { float:right; margin-left: 5px;}
-        #navigation #search a.btn {  float:left; }
+        #navigation #search a.btn {  float:left; padding:6px;}
         #navigation #search input.search { width:250px; float:left; }
         #navigation #search input.submit { margin-left:4px;}
         #navigation #search div.actions { display:inline; float:left;}
-
-
         div.post, div.post p { font-size:14px;}
 
 div.post_list .single_post { clear:both; border-bottom: 1px dotted #999; padding: 5px 0;}
@@ -38,7 +37,6 @@ div.excerpt { clear:both; font-size:12px;}
 
 .post_meta td .label{ float: right;}
 .post_meta td:last-child { text-align: right;}
-
 
 
 div.comments { margin-top:40px;}
@@ -60,6 +58,12 @@ div.comments { margin-top:40px;}
 div.comment label { display:none;}
 
 input.wide, textarea.wide { width:600px;}
+
+p.edit_links .btn { float:right; margin-top:16px;}
+div.large_tags .btn { margin-bottom:6px;}
+
+.highlight { background:yellow;}
+
 /*
 .meta_sections {  font-size:12px;  }
     .meta_section a { text-decoration: none;}
