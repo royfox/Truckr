@@ -1,0 +1,104 @@
+
+body { background:#EEE;}
+
+@post-font-size:14px;
+@page-width:710px;
+
+/* Page Layout */
+#container { width:@page-width; margin:0 auto; background:#fff; border:1px solid #ccc;  }
+#wrapper {  padding:20px 40px; position:relative; }
+#content { padding:3px 0; clear:both; }
+
+/* Override some bootstrap rules */
+h1 { font-size:34px; padding:15px 0; }
+.alert {margin-bottom:0;}
+form { margin:15px 0;}
+
+
+#header { padding:0; position:relative; height:64px;
+    h1 {  padding:0;
+        a { letter-spacing:-0.05em; color:#FCAD23; margin-top:-20px;  border-bottom:5px solid #FCAD23; }
+        a:hover { text-decoration: none; }
+    }
+    .permalinks { position:absolute; right: -53px; top:20px; }
+     .username { font-size:13px; position:absolute; right:0px; top:-13px; color:#BBB; z-index:2;
+        a { font-weight: bold; color:#AAA; }
+     }
+}
+
+#navigation { padding:4px; position:absolute; top:9px; left:153px; width:515px;
+        .btn {
+            float:right; margin-left: 5px;
+        }
+        #search {
+            a.btn {  float:left; padding:6px;}
+            input.search { width:250px; float:left; }
+            input.submit { margin-left:4px;}
+            div.actions { display:inline; float:left;}
+        }
+}
+
+div.post_list { border-top:1px solid #DDD;
+    .single_post { clear:both; border-bottom: 1px dotted #999; padding: 5px 0;
+        h4 { line-height:30px;font-size:20px; margin:0;  }
+        .label.time { float:right; margin-top:10px;}
+        .tags { float:left;}
+    }
+     .meta { font-size:12px; float:right; margin-right:-3px;
+        .label a { font-weight:normal;  color:white;}
+     }
+}
+
+div.comments { margin-top:40px;}
+
+div.comment { margin-bottom:50px;  position:relative;
+    .picture { position:absolute; padding-bottom:10px; }
+    .content { padding-left:90px;
+         .title {  font-size:12px; color:#888; padding:3px;}
+         .body { padding:3px;
+            p { margin-top:0;}
+         }
+    }
+    div.textarea { margin-bottom:0;
+        label { display:none;}
+    }
+}
+.delete_link { font-size:12px; font-weight:normal;}
+label { display:none;}
+
+
+div.comment.add_comment {
+    textarea { height:90px; width:520px;}
+    .submit { margin-top:2px; text-align: right;}
+}
+
+div.excerpt { clear:both; font-size:12px;}
+.post_meta td .label{ float: right;}
+.post_meta td:last-child { text-align: right;}
+div.post, div.post p { font-size:@post-font-size;}
+input.wide, textarea.wide { width:@page-width - 110;}
+p.edit_links .btn { float:right; margin-top:16px;}
+div.large_tags .btn { margin-bottom:6px;}
+.highlight { background:yellow;}
+div.actions input[type=submit]{ margin-top:10px; }
+
+.wmd-button-bar { width: 100%; margin:0; padding:0; margin-bottom:4px; }
+.wmd-input {height: 230px;  border: 1px solid DarkGray; margin-top:3px; }
+.wmd-preview { padding:10px 12px; background-color: #F3F3F3; border:1px dashed #DDD; margin:10px 0;}
+.wmd-button-row { position: relative; margin:0; padding: 0px; height: 20px;}
+.wmd-spacer { width: 1px; height: 20px; margin-left: 14px; position: absolute; background-color: Silver; display: inline-block; list-style: none; }
+.wmd-button { width: 20px; height: 20px; padding-left: 2px; padding-right: 3px; position: absolute; display: inline-block; list-style: none; cursor: pointer; margin:0;}
+.wmd-button > span {background-image: url('/img/wmd-buttons.png');background-repeat: no-repeat;background-position: 0px 0px;width: 20px;height: 20px;display: inline-block; }
+.wmd-spacer1 { left: 50px; }
+.wmd-spacer2 { left: 175px; }
+.wmd-spacer3 { left: 300px;}
+.wmd-prompt-background { background-color: Black;}
+.wmd-prompt-dialog { border: 1px solid #999999; background-color: #F5F5F5; padding:0 12px;}
+.wmd-prompt-dialog > div { font-size: 0.8em; font-family: arial, helvetica, sans-serif; }
+.wmd-prompt-dialog > form > input[type="text"] { border: 1px solid #999999; color: black;}
+.wmd-prompt-dialog > form > input[type="button"]{ border: 1px solid #888888; font-family: trebuchet MS, helvetica, sans-serif; font-size: 0.8em; font-weight: bold;}
+
+
+
+
+

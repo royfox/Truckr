@@ -6,9 +6,10 @@
 <?php echo $this->Html->script("pagedown/Markdown.Editor.js");?>
 
 
+<h3>Add post</h3>
+
 <div>
     <fieldset>
-        <legend><?php echo __('Add Post'); ?></legend>
     <?php
         echo $this->Form->create('Post');
         echo $this->Form->input('title', array(
