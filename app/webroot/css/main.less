@@ -6,7 +6,7 @@ body { background:#EEE;}
 
 /* Page Layout */
 #container { width:@page-width; margin:0 auto; background:#fff; border:1px solid #ccc;  }
-#wrapper {  padding:20px 40px; position:relative; }
+#wrapper {  padding:20px 40px 40px 40px; position:relative; }
 #content { padding:3px 0; clear:both; }
 label { font-weight:bold; margin-top:10px;}
 div.checkbox label { font-weight:normal;}
@@ -40,15 +40,23 @@ form { margin:15px 0;}
         }
 }
 
-div.post_list { border-top:1px solid #DDD;
-    .single_post { clear:both; border-bottom: 1px dotted #999; padding: 5px 0;
-        h4 { line-height:30px;font-size:20px; margin:0;  }
-        .label.time { float:right; margin-top:10px;}
+div.post_list {
+    .single_post { clear:both; padding: 0 8px 8px 8px;
+        h4 { line-height:21px;font-size:20px; margin:0; padding:5px 0; }
+        .label.time { float:right; margin: 10px 0 0px 10px;}
         .tags { float:left;}
     }
      .meta { font-size:12px; float:right; margin-right:-3px;
         .label a { font-weight:normal;  color:white;}
      }
+     .single_post.open { background:#F0EAC7; border:1px solid #DEC537; margin:5px 0; }
+     .single_post.closed { 
+        h4 a { color:#CCC;}
+     }
+     .single_post.obsolete {
+        h4 a { color:#CCC; text-decoration: line-through;}
+     }
+     .single_post.archived { }
 }
 
 div.comments { margin-top:40px;}

@@ -3,8 +3,7 @@
 <?php else:?>
     <div class="post_list">
         <?php foreach ($posts as $post): ?>
-
-        <div class="single_post">
+        <div class="single_post <?php echo $post['Status']['slug'];?>">
             <span class="label time  label-success">
                 <?php echo $this->Time->timeAgoInWords($post['Post']['modified']); ?>
             </span>

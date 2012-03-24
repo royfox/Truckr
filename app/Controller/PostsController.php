@@ -11,14 +11,14 @@ class PostsController extends AppController {
 
     public function index() {
         $this->set('posts', $this->Post->find('all',array(
-            'order' => array('modified desc'),
-            'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag')
+            'order' => array('created desc'),
+            'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag', 'Status')
         )));
     }
 
     public function view($id) {
         $this->Post->id = $id;
-        $this->Post->contain(array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag'));
+        $this->Post->contain(array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag', 'Status'));
         $this->Post->recursive = 1;
         $post = $this->Post->read();
         if(!$post){
@@ -32,6 +32,7 @@ class PostsController extends AppController {
         if ($this->request->is('post')) {
             if ($this->Post->save($this->request->data)) {
                 $this->Post->set('user_id', $this->Auth->user('id'));
+                $this->Post->set('status_id', 1);
                 $this->Post->save();
                 $this->Post->setSubscribers($this->request->data['Post']['Subscriber'], $this->Auth->user('id'));
                 $this->Session->setFlash('Your post has been saved. Please now add some tags.');
@@ -79,6 +80,33 @@ class PostsController extends AppController {
             $this->set('post', $post);
         }
     }
+
+
+
+    function status($id){
+        if ($this->request->is('post')){
+            $this->Post->id = $id;
+            $this->Post->set('status_id', $this->request->data['Post']['Status']);
+            $this->Post->save();
+            $this->Session->setFlash('Status updated.', 'flash_success');
+            $this->redirect(array('action' => 'view', $id));
+        } else {
+            $this->Post->id = $id;
+            $this->Post->recursive = -1;
+            $post = $this->Post->read();
+            if(!$post){
+                throw new NotFoundException();
+            }
+            $statuses = $this->Post->Status->find("list", array(
+                'order' => array(
+                    'name asc'
+                )
+            ));
+            $this->set('statuses', $statuses);
+            $this->set('post', $post);
+        }
+    }
+
 
     function edit($id = null) {
         $this->set("hide_navigation", true);
@@ -129,7 +157,7 @@ class PostsController extends AppController {
                         array('Post.content LIKE' => "%$query%")
                     )
                 ),
-                'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag')
+                'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag', 'Status')
             )));
         } else {
             $this->Session->setFlash('No search query!');

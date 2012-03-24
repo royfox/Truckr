@@ -4,6 +4,14 @@
 <table class="post_meta table table-condensed">
     <tbody>
     <tr>
+        <td><span class="label">Author</span></td>
+        <td><?php echo $this->element("user_link", array("user" => $post['User']));?></td>
+        <td>
+            <?php echo $this->Form->postLink('Delete', array('action' => 'delete', $post['Post']['id']), array('confirm' => 'Are you sure?', 'class'=>'delete_link minor_link edit_link'));?>
+            <span class="divider">|</span> <?php echo $this->Html->link('Edit', array('action' => 'edit', $post['Post']['id']), array('class'=>'minor_link edit_link'));?>
+        </td>
+    </tr>
+    <tr>
         <td><span class="label">Subscribers</span></td>
         <td>
             <?php $subscriber_ids = array();?>
@@ -51,12 +59,11 @@
         </td>
     </tr>
     <tr>
-        <td><span class="label">Author</span></td>
-        <td><?php echo $this->element("user_link", array("user" => $post['User']));?></td>
+        <td><span class="label">Status</span></td>
         <td>
-            <?php echo $this->Form->postLink('Delete', array('action' => 'delete', $post['Post']['id']), array('confirm' => 'Are you sure?', 'class'=>'delete_link minor_link edit_link'));?>
-            <span class="divider">|</span> <?php echo $this->Html->link('Edit', array('action' => 'edit', $post['Post']['id']), array('class'=>'minor_link edit_link'));?>
+            <?php echo $post['Status']['name'];?>
         </td>
+        <td><?php echo $this->Html->link('Edit status', array('action' => 'status', $post['Post']['id']), array('class'=>'minor_link edit_link'));?></td>
     </tr>
     </tbody>
 </table>
@@ -67,7 +74,9 @@
 
     <div class="content">
         <?php echo Markdown($post['Post']['content']); ?>
-        <?php echo $this->Upload->view('post', $post['Post']['upload_dir']);?>
+        <?php if($post['Post']['upload_dir']):?>
+            <?php echo $this->Upload->view('post', $post['Post']['upload_dir']);?>
+        <?php endif;?>
     </div>
 
 </div>

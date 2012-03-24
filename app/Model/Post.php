@@ -12,7 +12,7 @@ class Post extends AppModel {
         )
     );
 
-    public $belongsTo = array('User');
+    public $belongsTo = array('User', 'Status');
     public $hasMany = array(
         "Comment" => array(
             'dependent' => true

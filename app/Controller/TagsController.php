@@ -35,7 +35,7 @@ class TagsController extends AppController {
         $post_ids = Set::extract('/PostTag/post_id', $postTags);
 
         $posts = $this->Tag->PostTag->Post->find('all', array(
-            'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag'),
+            'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag','Status'),
             'order' => array('modified desc'),
             'conditions' => array(
                 'Post.id' => $post_ids
@@ -73,6 +73,5 @@ class TagsController extends AppController {
             }
         }
     }
-
 
 }

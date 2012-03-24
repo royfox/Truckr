@@ -24,7 +24,12 @@
        <div id="wmd-preview" class="post wmd-panel wmd-preview"></div>
        <?php
         echo $this->Form->input('id', array('type' => 'hidden'));
-        echo $this->Form->hidden('upload_dir');
+        if($post['Post']['upload_dir']){
+            $this->Form->hidden('upload_dir');
+        } else {
+            $upload_dir = time().rand(10000,99999);
+            $this->Form->hidden('upload_dir', array("value" => $upload_dir));
+        }
         echo $this->Upload->edit('post', $this->request->data['Post']['upload_dir']);
             echo $this->Form->input('Subscriber',array(
                 'label' => __('Subscribers',true),
