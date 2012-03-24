@@ -6,7 +6,7 @@ App::uses('CakeEmail', 'Network/Email');
 class PostsController extends AppController {
 
     public $name = 'Posts';
-    public $helpers = array('Html', 'Form','Text',"Time", "Markdown.Markdown","Gravatar");
+    public $helpers = array('Html', 'Form','Text',"Time", "Markdown.Markdown","Gravatar", "AjaxMultiUpload.Upload");
     public $components = array('Session');
 
     public function index() {

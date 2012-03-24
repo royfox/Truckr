@@ -23,7 +23,9 @@
         ?>
        <div id="wmd-preview" class="post wmd-panel wmd-preview"></div>
        <?php
-            echo $this->Form->input('id', array('type' => 'hidden'));
+        echo $this->Form->input('id', array('type' => 'hidden'));
+        echo $this->Form->hidden('upload_dir');
+        echo $this->Upload->edit('post', $this->request->data['Post']['upload_dir']);
             echo $this->Form->input('Subscriber',array(
                 'label' => __('Subscribers',true),
                 'type' => 'select',

@@ -8,6 +8,8 @@ body { background:#EEE;}
 #container { width:@page-width; margin:0 auto; background:#fff; border:1px solid #ccc;  }
 #wrapper {  padding:20px 40px; position:relative; }
 #content { padding:3px 0; clear:both; }
+label { font-weight:bold; margin-top:10px;}
+div.checkbox label { font-weight:normal;}
 
 /* Override some bootstrap rules */
 h1 { font-size:34px; padding:15px 0; }
@@ -69,6 +71,11 @@ div.comment { margin-bottom:50px;  position:relative;
 div.comment.add_comment {
     textarea { height:90px; width:520px;}
     .submit { margin-top:2px; text-align: right;}
+}
+
+div.content {
+    label { margin-top:20px;}
+    dd { color:#999; font-size:12px;}
 }
 
 div.excerpt { clear:both; font-size:12px;}

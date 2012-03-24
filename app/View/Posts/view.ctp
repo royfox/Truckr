@@ -67,6 +67,7 @@
 
     <div class="content">
         <?php echo Markdown($post['Post']['content']); ?>
+        <?php echo $this->Upload->view('post', $post['Post']['upload_dir']);?>
     </div>
 
 </div>

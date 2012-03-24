@@ -24,13 +24,17 @@
         ));
         ?>
         <div id="wmd-preview" class="post wmd-panel wmd-preview"></div>
-        <?php
+        <?php $upload_dir = time().rand(10000,99999);
         echo $this->Form->input('Subscriber',array(
             'label' => __('Subscribers',true),
             'type' => 'select',
             'multiple' => 'checkbox',
             'options' => $users
         ));
+        echo $this->Form->hidden('upload_dir', array(
+            'value' => $upload_dir
+        ));
+        echo $this->Upload->edit('post', $upload_dir);
         echo $this->Form->end('Save Post');
     ?>
      </fieldset>

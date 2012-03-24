@@ -1,3 +1,6 @@
 [submodule "app/Plugin/Markdown"]
 	path = app/Plugin/Markdown
 	url = https://github.com/royfox/markdown.git
+[submodule "app/Plugin/AjaxMultiUpload"]
+	path = app/Plugin/AjaxMultiUpload
+	url = git@github.com:royfox/CakePHP-AjaxMultiUpload.git
