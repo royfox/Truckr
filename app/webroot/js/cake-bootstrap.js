@@ -27,6 +27,9 @@ $('div.clearfix > label ~ input').wrap('<div class="input added" />');
 $('div.clearfix > label ~ select').wrap('<div class="input added" />');
 $('div.clearfix > label ~ textarea').wrap('<div class="input added" />');
 
+$('div.pagination .current').wrap('<span class="active" />').wrap('<a />');
+
+
 }
 
 //Default CakePHP Error inputs are converted to twitter bootstrap style

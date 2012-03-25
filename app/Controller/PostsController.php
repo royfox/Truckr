@@ -6,14 +6,16 @@ App::uses('CakeEmail', 'Network/Email');
 class PostsController extends AppController {
 
     public $name = 'Posts';
-    public $helpers = array('Html', 'Form','Text',"Time", "Markdown.Markdown","Gravatar", "AjaxMultiUpload.Upload");
+    public $helpers = array('Html', 'Form','Text',"Time", "Markdown.Markdown","Gravatar", "AjaxMultiUpload.Upload","Paginator");
     public $components = array('Session');
+    public $paginate = array(
+        'order' => array('created'=>'desc'),
+        'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag', 'Status'),
+        'limit' => 10
+    );
 
     public function index() {
-        $this->set('posts', $this->Post->find('all',array(
-            'order' => array('created desc'),
-            'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag', 'Status')
-        )));
+        $this->set('posts', $this->paginate('Post'));
     }
 
     public function view($id) {
@@ -146,19 +148,16 @@ class PostsController extends AppController {
         }
     }
     function search(){
-        if(isset($this->params->query['query'])){
-            $query = $this->params->query['query'];
+        $query = isset($this->request->query['query']) ? $this->request->query['query'] : (isset($this->request->params['named']['query'])? $this->request->params['named']['query'] : false);
+        if($query){
             $this->set("query", $query);
-            $this->set('posts', $this->Post->find('all', array(
-                'order' => array('created desc'),
-                'conditions' =>  array(
+            $this->set('posts', $this->paginate('Post', array(
                     'OR' => array(
                         array('Post.title LIKE' => "%$query%"),
                         array('Post.content LIKE' => "%$query%")
                     )
-                ),
-                'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag', 'Status')
-            )));
+                )
+            ));
         } else {
             $this->Session->setFlash('No search query!');
             $this->redirect("/");
