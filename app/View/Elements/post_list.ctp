@@ -5,9 +5,14 @@
         <?php foreach ($posts as $post): ?>
         <div class="single_post <?php echo $post['Status']['slug'];?>">
             <span class="label time  label-success">
-                <?php echo $this->Time->timeAgoInWords($post['Post']['modified']); ?>
+                <?php echo $this->Time->timeAgoInWords($post['Post']['created']); ?>
             </span>
-            <h4><?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id']));?></h4>
+            <h4>
+                <?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id']));?>
+                <?php if(count($post['Comment'])):?>
+                    <span class="badge badge-warning"><?php echo count($post['Comment']);?></span>
+                <?php endif;?>
+            </h4>
             <div class="tags">
                 <?php foreach($post['PostTag'] as $tag):?>
                     <?php echo $this->element("tag_link", array("tag" => $tag['Tag']));?>

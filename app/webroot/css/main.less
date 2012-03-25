@@ -45,7 +45,9 @@ div.post {
 
 div.post_list {
     .single_post { clear:both; padding: 0 8px 8px 8px;
-        h4 { line-height:21px;font-size:20px; margin:0; padding:5px 0; }
+        h4 { line-height:21px;font-size:20px; margin:0; padding:5px 0;
+            .badge { vertical-align:top;}
+        }
         .label.time { float:right; margin: 10px 0 0px 10px;}
         .tags { float:left;}
     }
@@ -55,9 +57,11 @@ div.post_list {
      .single_post.open { background:#F0EAC7; border:1px solid #DEC537; margin:5px 0; }
      .single_post.closed { 
         h4 a { color:#CCC;}
+        .badge { background-color: #CCC;}
      }
      .single_post.obsolete {
         h4 a { color:#CCC; text-decoration: line-through;}
+        .badge { background-color: #CCC;}
      }
      .single_post.archived { }
 }

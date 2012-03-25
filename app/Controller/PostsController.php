@@ -150,7 +150,7 @@ class PostsController extends AppController {
             $query = $this->params->query['query'];
             $this->set("query", $query);
             $this->set('posts', $this->Post->find('all', array(
-                'order' => array('modified desc'),
+                'order' => array('created desc'),
                 'conditions' =>  array(
                     'OR' => array(
                         array('Post.title LIKE' => "%$query%"),
