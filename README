@@ -5,4 +5,5 @@ A simple CakePHP app for collaboration and knowledge sharing, designed for use b
 Installation:
 
 Build a database from the template.sql file.
-Set up your database details in core.php
+In app/Config, create core.php as a copy of core.default.php.
+In app/Config, create database.php as a copy of database.default.php and enter your database details.
