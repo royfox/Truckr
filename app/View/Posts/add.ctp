@@ -26,7 +26,7 @@
         <div id="wmd-preview" class="post wmd-panel wmd-preview"></div>
         <?php $upload_dir = time().rand(10000,99999);
         echo $this->Form->input('Subscriber',array(
-            'label' => __('Subscribers',true),
+            'label' => __('Subscribers (<span class="checkbox_modifier" select="true">All</span> / <span class="checkbox_modifier" select="false">None</span>)',true),
             'type' => 'select',
             'multiple' => 'checkbox',
             'options' => $users
@@ -44,6 +44,9 @@
 
 <script>
     $(document).ready(function () {
+        $(".checkbox_modifier").css({'cursor':'pointer'}).click(function(){
+            $('input[type=checkbox]').attr('checked',$(this).attr("select") == "true");
+        });
         $("textarea").tabby();
         var converter1 = Markdown.getSanitizingConverter();
         var editor1 = new Markdown.Editor(converter1);
