@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 24, 2012 at 07:27 PM
+-- Generation Time: Apr 08, 2012 at 01:16 PM
 -- Server version: 5.5.9
 -- PHP Version: 5.3.5
 
@@ -12,6 +12,33 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `truckr`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) NOT NULL,
+  `slug` varchar(256) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category_tags`
+--
+
+CREATE TABLE `category_tags` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tag_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -70,6 +97,7 @@ CREATE TABLE `statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
   `slug` varchar(256) NOT NULL,
+  `description` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
@@ -116,7 +144,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-INSERT INTO `statuses` VALUES(1, 'Open', 'open');
-INSERT INTO `statuses` VALUES(2, 'Closed', 'closed');
-INSERT INTO `statuses` VALUES(3, 'Obsolete', 'obsolete');
-INSERT INTO `statuses` VALUES(4, 'Archived', 'archived');
+INSERT INTO `statuses` VALUES(1, 'Open', 'open', 'Posts requiring action or awaiting resolution');
+INSERT INTO `statuses` VALUES(2, 'Closed', 'closed', 'Posts that have been dealt with');
+INSERT INTO `statuses` VALUES(3, 'Obsolete', 'obsolete', 'Posts that contain out-of-date or incorrect information');
+INSERT INTO `statuses` VALUES(4, 'Archived', 'archived', 'Posts that contain documentation or other useful information');
