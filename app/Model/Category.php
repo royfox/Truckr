@@ -1,9 +1,9 @@
 <?php
 
-class Tag extends AppModel {
+class Category extends AppModel {
 
-    public $name = 'Tag';
-    public $hasMany = array('PostTag','CategoryTag');
+    public $name = 'Category';
+    public $hasMany = array('CategoryTag');
 
     public $validate = array(
         'slug' => array(
@@ -19,21 +19,6 @@ class Tag extends AppModel {
        $result = trim(substr($result, 0, $maxLength));
        $result = preg_replace("/\s/", "-", $result);
        return $result;
-    }
-
-   public function setCategories($category_ids){
-
-        $this->CategoryTag->deleteAll(array(
-            'Tag.id' => $this->id
-        ));
-
-        foreach($category_ids as $tag_id){
-            $this->CategoryTag->create();
-            $this->CategoryTag->save(array(
-                'tag_id' => $this->id,
-                'category_id' => $tag_id
-            ));
-        }
     }
 
 }

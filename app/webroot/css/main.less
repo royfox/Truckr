@@ -53,13 +53,13 @@ div.post_list {
      .meta { font-size:12px; float:right; margin-right:-3px;
         .label a { font-weight:normal;  color:white;}
      }
-     .single_post.open { background:#F0EAC7; border:1px solid #DEC537; margin:5px 0; }
+     .single_post.open { background:#F2EFDA; border:1px solid #EDE8C7; margin:5px 0; }
      .single_post.closed { 
-        h4 a { color:#CCC;}
+        h4 a { color:#888;}
         .badge { background-color: #CCC;}
      }
      .single_post.obsolete {
-        h4 a { color:#CCC; text-decoration: line-through;}
+        h4 a { color:#888; text-decoration: line-through;}
         .badge { background-color: #CCC;}
      }
      .single_post.archived { }
@@ -95,6 +95,27 @@ div.content {
 .pagination { color: white; border-left: 1px solid #DDD;
     .counter { font-size: 13px; color:#BBB; font-weight:bold; float:right; display:block; margin-top:5px;}
     .prev a{ }
+}
+
+div.category_links { width:200px;float:left; margin-bottom:15px;
+    h3 a { font-size:16px;}
+    ul {
+        li {  margin:0; 
+            a { font-size: 14px; }
+        }
+    }
+}
+
+h3.list_heading {  padding-left: 8px; padding-right: 8px; margin:8px 0; 
+    a { font-size: 12px; float:right;}
+}
+p.list_strapline { padding-left: 8px; }
+
+table.tags { width:100%;
+    td { vertical-align: top; padding:8px;}
+    tr { border-bottom:1px dashed #999;}
+    td.category { font-size:13px; color:#888; font-weight:bold; width:1%;}
+    label { display: inline;}
 }
 
 div.excerpt { clear:both; font-size:12px;}

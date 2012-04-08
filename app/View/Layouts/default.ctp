@@ -47,7 +47,7 @@
                     </div>
                     <?php echo $this->Html->link('Add Post', array('controller'=>'posts', 'action' => 'add'), array('class' => 'btn btn-success')); ?>
                     &nbsp;
-                    <?php echo $this->Html->link('View tags', array('controller'=>'tags', 'action' => 'index'), array('class' => 'btn')); ?>
+                    <?php echo $this->Html->link('Browse', array('controller'=>'categories', 'action' => 'index'), array('class' => 'btn')); ?>
 
                 </div>
             <?php endif;?>

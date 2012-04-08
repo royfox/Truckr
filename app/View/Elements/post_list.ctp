@@ -37,29 +37,29 @@
 
 <?php
 
+if(!isset($show_pagination) || $show_pagination === true){
+    if($this->Paginator){
 
-if($this->Paginator){
+        echo "<div class='pagination'>";
 
-    echo "<div class='pagination'>";
+        if(isset($query)){
+            $this->Paginator->options(array(
+                'url' => array(
+                    'query' => $query
+                )
+            ));
+        }
+        echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled'));
+        echo $this->Paginator->numbers();
 
-    if(isset($query)){
-        $this->Paginator->options(array(
-            'url' => array(
-                'query' => $query
-            )
-        ));
+
+        echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled'));
+
+        echo "<span class='counter'>Page ";
+
+        echo $this->Paginator->counter();
+        echo "</span>";
+        echo "</div>";
     }
-    echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled'));
-    echo $this->Paginator->numbers();
-
-
-    echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled'));
-
-    echo "<span class='counter'>Page ";
-
-    echo $this->Paginator->counter();
-    echo "</span>";
-    echo "</div>";
 }
-
 ?>

@@ -50,12 +50,19 @@ class TagsController extends AppController {
         if ($this->request->is('post')) {
             $this->request->data['Tag']['slug'] = $this->Tag->makeSlug($this->request->data['Tag']['name']);
             if ($this->Tag->save($this->request->data)) {
+                $this->Tag->setCategories($this->request->data['Tag']['Category'] ? $this->request->data['Tag']['Category'] : array());
                 $this->Session->setFlash('Your tag has been saved.', 'flash_success');
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash('Unable to add your tag.');
             }
         }
+        $categories = $this->Tag->CategoryTag->Category->find("list", array(
+            'order' => array(
+                'name asc'
+            )
+        ));
+        $this->set("all_categories", $categories);
     }
 
     function edit($id = null) {
@@ -66,12 +73,26 @@ class TagsController extends AppController {
         } else {
             $this->request->data['Tag']['slug'] = $this->Tag->makeSlug($this->request->data['Tag']['name']);
             if ($this->Tag->save($this->request->data)) {
+                $this->Tag->setCategories($this->request->data['Tag']['Category'] ? $this->request->data['Tag']['Category'] : array());
                 $this->Session->setFlash('Your tag has been updated.', 'flash_success');
                 $this->redirect(array('action' => 'view', $this->request->data['Tag']['slug']));
             } else {
                 $this->Session->setFlash('Unable to update your post.', 'flash_error');
             }
         }
+        $categories = $this->Tag->CategoryTag->Category->find("list", array(
+            'order' => array(
+                'name asc'
+            )
+        ));
+        $categoryTags = $this->Tag->CategoryTag->find('all', array(
+            'conditions' => array(
+               'tag_id' => $id
+            ),
+            'recursive' => -1,
+        ));
+        $this->set("categories", Set::extract('/CategoryTag/category_id', $categoryTags));
+        $this->set("all_categories", $categories);
     }
 
 }

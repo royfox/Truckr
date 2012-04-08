@@ -11,11 +11,50 @@ class PostsController extends AppController {
     public $paginate = array(
         'order' => array('created'=>'desc'),
         'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag', 'Status'),
-        'limit' => 10
+        'limit' => 20
     );
 
     public function index() {
-        $this->set('posts', $this->paginate('Post'));
+
+        $open_posts = $this->Post->find('all', array(
+             'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag', 'Status'),
+             'conditions' => array('Status.slug' => 'open'),
+             'limit' => 3,
+             'order' => array('created'=>'desc')
+        ));
+        
+        $archived_posts = $this->Post->find('all', array(
+             'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag', 'Status'),
+             'conditions' => array('Status.slug' => 'archived'),
+             'limit' => 3,
+             'order' => array('created'=>'desc')
+        ));
+
+        $dead_posts = $this->Post->find('all', array(
+             'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag', 'Status'),
+             'conditions' => array('Status.slug' => array('obsolete','closed')),
+             'limit' => 3,
+             'order' => array('created'=>'desc')
+        ));
+
+
+        $this->set("open_posts", $open_posts);
+        $this->set("archived_posts", $archived_posts);
+        $this->set("dead_posts", $dead_posts);
+    }
+
+    public function status($slug){
+        $status = $this->Post->Status->find('first',array(
+            'conditions' => array('Status.slug' => $slug)
+        ));
+        if(!$status){
+            throw new NotFoundException();
+        } else {
+            $this->set("status", $status);
+        }
+        $this->set('posts', $this->paginate('Post', array(
+            'Status.slug' => $slug
+        )));
     }
 
     public function view($id) {
@@ -66,11 +105,15 @@ class PostsController extends AppController {
             if(!$post){
                 throw new NotFoundException();
             }
-            $tags = $this->Post->PostTag->Tag->find("list", array(
-                'order' => array(
-                    'name asc'
-                )
-            ));
+
+
+             $categories = $this->Post->PostTag->Tag->CategoryTag->Category->find('all', array(
+                'order' => array('name asc'),
+                'recursive' => 2
+             ));
+
+            $this->set("categories", $categories);
+
             $postTags = $this->Post->PostTag->find('all', array(
                 'conditions' => array(
                    'post_id' => $id
@@ -78,14 +121,14 @@ class PostsController extends AppController {
                 'recursive' => -1,
             ));
             $this->set("tags", Set::extract('/PostTag/tag_id', $postTags));
-            $this->set("all_tags", $tags);
             $this->set('post', $post);
+
         }
     }
 
 
 
-    function status($id){
+    function set_status($id){
         if ($this->request->is('post')){
             $this->Post->id = $id;
             $this->Post->set('status_id', $this->request->data['Post']['Status']);

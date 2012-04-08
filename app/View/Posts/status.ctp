@@ -1,11 +1,7 @@
-<div>
-    <h3>Status for &quot;<?php echo $post['Post']['title']?>&quot;</h3>
-    <fieldset>
-    <?php
-        echo $this->Form->create('Post');
-        echo $this->Form->input('Status', array('selected'=>$post['Post']['status_id']));
-        echo $this->Form->end('Save Status');
-    ?>
-     </fieldset>
-</div>
+<h3 class="list_heading"><?php echo $status['Status']['name'];?> posts</h3>
 
+<p class="list_strapline">
+    <?php echo $status['Status']['description'];?>
+</p>
+
+<?php echo $this->element("post_list", array("posts"=>$posts));?>

@@ -1,3 +1,7 @@
+<?php echo $this->Html->script("jquery.textarea.js");?>
+<?php echo $this->Html->script("pagedown/Markdown.Converter.js");?>
+<?php echo $this->Html->script("pagedown/Markdown.Sanitizer.js");?>
+<?php echo $this->Html->script("pagedown/Markdown.Editor.js");?>
 
 <h1><?php echo $post['Post']['title']?></h1>
 
@@ -63,7 +67,7 @@
         <td>
             <?php echo $post['Status']['name'];?>
         </td>
-        <td><?php echo $this->Html->link('Edit status', array('action' => 'status', $post['Post']['id']), array('class'=>'minor_link edit_link'));?></td>
+        <td><?php echo $this->Html->link('Edit status', array('action' => 'set_status', $post['Post']['id']), array('class'=>'minor_link edit_link'));?></td>
     </tr>
     </tbody>
 </table>
@@ -110,14 +114,29 @@
             <div class="body">
                 <?php
                     echo $this->Form->create('Comment', array('url'=>array('controller'=>'comments','action'=>'add', $post['Post']['id'])));
-                    echo $this->Form->input('body', array('rows' => '6'));
-                    echo $this->Form->end('Save');
-                ?>
+                    echo $this->Form->input('body', array(
+                        'rows' => '6',
+                        'class'=>'wmd-input wide',
+                        'id'=>'wmd-input',
+                        'between' => '<div class="wmd-panel"><div id="wmd-button-bar" class="wmd-button-bar"></div>',
+                        'after' => '</div>'
+                    ));
+        ?>
+            <div id="wmd-preview" class="post wmd-panel wmd-preview"></div>
+            <?php echo $this->Form->end('Save');?>
             </div>
         </div>
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        $("textarea").tabby();
+        var converter1 = Markdown.getSanitizingConverter();
+        var editor1 = new Markdown.Editor(converter1);
+        editor1.run();
+    });
+</script>
 
 
 
