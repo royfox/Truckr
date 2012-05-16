@@ -15,6 +15,10 @@ h1 { font-size:34px; padding:15px 0; }
 .alert {margin-bottom:0;}
 form { margin:15px 0;}
 
+a, a:hover {
+  color: #005580;
+}
+
 div.post {
     h1, h2, h3, h4, h5, h6 { font-size: 22px; line-height:24px; padding:0; margin:12px 0;}
 }
@@ -43,35 +47,29 @@ div.post {
 }
 
 div.post_list {
-    .single_post { clear:both; padding: 0 8px 8px 8px;
-        h4 { line-height:21px;font-size:20px; margin:0; padding:5px 0;
-            .badge { vertical-align:top;}
+    .single_post { clear:both; padding: 0; border-bottom:1px solid #CCC;
+        h4 { line-height:17px;font-size:16px; margin:0; padding:5px 0;
+            .badge { vertical-align:top; background-color:#BBB; color:#666;}
         }
-        .label.time { float:right; margin: 10px 0 0px 10px;}
+        .label.meta { float:right; margin: 5px 0 0px 10px; color:#CCC;
+            a { color:#E7E7E7;}
+            .time { color: #DDD;}
+        }
         .tags { float:left;}
     }
-     .meta { font-size:12px; float:right; margin-right:-3px;
-        .label a { font-weight:normal;  color:white;}
-     }
-     .single_post.open { background:#F2EFDA; border:1px solid #EDE8C7; margin:5px 0; }
-     .single_post.closed { 
-        h4 a { color:#888;}
-        .badge { background-color: #CCC;}
-     }
-     .single_post.obsolete {
-        h4 a { color:#888; text-decoration: line-through;}
-        .badge { background-color: #CCC;}
-     }
-     .single_post.archived { }
 }
 
-div.comments { margin-top:40px;}
+div.sort { color:#AAA; font-size:11px; text-align:right;
+    a { color: #888; font-weight:bold;}
+}
 
-div.comment { margin-bottom:50px;  position:relative;
-    .picture { position:absolute; padding-bottom:10px; }
-    .content { padding-left:90px;
-         .title {  font-size:12px; color:#888; padding:3px;}
-         .body { padding:3px;
+div.comments { margin-top: 20px; padding-top:20px; border-top:4px dotted #DDD;}
+
+div.comment { margin-bottom:10px;  position:relative;
+    .picture { position:absolute; padding-bottom:10px; display:none; }
+    .content {
+         .title {  font-size:13px; color:#888; padding:3px; background:#EEE; border:1px solid #DDD;}
+         .body { padding:10px 3px;
             p { margin-top:0;}
          }
     }
@@ -83,7 +81,7 @@ div.comment { margin-bottom:50px;  position:relative;
 }
 
 div.comment.add_comment {
-    textarea { height:90px; width:520px;}
+    textarea { height:90px;}
     .submit { margin-top:2px; text-align: right;}
 }
 
@@ -106,10 +104,10 @@ div.category_links { width:200px;float:left; margin-bottom:15px;
     }
 }
 
-h3.list_heading {  padding-left: 8px; padding-right: 8px; margin:8px 0; 
+h3.list_heading {  padding:0; margin:8px 0;
     a { font-size: 12px; float:right;}
 }
-p.list_strapline { padding-left: 8px; }
+p.list_strapline { padding:0; }
 
 table.tags { width:100%;
     td { vertical-align: top; padding:8px;}
@@ -123,7 +121,7 @@ div.excerpt { clear:both; font-size:12px;}
 .post_meta td:last-child { text-align: right;}
 div.post, div.post p { font-size:@post-font-size;}
 input.wide, textarea.wide { width:@page-width - 110;}
-p.edit_links .btn { float:right; margin-top:16px;}
+p.edit_links .btn { float:right; margin-top:8px;}
 div.large_tags .btn { margin-bottom:6px;}
 .highlight { background:yellow;}
 div.actions input[type=submit]{ margin-top:10px; }

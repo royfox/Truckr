@@ -62,13 +62,6 @@
 
         </td>
     </tr>
-    <tr>
-        <td><span class="label">Status</span></td>
-        <td>
-            <?php echo $post['Status']['name'];?>
-        </td>
-        <td><?php echo $this->Html->link('Edit status', array('action' => 'set_status', $post['Post']['id']), array('class'=>'minor_link edit_link'));?></td>
-    </tr>
     </tbody>
 </table>
 
@@ -87,7 +80,7 @@
 
 <div class="comments">
      <?php foreach($post['Comment'] as $comment):?>
-      <div class="comment">
+      <div class="comment post">
           <div class="picture thumbnail">
               <?php echo $this->Gravatar->image($comment['User']['email'], array('size' => 70), array('alt' => 'Gravatar', 'default'=>'identicon')); ?>
           </div>

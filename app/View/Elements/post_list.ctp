@@ -1,11 +1,22 @@
 <?php if(count($posts) == 0):?>
       <p>No posts found.</p>
 <?php else:?>
+    <?php if(!isset($show_pagination) || $show_pagination === true):?>
+        <?php if($this->Paginator):?>
+            <div class="sort">
+                <?php if($this->Paginator->sortKey() == "Post.created"):?>
+                    Sorted by created date. <?php echo $this->Paginator->sort('Post.modified', '(Sort by modified date)',array('direction' => 'desc'));?>
+                <?php else:?>
+                    Sorted by modified date. <?php echo $this->Paginator->sort('Post.created', '(Sort by created date)',array('direction' => 'desc'));?>
+                <?php endif;?>
+            </div>
+        <?php endif;?>
+    <?php endif;?>
     <div class="post_list">
         <?php foreach ($posts as $post): ?>
-        <div class="single_post <?php echo $post['Status']['slug'];?>">
-            <span class="label time  label-success">
-                <?php echo $this->Time->timeAgoInWords($post['Post']['created']); ?>
+        <div class="single_post">
+            <span class="label meta">
+                <?php echo $this->element("user_link", array("user" => $post['User']));?> | <span class="time"><?php echo $this->Time->timeAgoInWords($post['Post']['created']); ?></span>
             </span>
             <h4>
                 <?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id']));?>
@@ -13,16 +24,6 @@
                     <span class="badge badge-warning"><?php echo count($post['Comment']);?></span>
                 <?php endif;?>
             </h4>
-            <div class="tags">
-                <?php foreach($post['PostTag'] as $tag):?>
-                    <?php echo $this->element("tag_link", array("tag" => $tag['Tag']));?>
-                <?php endforeach;?>
-            </div>
-            <div class="meta">
-                <span class="author label">
-                    <?php echo $this->element("user_link", array("user" => $post['User']));?>
-                </span>
-            </div>
             <?php if(isset($query)):?>
                 <div class="excerpt">
                    <?php echo $this->Text->highlight($this->Text->excerpt($post['Post']['title']." : ".Sanitize::html(Markdown($post['Post']['content']), array('remove' => true)), $query, 200, '...'), $query, array('format' => '<span class="highlight">\1</span>'));?>
