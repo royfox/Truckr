@@ -38,7 +38,7 @@ class CommentsController extends AppController {
                 $this->Comment->Post->read();
                 $this->Comment->Post->set('modified', date("Y-m-d H:i:s"));
                 $this->Comment->Post->save();
-                //$this->Comment->notify($this->Comment->id);
+                $this->Comment->notify($this->Comment->id);
                 $this->Session->setFlash('Your comment has been saved.');
                 $this->redirect(array('controller'=>'posts','action' => 'view', $post_id));
             } else {
