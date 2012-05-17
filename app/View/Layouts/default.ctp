@@ -19,6 +19,7 @@
         echo $this->Html->script('jquery.js');
         echo $this->Html->script('global.js');
         echo $this->Html->script('cake-bootstrap.js');
+        echo $this->Html->script('bootstrap-tooltip.js');
         echo $this->Html->script('less-1.3.0.min.js');
 		echo $scripts_for_layout;
 	?>

@@ -13,8 +13,8 @@
         <?php endif;?>
     <?php endif;?>
     <div class="post_list">
-        <?php foreach ($posts as $post): ?>
-        <div class="single_post">
+        <?php foreach ($posts as $index => $post): ?>
+        <div class="single_post<?php if($index%2 != 0):?> odd<?php endif;?>">
             <span class="label meta">
                 <?php echo $this->element("user_link", array("user" => $post['User']));?> | <span class="time"><?php echo $this->Time->timeAgoInWords($post['Post']['created']); ?></span>
             </span>
