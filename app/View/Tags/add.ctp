@@ -6,14 +6,8 @@
         echo $this->Form->input('name', array(
             'class'=>'wide',
         ));
-        echo $this->Form->input('description', array(
+        echo $this->Form->input('parents', array(
             'class'=>'wide',
-        ));
-        echo $this->Form->input('Category',array(
-            'label' => __('Categories',true),
-            'type' => 'select',
-            'multiple' => 'checkbox',
-            'options' => $all_categories
         ));
         echo $this->Form->end('Save Tag');
     ?>

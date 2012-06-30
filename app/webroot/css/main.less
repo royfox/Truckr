@@ -111,12 +111,20 @@ h3.list_heading {  padding:0; margin:8px 0;
 }
 p.list_strapline { padding:0; }
 
-table.tags { width:100%;
-    td { vertical-align: top; padding:8px;}
-    tr { border-bottom:1px dashed #999;}
-    td.category { font-size:13px; color:#888; font-weight:bold; width:1%;}
+div.tag_form { width:100%;
     label { display: inline;}
+    span.parent { color:#BBB; font-weight:bold; }
+    div.indent { float:left; background:#DDD; height:20px; width:50px; margin-right:5px; }
+    div.tag_box { clear:both; border-bottom:1px solid #CCC;
+        a { font-weight:bold;}
+    }
+    div.tag_box.checkboxes { border:none;}
+    .links { float:right; font-size:11px; opacity:0.3;}
+    .links:hover { opacity:1;}
+    .delete_link { color:red; }
+    .edit_link { color:orange;}
 }
+
 
 div.excerpt { clear:both; font-size:12px;}
 

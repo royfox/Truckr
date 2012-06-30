@@ -67,13 +67,7 @@ class PostsController extends AppController {
                 throw new NotFoundException();
             }
 
-
-             $categories = $this->Post->PostTag->Tag->CategoryTag->Category->find('all', array(
-                'order' => array('name asc'),
-                'recursive' => 2
-             ));
-
-            $this->set("categories", $categories);
+            $all_tags = $this->Post->PostTag->Tag->getTree();
 
             $postTags = $this->Post->PostTag->find('all', array(
                 'conditions' => array(
@@ -81,7 +75,9 @@ class PostsController extends AppController {
                 ),
                 'recursive' => -1,
             ));
-            $this->set("tags", Set::extract('/PostTag/tag_id', $postTags));
+
+            $this->set("all_tags", $all_tags);
+            $this->set("selected_tags", Set::extract('/PostTag/tag_id', $postTags));
             $this->set('post', $post);
 
         }

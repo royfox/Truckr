@@ -7,8 +7,8 @@
     <br />
 
 <div class="large_tags">
-    <?php foreach($tags as $tag):?>
-        <?php echo $this->element("tag_link", array("tag" => $tag['Tag'], 'size' => 'large'));?>
-    <?php endforeach;?>
+    <div class="tag_form">
+        <?echo $this->element('recursive_tags', array('tag'=> $tags[0], 'parent_string' => ""));?>
+    </div>
 </div>
 

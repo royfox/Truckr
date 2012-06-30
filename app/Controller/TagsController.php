@@ -9,9 +9,7 @@ class TagsController extends AppController {
     public $helpers = array('Html', 'Form','Text',"Time", "Markdown.Markdown","Gravatar");
 
     public function index(){
-        $tags = $this->Tag->find('all', array(
-            'order' => array('name asc')
-        ));
+        $tags = $this->Tag->getTree();
         $this->set("tags", $tags);
     }
 
@@ -48,21 +46,17 @@ class TagsController extends AppController {
     public function add() {
         $this->set("hide_navigation", true);
         if ($this->request->is('post')) {
+            $this->request->data['Tag']['parent_tag_id'] = $this->request->data['Tag']['parents'];
             $this->request->data['Tag']['slug'] = $this->Tag->makeSlug($this->request->data['Tag']['name']);
             if ($this->Tag->save($this->request->data)) {
-                $this->Tag->setCategories($this->request->data['Tag']['Category'] ? $this->request->data['Tag']['Category'] : array());
                 $this->Session->setFlash('Your tag has been saved.', 'flash_success');
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash('Unable to add your tag.');
             }
         }
-        $categories = $this->Tag->CategoryTag->Category->find("list", array(
-            'order' => array(
-                'name asc'
-            )
-        ));
-        $this->set("all_categories", $categories);
+        $parents = $this->Tag->getSelect();
+        $this->set("parents", $parents);
     }
 
     function edit($id = null) {
@@ -71,28 +65,27 @@ class TagsController extends AppController {
         if ($this->request->is('get')) {
             $this->request->data = $this->Tag->read();
         } else {
+            $this->request->data['Tag']['parent_tag_id'] = $this->request->data['Tag']['parents'];
             $this->request->data['Tag']['slug'] = $this->Tag->makeSlug($this->request->data['Tag']['name']);
             if ($this->Tag->save($this->request->data)) {
-                $this->Tag->setCategories($this->request->data['Tag']['Category'] ? $this->request->data['Tag']['Category'] : array());
                 $this->Session->setFlash('Your tag has been updated.', 'flash_success');
                 $this->redirect(array('action' => 'view', $this->request->data['Tag']['slug']));
             } else {
                 $this->Session->setFlash('Unable to update your post.', 'flash_error');
             }
         }
-        $categories = $this->Tag->CategoryTag->Category->find("list", array(
-            'order' => array(
-                'name asc'
-            )
-        ));
-        $categoryTags = $this->Tag->CategoryTag->find('all', array(
-            'conditions' => array(
-               'tag_id' => $id
-            ),
-            'recursive' => -1,
-        ));
-        $this->set("categories", Set::extract('/CategoryTag/category_id', $categoryTags));
-        $this->set("all_categories", $categories);
+        $parents = $this->Tag->getSelect();
+        $this->set("parents", $parents);
+    }
+
+    function delete($id) {
+        if ($this->request->is('get')) {
+            throw new MethodNotAllowedException();
+        }
+        if ($this->Tag->delete($id)) {
+            $this->Session->setFlash('The tag has been deleted');
+            $this->redirect(array('action' => 'index'));
+        }
     }
 
 }

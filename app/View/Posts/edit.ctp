@@ -24,7 +24,7 @@
        <div id="wmd-preview" class="post wmd-panel wmd-preview"></div>
        <?php
         echo $this->Form->input('id', array('type' => 'hidden'));
-        if($post['Post']['upload_dir']){
+        if($this->request->data['Post']['upload_dir']){
             $this->Form->hidden('upload_dir');
         } else {
             $upload_dir = time().rand(10000,99999);
