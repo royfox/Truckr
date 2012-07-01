@@ -12,7 +12,7 @@
 </p>
 
 <h3 class="list_heading" style="float:left"><?php echo $tag['Tag']['name'];?></h3>
-<p class="edit_links faint" style="float:left; margin-left:10px;">
+<p class="edit_links" style="float:left; margin-left:10px;">
     <?php echo $this->Html->link('Edit details and documentation', array('action' => 'edit', $tag['Tag']['id']), array('class'=>'btn btn-info'));?>
 </p>
 
