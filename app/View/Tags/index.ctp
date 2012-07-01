@@ -8,7 +8,7 @@
 
 <div class="large_tags">
     <div class="tag_form">
-        <?echo $this->element('recursive_tags', array('tag'=> $tags[0], 'parent_string' => ""));?>
+        <?php echo $this->element('recursive_tags', array('tag'=> $tags[0], 'parent_string' => ""));?>
     </div>
 </div>
 

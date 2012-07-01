@@ -3,7 +3,7 @@
     <fieldset>
     <?php echo $this->Form->create('Post'); ?>
     <div class="tag_form">
-        <?echo $this->element('recursive_tags', array('tag'=> $all_tags[0], 'parent_string' => "", 'show_checkboxes' => true));?>
+        <?php echo $this->element('recursive_tags', array('tag'=> $all_tags[0], 'parent_string' => "", 'show_checkboxes' => true));?>
     </div>
     <?php echo $this->Form->end('Save Tags');?>
      </fieldset>
