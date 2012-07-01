@@ -8,11 +8,17 @@ body { background:#EEE;}
 #wrapper {  padding:20px 40px 40px 40px; position:relative; }
 #content { padding:3px 0; clear:both; }
 label { font-weight:bold; margin-top:10px;}
-div.checkbox label { font-weight:normal;}
+div.checkbox { float:left; width:160px;
+    label { font-weight:normal; margin:0;}
+}
+
+
+.faint { opacity:0.5;}
+.faint:hover { opacity:1;}
 
 /* Override some bootstrap rules */
 h1 { font-size:34px; padding:15px 0; }
-.alert {margin-bottom:0;}
+.alert {margin-bottom:10px;}
 form { margin:15px 0;}
 
 a, a:hover {
@@ -24,23 +30,24 @@ div.post {
 }
 
 #header { padding:0; position:relative; height:64px;
-    h1 {  padding:0;
+    h1 {  padding:0; font-size:30px;
         a { letter-spacing:-0.05em; color:#FCAD23; margin-top:-20px;  border-bottom:5px solid #FCAD23; }
         a:hover { text-decoration: none; }
     }
     .permalinks { position:absolute; right: -53px; top:20px; }
-     .username { font-size:13px; position:absolute; right:0px; top:-13px; color:#BBB; z-index:2;
-        a { font-weight: bold; color:#AAA; }
+     .username { font-size:13px; position:absolute; right:0px; top:9px; color:#BBB; z-index:2; width:300px;
+        .btn, .btn-group { float:right;}
+        .btn { margin-left:4px;}
      }
 }
 
-#navigation { padding:4px; position:absolute; top:9px; left:153px; width:515px;
+#navigation { padding:4px; position:absolute; top:10px; left:134px; width:515px;
         .btn {
             float:right; margin-left: 5px;
         }
         #search {
             a.btn {  float:left; padding:6px;}
-            input.search { width:250px; float:left; }
+            input.search { width:170px; float:left; font-size:12px;}
             input.submit { margin-left:4px;}
             div.actions { display:inline; float:left;}
         }
@@ -119,12 +126,7 @@ div.tag_form { width:100%;
         a { font-weight:bold;}
     }
     div.tag_box.checkboxes { border:none;}
-    .links { float:right; font-size:11px; opacity:0.3;}
-    .links:hover { opacity:1;}
-    .delete_link { color:red; }
-    .edit_link { color:orange;}
 }
-
 
 div.excerpt { clear:both; font-size:12px;}
 

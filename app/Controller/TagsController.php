@@ -23,9 +23,11 @@ class TagsController extends AppController {
             throw new NotFoundException();
         }
 
+        $tag_ids = $this->Tag->getTagIdsWithChildren($tag['Tag']['id']);
+
         $postTags = $this->Tag->PostTag->find('all', array(
             'conditions' => array(
-               'tag_id' => $tag['Tag']['id']
+               'tag_id' => $tag_ids
             ),
             'recursive' => -1
         ));
@@ -39,6 +41,7 @@ class TagsController extends AppController {
                 'Post.id' => $post_ids
             )
         ));
+        $this->set("breadcrumbs", $this->Tag->getBreadcrumbs($tag['Tag']['id']));
         $this->set("posts", $posts);
         $this->set("tag", $tag);
     }

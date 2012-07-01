@@ -39,6 +39,26 @@ class Tag extends AppModel {
         return $select;
     }
 
+    public function getBreadcrumbs($tag_id){
+        $breadcrumbs = array_reverse($this->addBreadcrumb($tag_id, array()));
+        return $breadcrumbs;
+    }
+
+    private function addBreadcrumb($tag_id, $breadcrumbs){
+        $tag = $this->find('first',array(
+            'recursive' => -1,
+            'conditions' => array(
+                'id' => $tag_id
+            )
+        ));
+        $breadcrumbs[] = $tag;
+        if($tag['Tag']['parent_tag_id'] == 0){
+            return $breadcrumbs;
+        } else {
+            return $this->addBreadcrumb($tag['Tag']['parent_tag_id'], $breadcrumbs);
+        }
+    }
+
     public function getTree(){
 
         $tags = $this->find('all',array(
@@ -76,6 +96,30 @@ class Tag extends AppModel {
         return $tree;
     }
 
+    public function getTagIdsWithChildren($tag_id){
+        $tag_ids = $this->addChildTagIds($tag_id, array());
+        return $tag_ids;
+    }
+
+    private function addChildTagIds($tag_id, $tags){
+        $tags[] = $tag_id;
+        $children = $this->find('all', array(
+            'recursive' => -1,
+            'conditions' => array(
+                'parent_tag_id' => $tag_id
+            )
+        ));
+
+        if(!count($children)){
+            return $tags;
+        } else {
+            foreach($children as $child){
+                $tags = $this->addChildTagIds($child['Tag']['id'], $tags);
+            }
+            return $tags;
+        }
+
+    }
 
 
 }

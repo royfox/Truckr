@@ -3,7 +3,7 @@
 </p>
 
 
-<h3>All Tags</h3>
+<h3>Tag Tree</h3>
     <br />
 
 <div class="large_tags">

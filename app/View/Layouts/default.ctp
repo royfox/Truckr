@@ -20,6 +20,7 @@
         echo $this->Html->script('global.js');
         echo $this->Html->script('cake-bootstrap.js');
         echo $this->Html->script('bootstrap-tooltip.js');
+        echo $this->Html->script('bootstrap-dropdown.js');
         echo $this->Html->script('less-1.3.0.min.js');
 		echo $scripts_for_layout;
 	?>
@@ -31,8 +32,32 @@
                 <h1><?php echo $this->Html->link("truckr", '/'); ?></h1>
                 <?php if($user = $this->Session->read('Auth.User')):?>
                     <div class="username">
-                        Logged in as <?php echo $this->Html->link($user['username'], array('controller'=>'users','action'=>'edit', $user['id'])); ?>
-                        | <?php echo $this->Html->link("Log out", '/logout', array('class'=>'logout')); ?>
+
+                        <div class="btn-group">
+                          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                            My account
+                            <span class="caret"></span>
+                          </a>
+                          <ul class="dropdown-menu">
+                            <li><?php echo $this->Html->link('Details', array('controller'=>'users','action'=>'edit', $user['id'])); ?></li>
+                            <li><?php echo $this->Html->link("Log out", '/logout', array('class'=>'logout')); ?></li>
+                          </ul>
+                        </div>
+
+                        <?php echo $this->Html->link('Add Post', array('controller'=>'posts', 'action' => 'add'), array('class' => 'btn btn-success add-post')); ?>
+
+                        <div class="btn-group">
+                         <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+                            Browse
+                            <span class="caret"></span>
+                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/">Post List</a></li>
+                             <li>
+                                  <?php echo $this->Html->link('Tag Tree', array('controller'=>'tags', 'action' => 'index')); ?>
+                            </li>
+                        </ul>
+                        </div>
                     </div>
                 <?php endif;?>
             </div>
@@ -46,14 +71,10 @@
                             </a>
                         </form>
                     </div>
-                    <?php echo $this->Html->link('Add Post', array('controller'=>'posts', 'action' => 'add'), array('class' => 'btn btn-success')); ?>
-                    &nbsp;
-                    <?php echo $this->Html->link('Tags', array('controller'=>'tags', 'action' => 'index'), array('class' => 'btn')); ?>
 
                 </div>
             <?php endif;?>
             <div id="content">
-
                 <?php echo $this->Session->flash(); ?>
 
                 <?php echo $content_for_layout; ?>

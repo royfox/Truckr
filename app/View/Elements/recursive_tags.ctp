@@ -8,12 +8,9 @@
             <input type="checkbox" name="data[Post][Tag][]" <?php echo $checked;?> value="<?php echo $tag['id'];?>">
             <label><?php echo $tag['name'];?></label>
         <?php else:?>
-        <span class="parent"><?php echo $parent_string;?></span><?php echo $this->Html->link($tag['name'], array('controller'=>'tags', 'action' => 'view', $tag['slug'])); ?>
-        <span class="links">
-            <?php echo $this->Form->postLink('Delete', array('action' => 'delete', $tag['id']), array('confirm' => 'Are you sure?', 'class'=>'delete_link'));?>
-            <span class="divider">|</span> <?php echo $this->Html->link('Edit tag details', array('action' => 'edit', $tag['id']), array('class'=>'edit_link'));?>
-             <?php endif;?>
-        </span>
+            <span class="parent"><?php echo $parent_string;?></span><?php echo $this->Html->link($tag['name'], array('controller'=>'tags', 'action' => 'view', $tag['slug'])); ?>
+            <span class="links">
+        <?php endif;?>
 
     </div>
 <?php endif;?>
