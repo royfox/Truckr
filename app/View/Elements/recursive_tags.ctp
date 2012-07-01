@@ -16,6 +16,6 @@
 <?php endif;?>
 <?php if(isset($tag['children'])):?>
     <?php foreach($tag['children'] as $child):?>
-        <?echo $this->element('recursive_tags', array('tag'=> $child, 'parent_string'=> $tag['id'] == 0 ? "" : $parent_string.$tag['name']. " > ", 'show_checkboxes' => isset($show_checkboxes) && $show_checkboxes));?>
+        <?php echo $this->element('recursive_tags', array('tag'=> $child, 'parent_string'=> $tag['id'] == 0 ? "" : $parent_string.$tag['name']. " > ", 'show_checkboxes' => isset($show_checkboxes) && $show_checkboxes));?>
     <?php endforeach;?>
 <?php endif;?>
