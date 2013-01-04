@@ -56,6 +56,9 @@
                              <li>
                                   <?php echo $this->Html->link('Tag Tree', array('controller'=>'tags', 'action' => 'index')); ?>
                             </li>
+                            <li>
+                                  <?php echo $this->Html->link('Tag Cloud', array('controller'=>'tags', 'action' => 'cloud')); ?>
+                            </li>
                         </ul>
                         </div>
                     </div>

@@ -13,6 +13,22 @@ class TagsController extends AppController {
         $this->set("tags", $tags);
     }
 
+    public function cloud(){
+        $tags = $this->Tag->PostTag->getTagCount();
+        $maxCount = 1;
+
+        foreach($tags as $tag){
+            if($tag[0]['count'] > $maxCount){
+                $maxCount = $tag[0]['count'];
+            }
+        }
+        shuffle($tags);
+        $this->set("maxCount", $maxCount);
+        $this->set("tags", $tags);
+        $this->set("maxFontSize", 50);
+
+    }
+
     public function view($slug) {
         $tag = $this->Tag->find('first', array(
             'conditions' => array(
