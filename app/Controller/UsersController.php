@@ -6,14 +6,18 @@ class UsersController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add', 'logout');
+        $this->Auth->allow('logout');
     }
 
     public function login() {
         $this->set("hide_navigation", true);
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
-                return $this->redirect($this->Auth->redirect());
+                if(!$this->Auth->user('active')){
+                    $this->Session->setFlash(__('This account has been suspended'), 'default', array(), 'auth');
+                } else {
+                    return $this->redirect($this->Auth->redirect());
+                }
             } else {
                 $this->Session->setFlash(__('Username or password is incorrect'), 'default', array(), 'auth');
             }
