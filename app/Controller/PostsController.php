@@ -48,7 +48,8 @@ class PostsController extends AppController {
             'fields' => array('User.display_name'),
             'order'=>'display_name asc',
             'conditions' => array(
-                'User.id !=' => $this->Auth->user('id')
+                'User.id !=' => $this->Auth->user('id'),
+                'User.active' => 1
             )
         )));
     }

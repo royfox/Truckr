@@ -49,7 +49,7 @@ class Post extends AppModel {
         $this->contain(array('Subscriber','Subscriber.User','User'));
         $post = $this->read();
         foreach($post['Subscriber'] as $subscriber){
-            if($post['User']['active'] &&  $post['Post']['user_id'] != $subscriber['user_id']){
+            if($subscriber['User']['active'] &&  $post['Post']['user_id'] != $subscriber['user_id']){
                 $email = new CakeEmail();
                 $email->from(array(Configure::read("Email.SenderAddress") => Configure::read("Email.SenderName")));
                 $email->to($subscriber['User']['email']);

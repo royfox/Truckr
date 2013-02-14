@@ -11,7 +11,7 @@ class Comment extends AppModel {
         $this->contain(array('Post','Post.Subscriber','Post.Subscriber.User','User'));
         $comment = $this->read();
         foreach($comment['Post']['Subscriber'] as $subscriber){
-            if($comment['User']['active'] && $comment['Comment']['user_id'] != $subscriber['user_id']){
+            if($subscriber['User']['active'] && $comment['Comment']['user_id'] != $subscriber['user_id']){
                 $email = new CakeEmail();
                 $email->from(array(Configure::read("Email.SenderAddress") => Configure::read("Email.SenderName")));
                 $email->to($subscriber['User']['email']);
