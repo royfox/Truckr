@@ -136,7 +136,7 @@ class GravatarHelper extends AppHelper {
 	 * @return image url of the gravatar
 	 * @author Chris Stevens
 	 */
-	public function url($email, $options=array()) {
+	public function imageUrl($email, $options=array()) {
 		$this->validateOptions($options);
 
 		$url_params = "?s=".$this->size."&r=".$this->rating;
@@ -163,6 +163,6 @@ class GravatarHelper extends AppHelper {
 	 * @author Chris Stevens
 	 */
 	public function image($email, $options, $html_options = array()) {
-		return $this->Html->image($this->url($email, $options), $html_options);
+		return $this->Html->image($this->imageUrl($email, $options), $html_options);
 	}
 }
