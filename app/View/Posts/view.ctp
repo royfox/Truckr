@@ -55,15 +55,6 @@
         </span>
     </div>
     <div class="meta_row">
-        <span class="label">Tags</span>
-        <span class="value">
-            <?php foreach($post['PostTag'] as $tag):?>
-                <?php echo $this->element("tag_link", array("tag" => $tag['Tag']));?>
-            <?php endforeach;?>
-        </span>
-        <span class="links"><?php echo $this->Html->link('Edit tags', array('action' => 'tag', $post['Post']['id']), array('class'=>'minor_link edit_link'));?></span>
-    </div>
-    <div class="meta_row">
         <span class="label">Date</span>
         <span class="value"><?php echo $this->Time->timeAgoInWords($post['Post']['created']);?>
             (last modified <?php echo $this->Time->niceShort($post['Post']['modified']);?>)</span>

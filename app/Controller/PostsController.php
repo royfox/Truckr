@@ -10,7 +10,7 @@ class PostsController extends AppController {
     public $components = array('Session');
     public $paginate = array(
         'order' => array('created'=>'desc'),
-        'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag'),
+        'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User'),
         'limit' => 50
     );
 
@@ -21,7 +21,7 @@ class PostsController extends AppController {
 
     public function view($id) {
         $this->Post->id = $id;
-        $this->Post->contain(array('Comment','Comment.User', 'Subscriber','Subscriber.User','User','PostTag.Tag'));
+        $this->Post->contain(array('Comment','Comment.User', 'Subscriber','Subscriber.User','User'));
         $this->Post->recursive = 1;
         $post = $this->Post->read();
         if(!$post){
@@ -37,9 +37,9 @@ class PostsController extends AppController {
                 $this->Post->set('user_id', $this->Auth->user('id'));
                 $this->Post->save();
                 $this->Post->setSubscribers($this->request->data['Post']['Subscriber'], $this->Auth->user('id'));
-                $this->Session->setFlash('Your post has been saved. Please now add some tags.');
+                $this->Session->setFlash('Your post has been saved.');
                 $this->Post->notify($this->Post->id);
-                $this->redirect(array('action' => 'tag', $this->Post->id));
+                $this->redirect(array('action' => 'view', $this->Post->id));
             } else {
                 $this->Session->setFlash('Unable to add your post.');
             }
@@ -52,36 +52,6 @@ class PostsController extends AppController {
                 'User.active' => 1
             )
         )));
-    }
-
-    function tag($id){
-        if ($this->request->is('post')){
-            $this->Post->id = $id;
-            $this->Post->setTags($this->request->data['Post']['Tag'] ? $this->request->data['Post']['Tag'] : array());
-            $this->Session->setFlash('Tags updated.', 'flash_success');
-            $this->redirect(array('action' => 'view', $id));
-        } else {
-            $this->Post->id = $id;
-            $this->Post->recursive = -1;
-            $post = $this->Post->read();
-            if(!$post){
-                throw new NotFoundException();
-            }
-
-            $all_tags = $this->Post->PostTag->Tag->getTree();
-
-            $postTags = $this->Post->PostTag->find('all', array(
-                'conditions' => array(
-                   'post_id' => $id
-                ),
-                'recursive' => -1,
-            ));
-
-            $this->set("all_tags", $all_tags);
-            $this->set("selected_tags", Set::extract('/PostTag/tag_id', $postTags));
-            $this->set('post', $post);
-
-        }
     }
 
 

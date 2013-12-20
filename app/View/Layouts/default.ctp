@@ -53,22 +53,6 @@
                         </div>
 
                         <?php echo $this->Html->link('Add Post', array('controller'=>'posts', 'action' => 'add'), array('class' => 'btn btn-success add-post')); ?>
-
-                        <div class="btn-group">
-                         <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
-                            Browse
-                            <span class="caret"></span>
-                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/">Post List</a></li>
-                             <li>
-                                  <?php echo $this->Html->link('Tag Tree', array('controller'=>'tags', 'action' => 'index')); ?>
-                            </li>
-                            <li>
-                                  <?php echo $this->Html->link('Tag Cloud', array('controller'=>'tags', 'action' => 'cloud')); ?>
-                            </li>
-                        </ul>
-                        </div>
                     </div>
                 <?php endif;?>
             </div>
