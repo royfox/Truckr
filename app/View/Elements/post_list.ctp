@@ -2,22 +2,13 @@
       <p>No posts found.</p>
 <?php else:?>
     <?php if(!isset($show_pagination) || $show_pagination === true):?>
-        <?php if($this->Paginator):?>
-            <div class="sort">
-                <?php if($this->Paginator->sortKey() == "Post.created"):?>
-                    Sorted by created date. <?php echo $this->Paginator->sort('Post.modified', '(Sort by modified date)',array('direction' => 'desc'));?>
-                <?php else:?>
-                    Sorted by modified date. <?php echo $this->Paginator->sort('Post.created', '(Sort by created date)',array('direction' => 'desc'));?>
-                <?php endif;?>
-            </div>
-        <?php endif;?>
     <?php endif;?>
     <div class="post_list">
         <?php foreach ($posts as $index => $post): ?>
         <div class="single_post<?php if($index%2 != 0):?> odd<?php endif;?>">
-            <span class="label meta">
-                <?php echo $this->element("user_link", array("user" => $post['User']));?> | <span class="time"><?php echo $this->Time->timeAgoInWords($post['Post']['created']); ?></span>
-            </span>
+            <div class="post-meta">
+                <?php echo $this->element("user_link", array("user" => $post['User']));?> on <span class="time"><?php echo $this->Time->nice($post['Post']['created']); ?></span>
+            </div>
             <h4>
                 <?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id']));?>
                 <?php if(count($post['Comment'])):?>

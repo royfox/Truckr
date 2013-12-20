@@ -5,7 +5,7 @@ body {
 
 
 @post-font-size:14px;
-@page-width:710px;
+@page-width:800px;
 
 /* Page Layout */
 #container { width:@page-width; margin:0 auto; background:#fff; border:1px solid #ccc;  }
@@ -21,7 +21,7 @@ div.checkbox { float:left; width:160px;
 .faint:hover { opacity:1;}
 
 /* Override some bootstrap rules */
-h1 { font-size:34px; padding:15px 0; }
+h1 { font-size:28px; padding:15px 0 0 0; }
 .alert {margin-bottom:10px;}
 form { margin:15px 0;}
 
@@ -31,6 +31,7 @@ a, a:hover {
 
 div.post {
     h1, h2, h3, h4, h5, h6 { font-size: 22px; line-height:24px; padding:0; margin:12px 0;}
+    padding-left:120px;
 }
 
 #header { padding:0; position:relative; height:64px;
@@ -58,8 +59,8 @@ div.post {
 }
 
 div.post_list {
-    .single_post { clear:both; padding: 0; border-bottom:1px solid #CCC;
-        h4 { line-height:17px;font-size:16px; margin:0; padding:5px 0;
+    .single_post { clear:both; padding: 0 0 0 10px; border-bottom:1px solid #CCC;
+        h4 { line-height:17px;font-size:16px; margin:0; padding:0 0 10px 0;
             .badge { vertical-align:top; background-color:#BBB; color:#666;}
         }
         .label.meta { float:right; margin: 5px 0 0px 10px; color:#CCC;
@@ -67,6 +68,7 @@ div.post_list {
             .time { color: #DDD;}
         }
         .tags { float:left;}
+       .post-meta { padding-top:10px;}
     }
     .single_post.odd { background:#F1F1F1;}
 }
@@ -80,11 +82,8 @@ div.comments { margin-top: 20px; padding-top:20px; }
 div.comment { margin-bottom:10px;  position:relative;
     .picture { position:absolute; padding-bottom:10px; display:none; }
     .content {
-         .title {  font-weight:bold; font-size:13px; color:#888; padding:3px; }
-         .body { margin:10px 3px; border-left:8px solid #CCC; padding:8px 8px 1px; background:#F9F9F9;
-            p { margin-top:0;}
-         }
         .body.add { padding:0; border:0; background:#FFF;}
+       padding-left:120px;
     }
     div.textarea { margin-bottom:0;
         label { display:none;}
@@ -132,17 +131,29 @@ div.tag_form { width:100%;
     div.tag_box.checkboxes { border:none;}
 }
 
-div.excerpt { clear:both; font-size:12px;}
+div.excerpt { clear:both; font-size:12px; margin-bottom: 10px;}
 
-.post_meta{
-    .meta_row {height:24px; clear:both; line-height:22px; border-bottom:1px solid #EEE;
-        .value { vertical-align: middle; font-weight:bold; color:#555;
-            a { color: #000; color:#555;}
-        }
-        .label { background-color:#AAA; }
-        .btn { margin-bottom:4px;}
-    }
-    span.links { float:right; vertical-align: middle;}
+.subscribers{
+  span.links { float:right; vertical-align: middle; font-size:12px; font-weight: bold;  }
+  clear:both;
+  padding-top:20px;
+  .dateline {
+    font-size:13px; margin-bottom: 5px; font-weight: bold; color:#333;
+  }
+}
+
+div.user-thumb {
+  float:left; width:100px; text-align: center;
+  .gravatar { margin-bottom: 5px;}
+  .name { font-size: 12px; font-weight: bold;}
+}
+
+div.dateline {
+  border-bottom:1px solid #eee; text-align: left; color:#999; font-size: 12px; margin-bottom: 1.5em; padding-top:1.5em; clear:both;
+  span.links {
+    float:right;
+    a { color: #999; font-weight: bold; font-size:11px;}
+  }
 }
 
 div.post, div.post p { font-size:@post-font-size;}
@@ -167,6 +178,8 @@ div.actions input[type=submit]{ margin-top:10px; }
 .wmd-prompt-dialog > div { font-size: 0.8em; font-family: arial, helvetica, sans-serif; }
 .wmd-prompt-dialog > form > input[type="text"] { border: 1px solid #999999; color: black;}
 .wmd-prompt-dialog > form > input[type="button"]{ border: 1px solid #888888; font-family: trebuchet MS, helvetica, sans-serif; font-size: 0.8em; font-weight: bold;}
+
+#wmd-preview { padding-left:1em;}
 
 
 

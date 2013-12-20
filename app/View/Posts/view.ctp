@@ -3,68 +3,32 @@
 <?php echo $this->Html->script("pagedown/Markdown.Sanitizer.js");?>
 <?php echo $this->Html->script("pagedown/Markdown.Editor.js");?>
 
-<h1><?php echo $post['Post']['title']?></h1>
 
-<div class="post_meta">
-    <div class="meta_row">
-        <span class="label">Author</span>
-        <span class="value"><?php echo $this->element("user_link", array("user" => $post['User']));?></span>
-        <span class="links">
-             <?php echo $this->Form->postLink('Delete post', array('action' => 'delete', $post['Post']['id']), array('confirm' => 'Are you sure?', 'class'=>'delete_link minor_link edit_link'));?>
-             <span class="divider">|</span> <?php echo $this->Html->link('Edit post', array('action' => 'edit', $post['Post']['id']), array('class'=>'minor_link edit_link'));?>
-        </span>
-    </div>
-    <div class="meta_row">
-        <span class="label">Subscribers</span>
-        <?php $subscriber_ids = array();?>
-        <?php if(count($post['Subscriber'])):?>
-            <?php $subscriber_names = array();?>
-            <?php foreach($post['Subscriber'] as $subscriber):?>
-                <?php $subscriber_names[] = $subscriber['User']['display_name'];?>
-                <?php $subscriber_ids[] = $subscriber['User']['id'];?>
-            <?php endforeach;?>
-            <?php
-                $last_name = array_pop($subscriber_names);
-                $all_names = join(", ", $subscriber_names). " and $last_name";
-                $subscriber_names[] = $last_name;
 
-                if(count($subscriber_names) > 3){
-                    $more = count($subscriber_names) - 2;
-                    $names =  $subscriber_names[0] . ", " .$subscriber_names[1]. " and $more more";
-                    $subscribers_class = " truncated";
-                } else {
-                    $names = $all_names;
-                    $subscribers_class = "";
-                }
-            ?>
-            <span class="value<?php echo $subscribers_class;?>" title="<?php echo $all_names;?>"><?php echo $names;?></span>
-        <?php else:?>
-             <span class="value">No subscribers</span>
-        <?php endif;?>
-        <?php $current_user = $this->Session->read('Auth.User');?>
-        <span class="links">
-            <?php if(in_array($current_user['id'], $subscriber_ids)):?>
-                <span class="manage_subscription unsubscribe">
-                    <?php echo $this->Html->link('Unsubscribe', array('controller' => 'subscribers','action' => 'delete', $post['Post']['id']), array('class'=>'minor_link edit_link'));?>
-                </span>
-            <?php else:?>
-                <span class="manage_subscription subscribe">
-                    <?php echo $this->Html->link('Subscribe', array('controller' => 'subscribers','action' => 'add', $post['Post']['id']), array('class'=>'minor_link edit_link'));?>
-                </span>
-            <?php endif;?>
-        </span>
-    </div>
-    <div class="meta_row">
-        <span class="label">Date</span>
-        <span class="value"><?php echo $this->Time->timeAgoInWords($post['Post']['created']);?>
-            (last modified <?php echo $this->Time->niceShort($post['Post']['modified']);?>)</span>
-    </div>
+
+
+<h1>
+    <?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id']));?>
+</h1>
+
+
+<div class="dateline">
+    <?php echo $this->Time->nice($post['Post']['created']);?>
+    <span class="links">
+        <?php echo $this->Form->postLink('Delete post', array('action' => 'delete', $post['Post']['id']), array('confirm' => 'Are you sure?', 'class'=>'delete_link minor_link edit_link'));?>
+         <span class="divider">|</span> <?php echo $this->Html->link('Edit post', array('action' => 'edit', $post['Post']['id']), array('class'=>'minor_link edit_link'));?>
+    </span>
+
 </div>
 
-<br /><br />
+<div class="user-thumb">
+    <div class="gravatar">
+        <?php echo $this->Gravatar->image($post['User']['email'], array('size' => 45), array('alt' => 'Gravatar', 'default'=>'identicon')); ?>
+    </div>
+    <span class="name"><?php echo $this->element("user_link", array("user" => $post['User']));?></span>
+</div>
 
 <div class="post">
-
     <div class="content">
         <?php echo Markdown($post['Post']['content']); ?>
         <?php if($post['Post']['upload_dir']):?>
@@ -76,14 +40,24 @@
 
 <div class="comments">
      <?php foreach($post['Comment'] as $comment):?>
-      <div class="comment post">
-          <div class="picture thumbnail">
-              <?php echo $this->Gravatar->image($comment['User']['email'], array('size' => 70), array('alt' => 'Gravatar', 'default'=>'identicon')); ?>
+      <div class="comment">
+          <div class="dateline">
+              <?php echo $this->Time->nice($comment['created']);?>
+              <span class="links">
+                  <?php echo $this->Form->postLink('Delete comment', array('controller'=>'comments', 'action' => 'delete', $comment['id'], $post['Post']['id']), array('confirm' => 'Are you sure?', 'class'=>'delete_link'));?>
+              </span>
+
           </div>
+          <div class="user-thumb">
+              <div class="gravatar">
+                  <?php echo $this->Gravatar->image($comment['User']['email'], array('size' => 45), array('alt' => 'Gravatar', 'default'=>'identicon')); ?>
+              </div>
+              <span class="name"><?php echo $this->element("user_link", array("user" => $comment['User']));?></span>
+          </div>
+
           <div class="content">
               <div class="title">
-                  <?php echo $this->element("user_link", array("user" => $comment['User']));?> |
-                  <?php echo $this->Time->nice($comment['modified']);?> (<?php echo $this->Form->postLink('Delete', array('controller'=>'comments', 'action' => 'delete', $comment['id'], $post['Post']['id']), array('confirm' => 'Are you sure?', 'class'=>'delete_link'));?>)
+
               </div>
               <div class="body">
                   <?php echo Markdown($comment['body']);?>
@@ -93,6 +67,40 @@
       <?php endforeach;?>
 </div>
 
+
+<div class="subscribers">
+        <div class="dateline">
+
+            <?php $subscriber_ids = array();?>
+            <?php $current_user = $this->Session->read('Auth.User');?>
+            <?php foreach($post['Subscriber'] as $subscriber):?>
+                <?php $subscriber_ids[] = $subscriber['User']['id'];?>
+            <?php endforeach;?>
+            This post has <?php echo count($subscriber_ids);?> subscriber<?php if(count($subscriber_ids) != 1):?>s<?php endif;?>
+            <span class="links">
+                <?php if(in_array($current_user['id'], $subscriber_ids)):?>
+                    <span class="manage_subscription unsubscribe">
+                        <?php echo $this->Html->link('Unsubscribe', array('controller' => 'subscribers','action' => 'delete', $post['Post']['id']), array('class'=>'minor_link edit_link'));?>
+                    </span>
+                <?php else:?>
+                    <span class="manage_subscription subscribe">
+                        <?php echo $this->Html->link('Subscribe', array('controller' => 'subscribers','action' => 'add', $post['Post']['id']), array('class'=>'minor_link edit_link'));?>
+                    </span>
+                <?php endif;?>
+            </span>
+        </div>
+        <?php if(count($post['Subscriber'])):?>
+            <?php foreach($post['Subscriber'] as $subscriber):?>
+                <?php echo $this->Gravatar->image($subscriber['User']['email'], array('size' => 20), array('alt' => 'Gravatar', 'default'=>'identicon', 'title' => $subscriber['User']['display_name'].' is subscribed to ths post')); ?>
+            <?php endforeach;?>
+        <?php else:?>
+             <span class="value">No subscribers</span>
+        <?php endif;?>
+        <?php $current_user = $this->Session->read('Auth.User');?>
+
+</div>
+
+
 <div class="add_comment">
     <div class="comment add_comment">
         <?php $current_user = $this->Session->read('Auth.User');?>
@@ -100,7 +108,7 @@
             <?php echo $this->Gravatar->image($current_user['email'], array('size' => 70, 'default'=>'identicon'), array('alt' => 'Gravatar')); ?>
         </div>
         <br /><br />
-        <div class="content">
+        <div>
             <h4>Add a comment</h4>
             <div class="body add">
                 <?php
@@ -128,7 +136,7 @@
         editor1.run();
     });
 
-    $(".truncated").tooltip();
+    $(".subscribers img").tooltip();
 
 </script>
 
