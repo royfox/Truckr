@@ -8,6 +8,7 @@
 
 
 <h1>
+    <?php echo $this->element("room_badge", array('room' => $post['Room']));?>
     <?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id']));?>
 </h1>
 

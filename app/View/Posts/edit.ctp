@@ -10,6 +10,7 @@
         <legend><?php echo __('Edit Post'); ?></legend>
         <?php
             echo $this->Form->create('Post', array('action' => 'edit'));
+            echo $this->Form->input('room_id',array('type'=>'select'));
             echo $this->Form->input('title', array(
                 'class'=>'wide',
             ));

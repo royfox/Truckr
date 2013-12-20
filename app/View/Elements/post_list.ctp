@@ -7,10 +7,15 @@
         <?php foreach ($posts as $index => $post): ?>
         <div class="single_post<?php if($index%2 != 0):?> odd<?php endif;?>">
             <div class="post-meta">
-                <?php echo $this->element("user_link", array("user" => $post['User']));?> on <span class="time"><?php echo $this->Time->nice($post['Post']['created']); ?></span>
+                <?php echo $this->element("user_link", array("user" => $post['User']));?>
+                on <span class="time"><?php echo $this->Time->nice($post['Post']['created']); ?></span>
             </div>
             <h4>
+                <?php if(!isset($displayRoom) || $displayRoom !== false):?>
+                    <?php echo $this->element("room_badge", array('room' => $post['Room']));?>
+                <?php endif;?>
                 <?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id']));?>
+
                 <?php if(count($post['Comment'])):?>
                     <span class="badge badge-warning"><?php echo count($post['Comment']);?></span>
                 <?php endif;?>

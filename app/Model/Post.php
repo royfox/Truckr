@@ -12,16 +12,13 @@ class Post extends AppModel {
         )
     );
 
-    public $belongsTo = array('User');
+    public $belongsTo = array('User', 'Room');
     public $hasMany = array(
         "Comment" => array(
             'dependent' => true
         ),
         "Subscriber" => array(
             'dependent' => true
-         ),
-        'PostTag' => array(
-             'dependent' => true
          )
     );
 

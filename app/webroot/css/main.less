@@ -68,7 +68,7 @@ div.post_list {
             .time { color: #DDD;}
         }
         .tags { float:left;}
-       .post-meta { padding-top:10px;}
+       .post-meta { padding-top:10px; margin-bottom: 4px;}
     }
     .single_post.odd { background:#F1F1F1;}
 }
@@ -155,6 +155,23 @@ div.dateline {
     a { color: #999; font-weight: bold; font-size:11px;}
   }
 }
+
+a.room-badge {
+  font-size:13px; color:white; padding:2px 6px; width:auto; vertical-align: top;
+}
+
+.room-badge-large {
+  vertical-align: top;
+  a.room-badge { font-size:14px; padding:4px 7px; }
+}
+
+td.table-posts {
+  .single_post:first-child .post-meta {
+    padding-top:0;
+  }
+}
+
+.edit-room { float:right;}
 
 div.post, div.post p { font-size:@post-font-size;}
 input.wide, textarea.wide { width:@page-width - 110;}

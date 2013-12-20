@@ -12,6 +12,7 @@
     <fieldset>
     <?php
         echo $this->Form->create('Post');
+        echo $this->Form->input('room_id',array('type'=>'select'));
         echo $this->Form->input('title', array(
             'class'=>'wide',
         ));

@@ -10,18 +10,17 @@ class PostsController extends AppController {
     public $components = array('Session');
     public $paginate = array(
         'order' => array('created'=>'desc'),
-        'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User'),
+        'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User', 'Room'),
         'limit' => 50
     );
 
     public function index() {
        $this->set('posts', $this->paginate('Post'));
-
     }
 
     public function view($id) {
         $this->Post->id = $id;
-        $this->Post->contain(array('Comment','Comment.User', 'Subscriber','Subscriber.User','User'));
+        $this->Post->contain(array('Comment','Comment.User', 'Subscriber','Subscriber.User','User', 'Room'));
         $this->Post->recursive = 1;
         $post = $this->Post->read();
         if(!$post){
@@ -44,6 +43,8 @@ class PostsController extends AppController {
                 $this->Session->setFlash('Unable to add your post.');
             }
         }
+        $rooms = $this->Post->Room->find('list');
+        $this->set("rooms", $rooms);
         $this->set('users', $this->Post->User->find('list', array(
             'fields' => array('User.display_name'),
             'order'=>'display_name asc',
@@ -75,6 +76,8 @@ class PostsController extends AppController {
             ),
             'fields' => array('Subscriber.user_id'),
         ))));
+        $rooms = $this->Post->Room->find('list');
+        $this->set("rooms", $rooms);
         $this->set('users', $this->Post->User->find('list', array(
             'fields' => array('User.display_name'),
             'order'=>'display_name asc',
