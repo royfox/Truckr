@@ -6,7 +6,7 @@ App::uses('CakeEmail', 'Network/Email');
 class PostsController extends AppController {
 
     public $name = 'Posts';
-    public $helpers = array('Html', 'Form','Text',"Time", "Markdown.Markdown","Gravatar", "AjaxMultiUpload.Upload","Paginator");
+    public $helpers = array('Html', 'Form','Text',"Time", "Gravatar", "AjaxMultiUpload.Upload","Paginator");
     public $components = array('Session');
     public $paginate = array(
         'order' => array('created'=>'desc'),
@@ -110,6 +110,11 @@ class PostsController extends AppController {
             $this->Session->setFlash('No search query!');
             $this->redirect("/");
         }
+    }
+
+    function ciconia(){
+        $this->layout = 'ajax';
+        $this->set("markdown", $this->request['data']['markdown']);
     }
 
 }

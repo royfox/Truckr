@@ -5,5 +5,5 @@
 <hr />
 
 <div class="content">
-    <?php echo Markdown($comment['Comment']['body']); ?>
+    <?php echo $this->element('ciconia', array('content' => $comment['Comment']['body'])); ?>
 </div>

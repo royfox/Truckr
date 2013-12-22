@@ -52,7 +52,7 @@ class Post extends AppModel {
                 $email->to($subscriber['User']['email']);
                 $email->template('new_post');
                 $email->emailFormat('html');
-                $email->helpers(array('Markdown.Markdown', 'Html'));
+                $email->helpers(array('Html'));
                 $email->subject("[Truckr] ".$post['Post']['title']);
                 $email->viewVars(array(
                     'post' => $post,

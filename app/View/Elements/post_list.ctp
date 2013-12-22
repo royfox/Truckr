@@ -22,7 +22,7 @@
             </h4>
             <?php if(isset($query)):?>
                 <div class="excerpt">
-                   <?php echo $this->Text->highlight($this->Text->excerpt($post['Post']['title']." : ".Sanitize::html(Markdown($post['Post']['content']), array('remove' => true)), $query, 200, '...'), $query, array('format' => '<span class="highlight">\1</span>'));?>
+                   <?php echo $this->Text->highlight($this->Text->excerpt($post['Post']['title']." : ".Sanitize::html($this->element('ciconia',array('content'=>$post['Post']['content'])), array('remove' => true)), $query, 200, '...'), $query, array('format' => '<span class="highlight">\1</span>'));?>
                 </div>
             <?php endif;?>
             <div style="clear:both;"></div>

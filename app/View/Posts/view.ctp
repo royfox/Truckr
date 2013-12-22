@@ -1,11 +1,4 @@
 <?php echo $this->Html->script("jquery.textarea.js");?>
-<?php echo $this->Html->script("pagedown/Markdown.Converter.js");?>
-<?php echo $this->Html->script("pagedown/Markdown.Sanitizer.js");?>
-<?php echo $this->Html->script("pagedown/Markdown.Editor.js");?>
-
-
-
-
 
 <h1>
     <?php echo $this->element("room_badge", array('room' => $post['Room']));?>
@@ -31,7 +24,7 @@
 
 <div class="post">
     <div class="content">
-        <?php echo Markdown($post['Post']['content']); ?>
+        <?php echo $this->element("ciconia", array("content" => $post['Post']['content'])); ?>
         <?php if($post['Post']['upload_dir']):?>
             <?php echo $this->Upload->view('post', $post['Post']['upload_dir']);?>
         <?php endif;?>
@@ -61,7 +54,7 @@
 
               </div>
               <div class="body">
-                  <?php echo Markdown($comment['body']);?>
+                  <?php echo $this->element("ciconia", array("content" => $comment['body']));?>
               </div>
           </div>
       </div>
@@ -101,44 +94,20 @@
 
 </div>
 
+<br /><br />
 
-<div class="add_comment">
-    <div class="comment add_comment">
-        <?php $current_user = $this->Session->read('Auth.User');?>
-        <div class="picture thumbnail">
-            <?php echo $this->Gravatar->image($current_user['email'], array('size' => 70, 'default'=>'identicon'), array('alt' => 'Gravatar')); ?>
-        </div>
-        <br /><br />
-        <div>
-            <h4>Add a comment</h4>
-            <div class="body add">
-                <?php
-                    echo $this->Form->create('Comment', array('url'=>array('controller'=>'comments','action'=>'add', $post['Post']['id'])));
-                    echo $this->Form->input('body', array(
-                        'rows' => '6',
-                        'class'=>'wmd-input wide',
-                        'id'=>'wmd-input',
-                        'between' => '<div class="wmd-panel"><div id="wmd-button-bar" class="wmd-button-bar"></div>',
-                        'after' => '</div>'
-                    ));
-        ?>
-            <div id="wmd-preview" class="post wmd-panel wmd-preview"></div>
-            <?php echo $this->Form->end('Save');?>
-            </div>
-        </div>
-    </div>
+<div id="add-comment">
+    <h4>Add a comment</h4>
+    <?php
+        echo $this->Form->create('Comment', array('url'=>array('controller'=>'comments','action'=>'add', $post['Post']['id'])));
+        echo $this->element('write', array('textarea' => $this->Form->input('body')));
+        echo $this->Form->end('Save comment');
+    ?>
 </div>
 
+
 <script>
-    $(document).ready(function () {
-        $("textarea").tabby();
-        var converter1 = Markdown.getSanitizingConverter();
-        var editor1 = new Markdown.Editor(converter1);
-        editor1.run();
-    });
-
     $(".subscribers img").tooltip();
-
 </script>
 
 

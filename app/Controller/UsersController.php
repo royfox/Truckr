@@ -2,7 +2,7 @@
 // app/Controller/UsersController.php
 class UsersController extends AppController {
 
-    public $helpers = array('Html', 'Form','Text',"Time", "Markdown.Markdown");
+    public $helpers = array('Html', 'Form','Text',"Time");
 
     public function beforeFilter() {
         parent::beforeFilter();

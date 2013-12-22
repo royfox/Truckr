@@ -5,5 +5,5 @@
 <h3><a href = "<?php echo $urlRoot;?>/posts/view/<?php echo $post['Post']['id'];?>"><?php echo $post['Post']['title'];?></a></h3>
 
 <div class="content">
-    <?php echo Markdown($post['Post']['content']); ?>
+    <?php echo $this->element('ciconia', array('content' => $post['Post']['content'])); ?>
 </div>

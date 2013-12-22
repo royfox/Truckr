@@ -7,7 +7,7 @@ class RoomsController extends AppController {
 
     public $name = 'Rooms';
     public $components = array('Session');
-    public $helpers = array('Html', 'Form','Text',"Time", "Markdown.Markdown");
+    public $helpers = array('Html', 'Form','Text',"Time");
 
     public function index() {
        $this->Room->hasMany['Post']['limit'] = 2;

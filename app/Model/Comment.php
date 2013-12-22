@@ -17,7 +17,7 @@ class Comment extends AppModel {
                 $email->to($subscriber['User']['email']);
                 $email->template('new_comment');
                 $email->emailFormat('html');
-                $email->helpers(array('Markdown.Markdown', 'Html'));
+                $email->helpers(array('Html'));
                 $email->subject("[Truckr] ".$comment['Post']['title']);
                 $email->viewVars(array(
                     'comment' => $comment,
