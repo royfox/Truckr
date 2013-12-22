@@ -1,0 +1,14 @@
+{
+    "config": {
+        "vendor-dir": "Vendor"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/royfox/Ciconia"
+        }
+    ],
+    "require": {
+        "kzykhys/ciconia": "@dev"
+    }
+}
