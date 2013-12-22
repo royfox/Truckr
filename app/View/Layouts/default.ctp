@@ -16,11 +16,13 @@
         <link rel="stylesheet/less" type="text/css" href="/css/main.less">
     <?php
         echo $this->Html->script('prettify/prettify.js');
-        echo $this->Html->script('jquery.js');
+        echo $this->Html->script('jquery.2.0.3.js');
         echo $this->Html->script('global.js');
         echo $this->Html->script('cake-bootstrap.js');
         echo $this->Html->script('bootstrap.min.js');
         echo $this->Html->script('less-1.3.0.min.js');
+        echo $this->Html->script('jquery.textcomplete.js');
+        echo $this->Html->script('emoji.js');
         echo $scripts_for_layout;
     ?>
 </head>
@@ -69,6 +71,17 @@
             <div id="footer"></div>
         </div>
     </div>
+
+    <script>
+        <?php
+        foreach($allUsernames as &$user){
+            $user = '"'.$user.'"';
+        }
+        unset($user);
+        ?>
+        var usernames = [<?php echo join(",", $allUsernames);?>];
+    </script>
+
 	<?php echo $this->element('sql_dump'); ?>
 
 </body>

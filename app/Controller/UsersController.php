@@ -48,6 +48,19 @@ class UsersController extends AppController {
         )));
     }
 
+    public function handle($username){
+        $user = $this->User->find('first',array(
+           'conditions' => array(
+               'username' => $username
+        )));
+        if(!$user){
+            throw new NotFoundException(__('Invalid user'));
+        } else {
+            $this->view($user['User']['id']);
+            $this->render('view');
+        }
+    }
+
     public function add() {
         $this->set("hide_navigation", true);
         if ($this->request->is('post')) {
@@ -99,4 +112,5 @@ class UsersController extends AppController {
         $this->Session->setFlash(__('User was not deleted'));
         $this->redirect(array('action' => 'index'));
     }
+
 }

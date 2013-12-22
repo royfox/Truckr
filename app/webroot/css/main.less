@@ -3,7 +3,6 @@ body {
 }
 
 
-
 @post-font-size:14px;
 @page-width:800px;
 
@@ -94,7 +93,7 @@ div.comment { margin-bottom:10px;  position:relative;
 
 .tab-container { positive:relative; padding-top:12px;}
 #ciconia-input {
-    textarea { height:130px; width:100%; padding:6px; font-size:14px;}
+    textarea { height:130px; width:700px; padding:6px; font-size:14px;}
     label { display:none;}
     min-height: 150px;
 }
@@ -104,11 +103,20 @@ div.comment { margin-bottom:10px;  position:relative;
   float:right; color:#aaa; padding-top:14px; font-size: 11px;
 }
 
-#add-comment { padding-left: 120px;}
+
+
+#add-comment {
+  padding-left: 120px;
+  #ciconia-input textarea { width:583px;}
+}
 
 div.content {
     label { margin-top:20px;}
-    dd { color:#999; font-size:12px;}
+    dd {
+      color:#999; font-size:12px;
+      a { font-weight: normal;}
+    }
+    a { font-weight: bold;}
 }
 
 .pagination { color: white; border-left: 1px solid #DDD;
@@ -189,23 +197,7 @@ div.large_tags .btn { margin-bottom:6px;}
 .highlight { background:yellow;}
 div.actions input[type=submit]{ margin-top:10px; }
 
-.wmd-button-bar { width: 100%; margin:0; padding:0; margin-bottom:4px; }
-.wmd-input {height: 230px;  border: 1px solid DarkGray; margin-top:3px; }
-.wmd-preview { padding:10px 12px; background-color: #F3F3F3; border:1px dashed #DDD; margin:10px 0;}
-.wmd-button-row { position: relative; margin:0; padding: 0px; height: 20px;}
-.wmd-spacer { width: 1px; height: 20px; margin-left: 14px; position: absolute; background-color: Silver; display: inline-block; list-style: none; }
-.wmd-button { width: 20px; height: 20px; padding-left: 2px; padding-right: 3px; position: absolute; display: inline-block; list-style: none; cursor: pointer; margin:0;}
-.wmd-button > span {background-image: url('/img/wmd-buttons.png');background-repeat: no-repeat;background-position: 0px 0px;width: 20px;height: 20px;display: inline-block; }
-.wmd-spacer1 { left: 50px; }
-.wmd-spacer2 { left: 175px; }
-.wmd-spacer3 { left: 300px;}
-.wmd-prompt-background { background-color: Black;}
-.wmd-prompt-dialog { border: 1px solid #999999; background-color: #F5F5F5; padding:0 12px;}
-.wmd-prompt-dialog > div { font-size: 0.8em; font-family: arial, helvetica, sans-serif; }
-.wmd-prompt-dialog > form > input[type="text"] { border: 1px solid #999999; color: black;}
-.wmd-prompt-dialog > form > input[type="button"]{ border: 1px solid #888888; font-family: trebuchet MS, helvetica, sans-serif; font-size: 0.8em; font-weight: bold;}
-
-#wmd-preview { padding-left:1em;}
+img.emoji { margin-right: 3px; vertical-align: top;}
 
 
 

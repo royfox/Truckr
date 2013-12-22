@@ -9,6 +9,22 @@ class AppController extends Controller {
         $this->Auth->fields = array('username' => 'username', 'password' => 'password');
         $this->Auth->loginAction = array('admin' => false, 'controller' => 'users', 'action' => 'login');
         $this->Auth->loginRedirect = array('controller' => 'posts', 'action' => 'index');
+        $this->addUsersForAutoComplete();
+
+    }
+
+    public function addUsersForAutoComplete(){
+        App::import("Model", "User");
+        $user = new User();
+        $users = $user->find('all', array(
+            'recursive' => -1,
+            'conditions' => array(
+                'active' => 1
+            )
+        ));
+        $usernames = Set::extract('/User/username', $users);
+        sort($usernames);
+        $this->set("allUsernames", $usernames);
     }
 
 }

@@ -12,24 +12,22 @@
 
 function cakebootstrap()
 {
-//All submit forms wrapped to div.action
-$('input][type="submit"][class!="btn primary"]').wrap('<div class="actions" />');
-//All submit forms converted to primary button
-$('input[type="submit"]').addClass('btn primary');
-//All index actions converted into pretty buttons
-$('td][class="actions"] > a[class!="btn"]').addClass('btn');
+    //All submit forms wrapped to div.action
+    $('input[type="submit"]').not('[class="btn primary"]').wrap('<div class="actions" />');
+    //All submit forms converted to primary button
+    $('input[type="submit"]').addClass('btn primary');
+    //All index actions converted into pretty buttons
+    $('td[class="actions"] > a').not('[class="btn"]').addClass('btn');
 
-//All (div.inputs) with default FormHelper style (div.input > label ~ input)
-//converted into Twitter Bootstrap Style (div.clearfix > label ~ div.input)
+    //All (div.inputs) with default FormHelper style (div.input > label ~ input)
+    //converted into Twitter Bootstrap Style (div.clearfix > label ~ div.input)
 
-$('div[class!="input added"].input').removeClass().addClass('clearfix');
-$('div.clearfix > label ~ input').wrap('<div class="input added" />');
-$('div.clearfix > label ~ select').wrap('<div class="input added" />');
-$('div.clearfix > label ~ textarea').wrap('<div class="input added" />');
+    $('div[class!="input added"].input').removeClass().addClass('clearfix');
+    $('div.clearfix > label ~ input').wrap('<div class="input added" />');
+    $('div.clearfix > label ~ select').wrap('<div class="input added" />');
+    $('div.clearfix > label ~ textarea').wrap('<div class="input added" />');
 
-$('div.pagination .current').wrap('<span class="active" />').wrap('<a />');
-
-
+    $('div.pagination .current').wrap('<span class="active" />').wrap('<a />');
 }
 
 //Default CakePHP Error inputs are converted to twitter bootstrap style
@@ -49,15 +47,6 @@ $(document).ready(function(){
 	cakebootstrap();
 	errorstrap();
 });
-
-
-
-
-
-
-
-
-
 
 
 
