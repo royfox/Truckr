@@ -6,7 +6,7 @@ class Comment extends AppModel {
     public $belongsTo = array('Post', 'User');
     public $actsAs = array('Containable');
 
-    public function notify($id){
+    public function notify($id, $mentionedUserIds){
         $this->id = $id;
         $this->contain(array('Post','Post.Subscriber','Post.Subscriber.User','User'));
         $comment = $this->read();
@@ -21,7 +21,8 @@ class Comment extends AppModel {
                 $email->subject("[Truckr] ".$comment['Post']['title']);
                 $email->viewVars(array(
                     'comment' => $comment,
-                    'urlRoot' => Configure::read("Email.UrlRoot")
+                    'urlRoot' => Configure::read("Email.UrlRoot"),
+                    'userWasMentioned' => in_array($subscriber['user_id'], $mentionedUserIds)
                 ));
                 $email->send();
             }

@@ -23,8 +23,25 @@ class Post extends AppModel {
     );
 
 
-    public function setSubscribers($subscriber_ids, $user_id){
+    public function addSubscribers($subscriber_ids, $post_id = null){
+        foreach($subscriber_ids as $subscriber_id){
+            $existingEntry = $this->Subscriber->find('first', array(
+                'conditions' => array(
+                    'Subscriber.post_id' => $post_id === null ? $this->id : $post_id,
+                    'Subscriber.user_id' => $subscriber_id
+                )
+            ));
+            if(!$existingEntry){
+                $this->Subscriber->create();
+                $this->Subscriber->save(array(
+                    'post_id' => $post_id === null ? $this->id : $post_id,
+                    'user_id' => $subscriber_id
+                ));
+            }
+        }
+    }
 
+    public function setSubscribers($subscriber_ids, $user_id){
         $subscriber_ids[] = $user_id;
         $subscriber_ids = array_unique($subscriber_ids);
 
@@ -41,7 +58,7 @@ class Post extends AppModel {
         }
     }
 
-    public function notify($id){
+    public function notify($id, $mentionedUserIds){
         $this->id = $id;
         $this->contain(array('Subscriber','Subscriber.User','User'));
         $post = $this->read();
@@ -56,7 +73,8 @@ class Post extends AppModel {
                 $email->subject("[Truckr] ".$post['Post']['title']);
                 $email->viewVars(array(
                     'post' => $post,
-                    'urlRoot' => Configure::read("Email.UrlRoot")
+                    'urlRoot' => Configure::read("Email.UrlRoot"),
+                    'userWasMentioned' => in_array($subscriber['user_id'], $mentionedUserIds)
                 ));
                 $email->send();
             }

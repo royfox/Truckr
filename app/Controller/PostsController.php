@@ -7,7 +7,7 @@ class PostsController extends AppController {
 
     public $name = 'Posts';
     public $helpers = array('Html', 'Form','Text',"Time", "Gravatar", "AjaxMultiUpload.Upload","Paginator");
-    public $components = array('Session');
+    public $components = array('Session', 'Mention');
     public $paginate = array(
         'order' => array('created'=>'desc'),
         'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User', 'Room'),
@@ -23,6 +23,7 @@ class PostsController extends AppController {
         $this->Post->contain(array('Comment','Comment.User', 'Subscriber','Subscriber.User','User', 'Room'));
         $this->Post->recursive = 1;
         $post = $this->Post->read();
+
         if(!$post){
             throw new NotFoundException();
         }
@@ -36,8 +37,10 @@ class PostsController extends AppController {
                 $this->Post->set('user_id', $this->Auth->user('id'));
                 $this->Post->save();
                 $this->Post->setSubscribers($this->request->data['Post']['Subscriber'], $this->Auth->user('id'));
+                $mentionedUsers = $this->Mention->getMentionedUserIds($this->request->data['Post']['content'], $this->Post->User->find('all'));
+                $this->Post->addSubscribers($mentionedUsers);
                 $this->Session->setFlash('Your post has been saved.');
-                $this->Post->notify($this->Post->id);
+                $this->Post->notify($this->Post->id, $mentionedUsers);
                 $this->redirect(array('action' => 'view', $this->Post->id));
             } else {
                 $this->Session->setFlash('Unable to add your post.');
@@ -64,6 +67,8 @@ class PostsController extends AppController {
         } else {
             if ($this->Post->save($this->request->data)) {
                 $this->Post->setSubscribers($this->request->data['Post']['Subscriber'], $this->Auth->user('id'));
+                $mentionedUsers = $this->Mention->getMentionedUserIds($this->request->data['Post']['content'], $this->Post->User->find('all'));
+                $this->Post->addSubscribers($mentionedUsers);
                 $this->Session->setFlash('Your post has been updated.');
                 $this->redirect(array('action' => 'view', $this->Post->id));
             } else {

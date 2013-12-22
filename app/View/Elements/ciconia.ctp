@@ -17,19 +17,24 @@ $ciconia->addExtension(new Custom\MentionExtension());
 if(strlen(trim($content)) == 0){
     echo "Nothing to display";
 } else {
-    /**
-     * Emoji processing: couldn't make this work as a Ciconia extension, as it
-     * kept doing something funny with underscores in the image URL, or
-     * replacing the image URL with a link
-     */
-    $content = $ciconia->render($content);
-    $text = new Text($content);
-    $text->replace('/:\S*:/', function(Text $w){
-        $name = str_replace(":", "", $w);
-        $url = Router::url('/', true)."img/emoji/$name.png";
-        return "<img src = '$url' class='emoji' />";
-    });
-    echo $text->getString();
+    if(!isset($emoji) || $emoji !== false){
+         /**
+         * Emoji processing: couldn't make this work as a Ciconia extension, as it
+         * kept doing something funny with underscores in the image URL, or
+         * replacing the image URL with a link
+         */
+        $content = $ciconia->render($content);
+        $text = new Text($content);
+
+        $text->replace('/:[0-9a-zA-Z_\+\-]*:/', function(Text $w){
+            $name = str_replace(":", "", $w);
+            $url = Router::url('/', true)."img/emoji/$name.png";
+            return "<img src = '$url' class='emoji' />";
+        });
+        echo $text->getString();
+    } else {
+        echo $ciconia->render($content);
+    }
 }
 
 ?>

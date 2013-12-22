@@ -6,7 +6,7 @@ App::uses('CakeEmail', 'Network/Email');
 class CommentsController extends AppController {
 
     public $name = 'Comments';
-    public $components = array('Session');
+    public $components = array('Session','Mention');
 
     public function add($post_id) {
         if ($this->request->is('post')) {
@@ -22,23 +22,14 @@ class CommentsController extends AppController {
                 $this->Comment->save();
 
                 //add the user to the list of subscribers, if they are not there already
-                $subscriber = $this->Comment->Post->Subscriber->find('first', array(
-                    'conditions' => array(
-                        'Subscriber.user_id' => $this->Auth->user('id'),
-                        'Subscriber.post_id' => $post_id
-                )));
-                if(!$subscriber){
-                    $this->Comment->Post->Subscriber->create();
-                    $this->Comment->Post->Subscriber->save(array(
-                        'post_id' => $post_id,
-                        'user_id' => $this->Auth->user('id')
-                    ));
-                }
+                $this->Comment->Post->addSubscribers(array($this->Auth->user('id')), $post_id);
                 $this->Comment->Post->id = $post_id;
                 $this->Comment->Post->read();
                 $this->Comment->Post->set('modified', date("Y-m-d H:i:s"));
                 $this->Comment->Post->save();
-                $this->Comment->notify($this->Comment->id);
+                $mentionedUsersIds = $this->Mention->getMentionedUserIds($this->request->data['Comment']['body'], $this->Comment->Post->User->find('all'));
+                $this->Comment->Post->addSubscribers($mentionedUsersIds, $post_id);
+                $this->Comment->notify($this->Comment->id, $mentionedUsersIds);
                 $this->Session->setFlash('Your comment has been saved.');
                 $this->redirect(array('controller'=>'posts','action' => 'view', $post_id));
             } else {

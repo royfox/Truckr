@@ -8,9 +8,9 @@
         echo $this->Form->create('Post');
         echo $this->Form->input('room_id',array('type'=>'select'));
         echo $this->Form->input('title', array(
-            'class'=>'wide',
+            'class'=>'wide', 'tabindex' => 1
         ));
-        echo $this->element('write', array('textarea' => $this->Form->input('content')));
+        echo $this->element('write', array('textarea' => $this->Form->input('content', array('tabindex' => 2))));
         ?>
         <?php $upload_dir = time().rand(10000,99999);
         echo $this->Form->hidden('upload_dir', array(
@@ -23,7 +23,7 @@
             'multiple' => 'checkbox',
             'options' => $users
         ));
-        echo $this->Form->end('Save Post');
+        echo $this->Form->end('Save Post', array('tabindex' => 3));
     ?>
      </fieldset>
 </div>
