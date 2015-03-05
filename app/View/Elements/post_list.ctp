@@ -5,15 +5,15 @@
     <?php endif;?>
     <div class="post_list">
         <?php foreach ($posts as $index => $post): ?>
-        <div class="single_post<?php if($index%2 != 0):?> odd<?php endif;?>">
+        <div class="single_post<?php if($index%2 != 0):?> odd<?php endif;?>" style="border-left-color: <?php echo $post['Room']['colour'];?>">
             <div class="post-meta">
                 <?php echo $this->element("user_link", array("user" => $post['User']));?>
                 on <span class="time"><?php echo $this->Time->nice($post['Post']['created']); ?></span>
+                <?php if(!isset($displayRoom) || $displayRoom !== false):?>
+                    in <?php echo $this->Html->link($post['Room']['name'], array('controller' => 'rooms', 'action' => 'view', $post['Room']['id']));?>
+                <?php endif;?>
             </div>
             <h4>
-                <?php if(!isset($displayRoom) || $displayRoom !== false):?>
-                    <?php echo $this->element("room_badge", array('room' => $post['Room']));?>
-                <?php endif;?>
                 <?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id']));?>
 
                 <?php if(count($post['Comment'])):?>

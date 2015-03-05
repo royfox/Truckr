@@ -1,13 +1,12 @@
 body {
-  background:#EEE;
+  background:#F9F9F9;
 }
 
-
-@post-font-size:14px;
+@post-font-size:17px;
 @page-width:800px;
 
 /* Page Layout */
-#container { width:@page-width; margin:0 auto; background:#fff; border:1px solid #ccc;  }
+#container { margin:0 auto; background:#fff; border:1px solid #ccc;  }
 #wrapper {  padding:20px 40px 40px 40px; position:relative; }
 #content { padding:3px 0; clear:both; }
 label { font-weight:bold; margin-top:10px;}
@@ -20,7 +19,7 @@ div.checkbox { float:left; width:160px;
 .faint:hover { opacity:1;}
 
 /* Override some bootstrap rules */
-h1 { font-size:28px; padding:15px 0 0 0; }
+h1 { font-size:34px; padding:15px 0 0 0; }
 .alert {margin-bottom:10px;}
 form { margin:15px 0;}
 
@@ -28,38 +27,43 @@ a, a:hover {
   color: #005580;
 }
 
+div.users-column { position:absolute; }
+div.main-column { padding-left:120px; }
+
 div.post {
     h1, h2, h3, h4, h5, h6 { font-size: 22px; line-height:24px; padding:0; margin:12px 0;}
-    padding-left:120px;
+
 }
 
-#header { padding:0; position:relative; height:64px;
-    h1 {  padding:0; font-size:30px;
-        a { letter-spacing:-0.05em; color:#FCAD23; margin-top:-20px;  border-bottom:5px solid #FCAD23; }
+#header { padding:0; position:relative; height:48px; background-color: #002317; padding:10px;
+    h1 {  padding:0; font-size:40px;
+        a { letter-spacing:-0.01em; color:#FFFFFF; margin-top:-20px;  border-bottom:5px solid #f89406; }
         a:hover { text-decoration: none; }
     }
     .permalinks { position:absolute; right: -53px; top:20px; }
-     .username { font-size:13px; position:absolute; right:0px; top:9px; color:#BBB; z-index:2; width:300px;
-        .btn, .btn-group { float:right;}
-        .btn { margin-left:4px;}
+     .username { font-size:13px; position:absolute; right:-53px; top:17px; color:#BBB; z-index:2; width:300px;
+        .btn { margin-left:4px; color: #777;}
+       .btn-warning { color: #FFFFFF; }
+       a { font-size: 14px; padding: 8px;}
      }
 }
 
-#navigation { padding:4px; position:absolute; top:10px; left:134px; width:515px;
+#navigation { padding:4px; position:absolute; top:-2px; left:140px; width:515px;
         .btn {
             float:right; margin-left: 5px;
         }
         #search {
             a.btn {  float:left; padding:6px;}
-            input.search { width:170px; float:left; font-size:12px;}
+            input.search { width:300px; float:left; font-size:18px; height:26px;}
             input.submit { margin-left:4px;}
             div.actions { display:inline; float:left;}
         }
+        i { background-position: -48px 5px; height: 22px;}
 }
 
 div.post_list {
-    .single_post { clear:both; padding: 0 0 0 10px; border-bottom:1px solid #CCC;
-        h4 { line-height:17px;font-size:16px; margin:0; padding:0 0 10px 0;
+    .single_post { clear:both; padding: 0 0 0 10px; border-left-width: 8px; border-left-style: solid; margin: 5px 0;
+        h4 { line-height:17px;font-size:22px; margin:0; padding:0 0 10px 0;
             .badge { vertical-align:top; background-color:#BBB; color:#666;}
         }
         .label.meta { float:right; margin: 5px 0 0px 10px; color:#CCC;
@@ -81,8 +85,8 @@ div.comments { margin-top: 20px; padding-top:20px; }
 div.comment { margin-bottom:10px;  position:relative;
     .picture { position:absolute; padding-bottom:10px; display:none; }
     .content {
-        .body.add { padding:0; border:0; background:#FFF;}
-       padding-left:120px;
+      padding-left:120px; position:relative; top:0px;
+      .body.add { padding:0; border:0; background:#FFF;}
     }
     div.textarea { margin-bottom:0;
         label { display:none;}
@@ -93,11 +97,11 @@ div.comment { margin-bottom:10px;  position:relative;
 
 .tab-container { positive:relative; padding-top:12px;}
 #ciconia-input {
-    textarea { height:130px; width:700px; padding:6px; font-size:14px;}
+    textarea { height:250px; width:100%; padding:6px; font-size:16px;}
     label { display:none;}
     min-height: 150px;
 }
-#ciconia-preview { min-height: 150px; padding:6px; background-color: #FAFAFA; border:1px solid #eee;}
+#ciconia-preview { min-height: 150px; padding:10px; background-color: #FFF; border:1px solid #eee; margin-bottom: 10px;}
 .writing-help {
   a { color: #aaa; font-weight: bold;}
   float:right; color:#aaa; padding-top:14px; font-size: 11px;
@@ -106,8 +110,8 @@ div.comment { margin-bottom:10px;  position:relative;
 
 
 #add-comment {
-  padding-left: 120px;
-  #ciconia-input textarea { width:583px;}
+  #ciconia-input textarea { width:100%;}
+  .nav-tabs:after, .nav-pills:after { clear:left;}
 }
 
 div.content {
@@ -151,12 +155,17 @@ div.tag_form { width:100%;
 div.excerpt { clear:both; font-size:12px; margin-bottom: 10px;}
 
 .subscribers{
-  span.links { float:right; vertical-align: middle; font-size:12px; font-weight: bold;  }
-  clear:both;
+  width: 100px;
+  div.links {
+    text-align: left; font-size:12px; font-weight: bold; margin-top:10px;
+    a { color: #666; }
+  }
+  clear:left;
   padding-top:20px;
   .dateline {
     font-size:13px; margin-bottom: 5px; font-weight: bold; color:#333;
   }
+  img { width: 21px; height: 21px; margin: 3px; }
 }
 
 div.user-thumb {
@@ -165,8 +174,10 @@ div.user-thumb {
   .name { font-size: 12px; font-weight: bold;}
 }
 
+div.user-thumb-comment { position:relative; }
+
 div.dateline {
-  border-bottom:1px solid #eee; text-align: left; color:#999; font-size: 12px; margin-bottom: 1.5em; padding-top:1.5em; clear:both;
+  border-bottom:1px solid #eee; text-align: left; color:#999; font-size: 15px; margin-bottom: 1.5em; padding-top:1.5em; clear:both;
   span.links {
     float:right;
     a { color: #999; font-weight: bold; font-size:11px;}
@@ -174,7 +185,7 @@ div.dateline {
 }
 
 a.room-badge {
-  font-size:13px; color:white; padding:2px 6px; width:auto; vertical-align: top;
+  font-size:22px; color:white; padding:2px 13px; width:auto; vertical-align: top; margin-right:6px; float:right; -webkit-border-radius: 8px;-moz-border-radius: 8px; border-radius: 8px;
 }
 
 .room-badge-large {
@@ -190,14 +201,17 @@ td.table-posts {
 
 .edit-room { float:right;}
 
-div.post, div.post p { font-size:@post-font-size;}
-input.wide, textarea.wide { width:@page-width - 110;}
+div.content, div.content p, div.content ul, div.content li  { font-size:@post-font-size; line-height: 1.5; font-family: Georgia, serif; color: #333;}
+#ciconia-preview, #ciconia-preview p, #ciconia-preview ul, #ciconia-preview li { font-size:@post-font-size; line-height: 1.5; font-family: Georgia, serif; color: #333;}
+input.wide, textarea.wide { height:20px; font-size: 22px; width: 100%; padding: 10px;}
 p.edit_links .btn { float:right; margin-top:8px;}
 div.large_tags .btn { margin-bottom:6px;}
 .highlight { background:yellow;}
 div.actions input[type=submit]{ margin-top:10px; }
 
 img.emoji { margin-right: 3px; vertical-align: top;}
+
+div.textcomplete-wrapper { width:100%; position:static;}
 
 
 

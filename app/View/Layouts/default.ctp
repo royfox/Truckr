@@ -28,40 +28,32 @@
 </head>
 <body>
 	<div id="container">
-        <div id="wrapper">
-            <div id="header">
-                <h1><?php echo $this->Html->link("truckr", '/'); ?></h1>
-                <?php if($user = $this->Session->read('Auth.User')):?>
-                    <div class="username">
+        <div id="header">
+            <h1><?php echo $this->Html->link("truckr", '/'); ?></h1>
+            <?php if($user = $this->Session->read('Auth.User')):?>
+                <div class="username">
 
-                        <div class="btn-group">
-                          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                            My account
-                            <span class="caret"></span>
-                          </a>
-                          <ul class="dropdown-menu">
-                            <li><?php echo $this->Html->link('Details', array('controller'=>'users','action'=>'edit', $user['id'])); ?></li>
-                            <li><?php echo $this->Html->link("Log out", '/logout', array('class'=>'logout')); ?></li>
-                          </ul>
-                        </div>
-
-                        <?php echo $this->Html->link('Add Post', array('controller'=>'posts', 'action' => 'add'), array('class' => 'btn btn-success add-post')); ?>
-                    </div>
-                <?php endif;?>
-            </div>
-            <?php if(!isset($hide_navigation)):?>
-                <div id="navigation">
-                    <div id="search">
-                        <form action="/posts/search">
-                            <input class="search" type="text" name="query"/>
-                            <a class="btn" onclick="$('#search form').submit();">
-                                <i class="icon-search"></i>
-                            </a>
-                        </form>
-                    </div>
+                    <?php echo $this->Html->link('Add Post', array('controller'=>'posts', 'action' => 'add'), array('class' => 'btn btn-warning add-post')); ?>
+                    <?php echo $this->Html->link('Account', array('controller'=>'users','action'=>'edit', $user['id']), array('class'=>'btn')); ?>
+                    <?php echo $this->Html->link("Log out", '/logout', array('class'=>'logout btn')); ?>
 
                 </div>
+                <?php if(!isset($hide_navigation)):?>
+                    <div id="navigation">
+                        <div id="search">
+                            <form action="/posts/search">
+                                <input class="search" type="text" name="query"/>
+                                <a class="btn" onclick="$('#search form').submit();">
+                                    <i class="icon-search"></i>
+                                </a>
+                            </form>
+                        </div>
+
+                    </div>
+                <?php endif;?>
             <?php endif;?>
+        </div>
+        <div id="wrapper">
             <div id="content">
                 <?php echo $this->Session->flash(); ?>
 

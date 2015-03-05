@@ -21,6 +21,19 @@ Installation:
  Console/cake composer.c install
  ```
 
-
 - Make sure app/uploads and app/tmp are writable by your server.
 - Run `git submodule init` and `git submodule update`
+
+####PHP server
+
+You can run the app with the built in PHP server, but you just need to disable some URL rewriting magic first. Add this to your core.php:
+
+```
+Configure::write('App.baseUrl', env('SCRIPT_NAME'));
+```
+
+then you can do something like this
+
+```
+php -S localhost:1234 -t app/webroot/
+```
