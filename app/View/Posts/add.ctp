@@ -1,4 +1,5 @@
 <?php echo $this->Html->script("jquery.textarea.js");?>
+<?php echo $this->Html->script("Posts/add.js"); ?>
 
 <h3>Add post</h3>
 
@@ -17,8 +18,8 @@
             'value' => $upload_dir
         ));
         echo $this->Upload->edit('post', $upload_dir);
-        echo $this->Form->input('Subscriber',array(
-            'label' => __('Subscribers (<span class="checkbox_modifier" select="true">All</span> / <span class="checkbox_modifier" select="false">None</span>)',true),
+        echo $this->Form->input('Subscriber', array(
+            'label' => __('Subscribers (<span class="checkbox_modifier pseudo_link" select="true">All</span> / <span class="checkbox_modifier pseudo_link" select="false">None</span>)',true),
             'type' => 'select',
             'multiple' => 'checkbox',
             'options' => $users
