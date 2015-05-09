@@ -21,13 +21,7 @@
             $this->Form->hidden('upload_dir', array("value" => $upload_dir));
         }
         echo $this->Upload->edit('post', $this->request->data['Post']['upload_dir']);
-            echo $this->Form->input('Subscriber',array(
-                'label' => __('Subscribers',true),
-                'type' => 'select',
-                'multiple' => 'checkbox',
-                'options' => $users,
-                'selected' => $subscribers
-            ));?>
-            <?php echo $this->Form->end('Save Post');?>
+        echo $this->Form->end('Save Post');
+       ?>
     </fieldset>
 </div>

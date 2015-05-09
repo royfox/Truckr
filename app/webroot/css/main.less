@@ -8,6 +8,10 @@ body {
   word-wrap: break-word;
 }
 
+p {
+  font-family: @body-font;
+}
+
 /* Page Layout */
 #container { margin:0 auto; background:#fff; border:1px solid #ccc;  }
 #wrapper {  padding:20px 40px 40px 40px; position:relative;  }
@@ -18,6 +22,13 @@ div.checkbox { float:left; width:160px;
     label { font-weight:normal; margin:0;}
 }
 
+.subscription-links {
+  a {
+    font-size: 16px;
+  }
+  a.subscribe { color: green; }
+  a.unsubscribe { color: red; }
+}
 
 .faint { opacity:0.5;}
 .faint:hover { opacity:1;}
@@ -68,7 +79,7 @@ h1.post-header { padding:6px 0; border-left: 10px solid #fff; margin-bottom: 5px
 div.post_list {
     .single_post { clear:both; padding: 0 0 0 10px; border-left-width: 8px; border-left-style: solid; margin: 5px 0;
         h4 { line-height:17px;font-size:22px; margin:0; padding:0 0 10px 0;
-            .badge { vertical-align:top; background-color:#BBB; color:#666;}
+            .badge { vertical-align:top; background-color:#BBB; color:#666; cursor: default;}
         }
         .label.meta { float:right; margin: 5px 0 0px 10px; color:#CCC;
             a { color:#E7E7E7;}
@@ -89,7 +100,7 @@ div.comments { margin-top: 20px; padding-top:20px; }
 div.comment { margin-bottom:10px;  position:relative;
     .picture { position:absolute; padding-bottom:10px; display:none; }
     .content {
-      position:relative; top:0px; padding:10px; background:#f5f5f5;
+      position:relative; top:0px; padding:10px 10px 2px 10px; background:#f5f5f5; margin-bottom: 17px;
       .body.add { padding:0; border:0; background:#FFF;}
     }
     div.textarea { margin-bottom:0;
@@ -184,6 +195,12 @@ a.room-badge {
 .room-badge-large {
   vertical-align: top;
   a.room-badge { font-size:14px; padding:4px 7px; }
+}
+
+div.room-summary {
+  border-left: 10px solid #fff;
+  margin:15px 0;
+  padding: 0 0 0 10px;
 }
 
 td.table-posts {

@@ -44,7 +44,7 @@ class UsersController extends AppController {
              'conditions' => array(
                 'User.id' => $id
              ),
-            'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User', 'Room')
+            'contain' => array('Comment','Comment.User', 'Room.Subscriber','Room.Subscriber.User','User', 'Room')
         )));
     }
 

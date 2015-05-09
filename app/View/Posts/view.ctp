@@ -6,7 +6,7 @@
 
     <div class="dateline"">
         <span class="gravatar">
-            <?php echo $this->Gravatar->image($post['User']['email'], array('size' => 25), array('alt' => 'Gravatar', 'default'=>'identicon')); ?>
+            <?php echo $this->Gravatar->image($post['User']['email'], array('size' => 25), array('alt' => 'Gravatar', 'default'=>'monsterid')); ?>
         </span>
         <span class="name">
             <?php echo $this->element("user_link", array("user" => $post['User']));?>
@@ -36,7 +36,7 @@
             <div class="comment">
                 <div class="dateline border" style="border-color:<?php echo $post['Room']['colour'];?>">
                     <span class="gravatar">
-                        <?php echo $this->Gravatar->image($comment['User']['email'], array('size' => 25), array('alt' => 'Gravatar', 'default'=>'identicon')); ?>
+                        <?php echo $this->Gravatar->image($comment['User']['email'], array('size' => 25), array('alt' => 'Gravatar', 'default'=>'monsterid')); ?>
                     </span>
                     <span class="name">
                         <?php echo $this->element("user_link", array("user" => $comment['User']));?>

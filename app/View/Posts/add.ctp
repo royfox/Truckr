@@ -18,12 +18,6 @@
             'value' => $upload_dir
         ));
         echo $this->Upload->edit('post', $upload_dir);
-        echo $this->Form->input('Subscriber', array(
-            'label' => __('Subscribers (<span class="checkbox_modifier pseudo_link" select="true">All</span> / <span class="checkbox_modifier pseudo_link" select="false">None</span>)',true),
-            'type' => 'select',
-            'multiple' => 'checkbox',
-            'options' => $users
-        ));
         echo $this->Form->end('Save Post', array('tabindex' => 3));
     ?>
      </fieldset>
