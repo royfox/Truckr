@@ -14,6 +14,7 @@
         echo $this->Html->css('bootstrap-responsive');
     ?>
         <link rel="stylesheet/less" type="text/css" href="/css/main.less">
+        <link href='http://fonts.googleapis.com/css?family=Merriweather:300,700|Open+Sans:700,400' rel='stylesheet' type='text/css'>
     <?php
         echo $this->Html->script('prettify/prettify.js');
         echo $this->Html->script('jquery.2.0.3.js');

@@ -21,6 +21,17 @@ class RoomsController extends AppController {
                 $post['Post'] = $post;
             }
         }
+        $postCounts = $this->Room->Post->find('all', array(
+            'fields' => array('room_id, COUNT(room_id) as count'),
+            'group' => array('room_id')
+        ));
+
+        $postCountMap = array();
+        foreach($postCounts as $postCount) {
+            $postCountMap[$postCount['Post']['room_id']] = $postCount[0]['count'];
+        }
+
+
        unset($room); unset($post);
        usort($rooms, function($a, $b){
            $maxA = 0;
@@ -37,7 +48,8 @@ class RoomsController extends AppController {
            }
            return $maxB - $maxA;
        });
-       $this->set("rooms", $rooms);
+        $this->set("rooms", $rooms);
+        $this->set("postCounts", $postCountMap);
     }
 
     public function view($id = null) {

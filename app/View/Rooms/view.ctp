@@ -1,7 +1,5 @@
 <?php echo $this->Html->link("Edit room details", array('controller' => 'rooms', 'action' => 'edit', $room['Room']['id']), array('class'=>'btn edit-room'));?>
 
-<div class="room-badge-large">
-     <?php echo $this->element("room_badge", array('room' => $room['Room']));?>
-</div>
+<h2><?php echo $room['Room']['name'];?></h2>
 
 <?php echo $this->element("post_list", array("posts"=>$posts, 'displayRoom' => false));

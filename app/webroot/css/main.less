@@ -1,14 +1,18 @@
+@post-font-size:17px;
+@body-font: Merriweather, Georgia, serif;
+@header-font: "Open Sans", sans-serif;
+
 body {
   background:#F9F9F9;
+  font-family: @body-font;
+  word-wrap: break-word;
 }
-
-@post-font-size:17px;
-@page-width:800px;
 
 /* Page Layout */
 #container { margin:0 auto; background:#fff; border:1px solid #ccc;  }
-#wrapper {  padding:20px 40px 40px 40px; position:relative; }
+#wrapper {  padding:20px 40px 40px 40px; position:relative;  }
 #content { padding:3px 0; clear:both; }
+#post-page { max-width: 800px; }
 label { font-weight:bold; margin-top:10px;}
 div.checkbox { float:left; width:160px;
     label { font-weight:normal; margin:0;}
@@ -17,6 +21,8 @@ div.checkbox { float:left; width:160px;
 
 .faint { opacity:0.5;}
 .faint:hover { opacity:1;}
+
+h1, h2, h3, h4, h5, h6 { font-family: @header-font;}
 
 /* Override some bootstrap rules */
 h1 { font-size:34px; padding:15px 0 0 0; }
@@ -27,28 +33,26 @@ a, a:hover {
   color: #005580;
 }
 
-div.users-column { position:absolute; }
-div.main-column { padding-left:120px; }
-
 div.post {
-    h1, h2, h3, h4, h5, h6 { font-size: 22px; line-height:24px; padding:0; margin:12px 0;}
-
+    h1, h2, h3, h4, h5, h6 { font-size: 22px; line-height:24px; padding:0; margin:12px 0; font-family: @header-font;}
 }
 
-#header { padding:0; position:relative; height:48px; background-color: #002317; padding:10px;
-    h1 {  padding:0; font-size:40px;
-        a { letter-spacing:-0.01em; color:#FFFFFF; margin-top:-20px;  border-bottom:5px solid #f89406; }
+#header { padding:0; position:relative; height:38px; background-color: #002317; padding:10px;
+    h1 {  padding:0; font-size:32px;
+        a { letter-spacing:-0.01em; color:#FFFFFF; margin-top:-20px; }
         a:hover { text-decoration: none; }
     }
     .permalinks { position:absolute; right: -53px; top:20px; }
-     .username { font-size:13px; position:absolute; right:-53px; top:17px; color:#BBB; z-index:2; width:300px;
+     .username { font-size:13px; position:absolute; right:-55px; top:13px; color:#BBB; z-index:2; width:300px;
         .btn { margin-left:4px; color: #777;}
        .btn-warning { color: #FFFFFF; }
-       a { font-size: 14px; padding: 8px;}
+       a { font-size: 14px; padding: 6px;}
      }
 }
 
-#navigation { padding:4px; position:absolute; top:-2px; left:140px; width:515px;
+h1.post-header { padding:6px 0; border-left: 10px solid #fff; margin-bottom: 5px; padding-left: 10px; }
+
+#navigation { padding:4px; position:absolute; top:-8px; left:121px; width:515px;
         .btn {
             float:right; margin-left: 5px;
         }
@@ -85,7 +89,7 @@ div.comments { margin-top: 20px; padding-top:20px; }
 div.comment { margin-bottom:10px;  position:relative;
     .picture { position:absolute; padding-bottom:10px; display:none; }
     .content {
-      padding-left:120px; position:relative; top:0px;
+      position:relative; top:0px; padding:10px; background:#f5f5f5;
       .body.add { padding:0; border:0; background:#FFF;}
     }
     div.textarea { margin-bottom:0;
@@ -154,19 +158,6 @@ div.tag_form { width:100%;
 
 div.excerpt { clear:both; font-size:12px; margin-bottom: 10px;}
 
-.subscribers{
-  width: 100px;
-  div.links {
-    text-align: left; font-size:12px; font-weight: bold; margin-top:10px;
-    a { color: #666; }
-  }
-  clear:left;
-  padding-top:20px;
-  .dateline {
-    font-size:13px; margin-bottom: 5px; font-weight: bold; color:#333;
-  }
-  img { width: 21px; height: 21px; margin: 3px; }
-}
 
 div.user-thumb {
   float:left; width:100px; text-align: center;
@@ -177,12 +168,14 @@ div.user-thumb {
 div.user-thumb-comment { position:relative; }
 
 div.dateline {
-  border-bottom:1px solid #eee; text-align: left; color:#999; font-size: 15px; margin-bottom: 1.5em; padding-top:1.5em; clear:both;
+  text-align: left; color:#999; font-size: 15px; margin-bottom: 0.8em; padding-top: 0.8em; clear:both; font-family: @header-font; text-transform: uppercase;
   span.links {
     float:right;
     a { color: #999; font-weight: bold; font-size:11px;}
   }
+  img { border: 1px solid #ccc;}
 }
+div.dateline.border { border-left: 5px solid #fff; padding-left:10px; padding-top: 0; }
 
 a.room-badge {
   font-size:22px; color:white; padding:2px 13px; width:auto; vertical-align: top; margin-right:6px; float:right; -webkit-border-radius: 8px;-moz-border-radius: 8px; border-radius: 8px;
@@ -201,8 +194,8 @@ td.table-posts {
 
 .edit-room { float:right;}
 
-div.content, div.content p, div.content ul, div.content li  { font-size:@post-font-size; line-height: 1.5; font-family: Georgia, serif; color: #333;}
-#ciconia-preview, #ciconia-preview p, #ciconia-preview ul, #ciconia-preview li { font-size:@post-font-size; line-height: 1.5; font-family: Georgia, serif; color: #333;}
+div.content, div.content p, div.content ul, div.content li  { font-size:@post-font-size; line-height: 1.7; font-family: @body-font; color: #333;}
+#ciconia-preview, #ciconia-preview p, #ciconia-preview ul, #ciconia-preview li { font-size:@post-font-size; line-height: 1.5; font-family: @body-font; color: #333;}
 input.wide, textarea.wide { height:20px; font-size: 22px; width: 100%; padding: 10px;}
 p.edit_links .btn { float:right; margin-top:8px;}
 div.large_tags .btn { margin-bottom:6px;}

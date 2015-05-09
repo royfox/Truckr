@@ -9,7 +9,7 @@ class PostsController extends AppController {
     public $helpers = array('Html', 'Form','Text',"Time", "Gravatar", "AjaxMultiUpload.Upload","Paginator");
     public $components = array('Session', 'Mention');
     public $paginate = array(
-        'order' => array('created'=>'desc'),
+        'order' => array('modified'=>'desc'),
         'contain' => array('Comment','Comment.User', 'Subscriber','Subscriber.User','User', 'Room'),
         'limit' => 50
     );

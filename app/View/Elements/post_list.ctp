@@ -17,7 +17,7 @@
                 <?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id']));?>
 
                 <?php if(count($post['Comment'])):?>
-                    <span class="badge badge-warning"><?php echo count($post['Comment']);?></span>
+                    <span class="badge badge-warning"><?php echo count($post['Comment']);?> comments</span>
                 <?php endif;?>
             </h4>
             <?php if(isset($query)):?>
