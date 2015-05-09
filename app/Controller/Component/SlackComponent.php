@@ -17,7 +17,7 @@ class SlackComponent extends Component {
             $postLink = '<' . Configure::read('Email.UrlRoot') . '/posts/view/' . $post['Post']['id'] . '|' . $post['Post']['title'] . '>';
             $roomLink = '<' . Configure::read('Email.UrlRoot') . '/rooms/view/' . $post['Room']['id'] . '|' . $post['Room']['name'] . '>';
             $slackMessage = "$userName $context $postLink in the room $roomLink";
-            $channel = (strpos($post['Room']['slack_channel'], '#') === false) ?  "#test" : trim($post['Room']['slack_channel']);
+            $channel = (strpos($post['Room']['slack_channel'], '#') === false) ?  Configure::read('Slack.DefaultChannel') : trim($post['Room']['slack_channel']);
             $settings = [
                 'username' => 'Truckr',
                 'channel' => $channel,
