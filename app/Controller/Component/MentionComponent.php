@@ -1,6 +1,5 @@
 <?php
 
-
 class MentionComponent  extends Component {
 
     function __construct(ComponentCollection $collection, $settings = array()) {

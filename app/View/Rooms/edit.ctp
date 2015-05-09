@@ -5,6 +5,7 @@
     <?php
         echo $this->Form->input('name');
         echo $this->Form->input('colour');
+        echo $this->Form->input('slack_channel');
         echo $this->Form->input('Subscriber',array(
             'label' => __('Subscribers',true),
             'type' => 'select',

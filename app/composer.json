@@ -9,6 +9,7 @@
         }
     ],
     "require": {
-        "kzykhys/ciconia": "@dev"
+        "kzykhys/ciconia": "@dev",
+        "maknz/slack": "1.5.*"
     }
 }

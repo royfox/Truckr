@@ -6,7 +6,7 @@ App::uses('CakeEmail', 'Network/Email');
 class CommentsController extends AppController {
 
     public $name = 'Comments';
-    public $components = array('Session','Mention');
+    public $components = array('Session','Mention', 'Slack');
 
     public function add($post_id) {
         if ($this->request->is('post')) {
@@ -20,11 +20,12 @@ class CommentsController extends AppController {
             $this->request->data['Comment']['post_id'] = $post_id;
             if ($this->Comment->save($this->request->data)) {
                 $this->Comment->Post->id = $post_id;
-                $this->Comment->Post->read();
+                $post = $this->Comment->Post->read();
                 $this->Comment->Post->set('modified', date("Y-m-d H:i:s"));
                 $this->Comment->Post->save();
                 $mentionedUsersIds = $this->Mention->getMentionedUserIds($this->request->data['Comment']['body'], $this->Comment->Post->User->find('all'));
                 $notifiedUserNames = $this->Comment->notify($this->Comment->id, $mentionedUsersIds);
+                $this->Slack->newComment($post);
                 $this->Session->setFlash('Your comment has been saved. The following users were notified: '.join(", ", $notifiedUserNames));
                 $this->redirect(array('controller'=>'posts','action' => 'view', $post_id));
             } else {

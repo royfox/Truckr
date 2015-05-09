@@ -6,8 +6,8 @@ App::uses('CakeEmail', 'Network/Email');
 class PostsController extends AppController {
 
     public $name = 'Posts';
-    public $helpers = array('Html', 'Form','Text',"Time", "Gravatar", "AjaxMultiUpload.Upload","Paginator");
-    public $components = array('Session', 'Mention');
+    public $helpers = array('Html', 'Form','Text', 'Time', 'Gravatar', 'AjaxMultiUpload.Upload','Paginator');
+    public $components = array('Session', 'Mention', 'Slack');
     public $paginate = array(
         'order' => array('modified'=>'desc'),
         'contain' => array('Comment','Comment.User', 'Room.Subscriber','Room.Subscriber.User','User', 'Room'),
@@ -38,6 +38,8 @@ class PostsController extends AppController {
                 $mentionedUsers = $this->Mention->getMentionedUserIds($this->request->data['Post']['content'], $this->Post->User->find('all'));
                 $notifiedUserNames = $this->Post->notify($this->Post->id, $mentionedUsers);
                 $this->Session->setFlash('Your post has been saved. The following users were notified: '.join(", ", $notifiedUserNames));
+                $post = $this->Post->read();
+                $this->Slack->newPost($post);
                 $this->redirect(array('action' => 'view', $this->Post->id));
             } else {
                 $this->Session->setFlash('Unable to add your post.');
