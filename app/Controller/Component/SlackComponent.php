@@ -3,17 +3,16 @@
 class SlackComponent extends Component {
 
     public function newPost($post) {
-        $this->send($post, "posted");
+        $this->send($post, "posted", $post['User']['display_name']);
     }
 
-    public function newComment($post) {
-        $this->send($post, "added a comment to");
+    public function newComment($post, $userName) {
+        $this->send($post, "added a comment to", $userName);
     }
 
-    private function send($post, $context) {
+    private function send($post, $context, $userName) {
         $slackUrl = Configure::read('Slack.Url');
         if($slackUrl) {
-            $userName = $post['User']['display_name'];
             $postLink = '<' . Configure::read('Email.UrlRoot') . '/posts/view/' . $post['Post']['id'] . '|' . $post['Post']['title'] . '>';
             $roomLink = '<' . Configure::read('Email.UrlRoot') . '/rooms/view/' . $post['Room']['id'] . '|' . $post['Room']['name'] . '>';
             $slackMessage = "$userName $context $postLink in the room $roomLink";

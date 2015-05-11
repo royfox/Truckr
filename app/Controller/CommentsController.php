@@ -25,7 +25,10 @@ class CommentsController extends AppController {
                 $this->Comment->Post->save();
                 $mentionedUsersIds = $this->Mention->getMentionedUserIds($this->request->data['Comment']['body'], $this->Comment->Post->User->find('all'));
                 $notifiedUserNames = $this->Comment->notify($this->Comment->id, $mentionedUsersIds);
-                $this->Slack->newComment($post);
+                $user = $this->Comment->Post->User->find('first', array(
+                   'conditions' => array('id' => $this->Auth->user('id'))
+                ));
+                $this->Slack->newComment($post, $user['User']['display_name']);
                 $this->Session->setFlash('Your comment has been saved. The following users were notified: '.join(", ", $notifiedUserNames));
                 $this->redirect(array('controller'=>'posts','action' => 'view', $post_id));
             } else {

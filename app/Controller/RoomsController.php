@@ -60,7 +60,7 @@ class RoomsController extends AppController {
                 'Room.id' => $id
             ),
             'order' => array('name desc'),
-            'contain' => array('Post', 'Post.Comment','Post.Comment.User', 'Subscriber','Subscriber.User','Post.User', 'Post.Room')
+            'contain' => array('Subscriber','Subscriber.User')
         ));
         $this->set('room', $room);
         $this->set('posts', $this->Room->Post->find('all',array(
