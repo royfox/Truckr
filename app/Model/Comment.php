@@ -47,7 +47,7 @@ class Comment extends AppModel {
             if(
                 $otherComment['User']['active'] &&
                 $otherComment['user_id'] != $comment['Comment']['user_id'] &&
-                !in_array($otherComment, $notifiedUsers)
+                !in_array($otherComment['user_id'], $notifiedUsers)
             ) {
                 $this->sendEmail(
                     $otherComment['User']['email'],
